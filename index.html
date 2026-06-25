@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VAELON SPACE | Aerospace Engineering</title>
+  <meta name="description" content="Vaelon Space aerospace profile for propulsion, orbital systems, and mission engineering.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #030711;
+      --panel: rgba(9, 18, 31, .82);
+      --panel-strong: rgba(13, 27, 45, .94);
+      --ink: #eef6ff;
+      --muted: #8da5b9;
+      --line: rgba(125, 177, 216, .18);
+      --orange: #ff7a18;
+      --red: #ff4e42;
+      --cyan: #70d7ff;
+      --green: #65f5a7;
+      --shadow: 0 28px 80px rgba(0, 0, 0, .45);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "IBM Plex Mono", monospace;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(112, 215, 255, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(112, 215, 255, .03) 1px, transparent 1px),
+        radial-gradient(circle at 72% 12%, rgba(255, 122, 24, .13), transparent 32rem),
+        radial-gradient(circle at 18% 36%, rgba(112, 215, 255, .12), transparent 30rem),
+        var(--void);
+      background-size: 64px 64px, 64px 64px, auto, auto, auto;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent, rgba(3, 7, 17, .72));
+      z-index: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button, input, select, textarea { font: inherit; }
+
+    .site {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 84px;
+      padding: 14px clamp(18px, 4vw, 56px);
+      background: rgba(3, 7, 17, .82);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-logo {
+      width: 66px;
+      height: 66px;
+      object-fit: cover;
+      object-position: center;
+      padding: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(112, 215, 255, .38);
+      background: rgba(2, 7, 14, .88);
+      box-shadow: 0 0 0 6px rgba(112, 215, 255, .05), 0 0 34px rgba(112, 215, 255, .14);
+    }
+
+    .hero-logo-card {
+      width: 172px;
+      height: 172px;
+      margin-bottom: 22px;
+      padding: 8px;
+      border-radius: 50%;
+      border: 1px solid rgba(112, 215, 255, .38);
+      background: radial-gradient(circle at 50% 50%, rgba(112, 215, 255, .16), rgba(2, 7, 14, .92) 62%);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .38), 0 0 0 10px rgba(255, 122, 24, .035);
+      overflow: hidden;
+    }
+
+    .hero-logo-card img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .brand-copy { min-width: 0; }
+    .brand-copy strong {
+      display: block;
+      font-family: "Rajdhani", sans-serif;
+      font-size: 21px;
+      letter-spacing: 3px;
+      line-height: 1;
+    }
+
+    .brand-copy span {
+      display: block;
+      color: var(--orange);
+      font-size: 10px;
+      letter-spacing: 2px;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(12px, 2vw, 26px);
+      color: var(--muted);
+      font-family: "Rajdhani", sans-serif;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+
+    .nav a { padding: 10px 0; }
+    .nav a:hover { color: var(--ink); }
+
+    .launch-link {
+      color: var(--orange) !important;
+      border: 1px solid rgba(255, 122, 24, .55);
+      padding: 10px 15px !important;
+      background: rgba(255, 122, 24, .08);
+    }
+
+    .hero {
+      min-height: calc(100vh - 84px);
+      display: grid;
+      grid-template-columns: minmax(0, .82fr) minmax(380px, 1.18fr);
+      gap: clamp(28px, 5vw, 72px);
+      align-items: center;
+      padding: clamp(42px, 7vw, 92px) clamp(18px, 4vw, 56px) 54px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      color: var(--orange);
+      border: 1px solid rgba(255, 122, 24, .35);
+      padding: 8px 12px;
+      font-family: "Rajdhani", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: rgba(255, 122, 24, .06);
+    }
+
+    .pulse {
+      width: 7px;
+      height: 7px;
+      background: var(--green);
+      box-shadow: 0 0 18px var(--green);
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: "Rajdhani", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+    }
+
+    h1 {
+      margin-top: 22px;
+      max-width: 760px;
+      font-size: clamp(50px, 8vw, 112px);
+      line-height: .86;
+    }
+
+    .accent { color: var(--orange); }
+
+    .hero-text {
+      max-width: 660px;
+      margin: 24px 0 0;
+      color: #b4c8d9;
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 12px 20px;
+      border: 1px solid rgba(112, 215, 255, .28);
+      color: var(--ink);
+      background: rgba(112, 215, 255, .06);
+      font-family: "Rajdhani", sans-serif;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .button.primary {
+      color: #160a03;
+      background: var(--orange);
+      border-color: var(--orange);
+    }
+
+    .button:hover { transform: translateY(-2px); border-color: var(--orange); }
+
+    .mission-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 34px;
+      max-width: 650px;
+    }
+
+    .mission-cell {
+      padding: 14px;
+      border: 1px solid var(--line);
+      background: rgba(9, 18, 31, .62);
+    }
+
+    .mission-cell span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .mission-cell strong {
+      display: block;
+      margin-top: 5px;
+      color: var(--ink);
+      font-family: "Rajdhani", sans-serif;
+      font-size: 25px;
+      letter-spacing: 1px;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: clamp(520px, 62vw, 740px);
+      border: 1px solid rgba(255, 122, 24, .45);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: #0b1522;
+    }
+
+    .hero-engine-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      opacity: .98;
+    }
+
+    .hero-visual .visual-shade {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(3, 7, 17, .02), rgba(3, 7, 17, .28) 54%, rgba(3, 7, 17, .74)),
+        radial-gradient(circle at 18% 50%, rgba(143, 171, 190, .28), transparent 22rem);
+      pointer-events: none;
+    }
+
+    .hero-visual::before,
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      inset: 20px;
+      border: 1px solid rgba(255, 122, 24, .28);
+      pointer-events: none;
+    }
+
+    .hero-visual::after {
+      inset: auto 28px 30px auto;
+      width: 180px;
+      height: 1px;
+      background: var(--red);
+      transform: rotate(10deg);
+      border: 0;
+      box-shadow: 0 0 18px rgba(255, 78, 66, .35);
+    }
+
+    .callout {
+      position: absolute;
+      right: 34px;
+      top: 34px;
+      width: min(320px, calc(100% - 68px));
+      padding: 18px;
+      background: rgba(3, 7, 17, .7);
+      border: 1px solid rgba(112, 215, 255, .24);
+      backdrop-filter: blur(10px);
+    }
+
+    .callout span, .label {
+      display: block;
+      color: var(--orange);
+      font-size: 10px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .callout strong {
+      display: block;
+      margin-top: 8px;
+      font-family: "Rajdhani", sans-serif;
+      font-size: 24px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .telemetry {
+      position: absolute;
+      left: 28px;
+      bottom: 28px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      width: min(420px, calc(100% - 56px));
+    }
+
+    .tile {
+      padding: 14px;
+      border: 1px solid rgba(112, 215, 255, .22);
+      background: rgba(3, 7, 17, .68);
+      backdrop-filter: blur(8px);
+    }
+
+    .image-dock {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      padding: 0 clamp(18px, 4vw, 56px) 46px;
+    }
+
+    .image-frame {
+      position: relative;
+      overflow: hidden;
+      min-height: 260px;
+      border: 1px solid rgba(112, 215, 255, .22);
+      background: var(--panel);
+      box-shadow: 0 18px 56px rgba(0, 0, 0, .28);
+    }
+
+    .image-frame img {
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      object-fit: cover;
+      filter: saturate(1.05) contrast(1.06);
+    }
+
+    .image-frame.logo-frame {
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle, rgba(112, 215, 255, .12), #020711 58%);
+    }
+
+    .image-frame.logo-frame img {
+      width: min(76%, 340px);
+      aspect-ratio: 1;
+      height: auto;
+      min-height: auto;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 122, 24, .35);
+      padding: 0;
+    }
+
+    .image-caption {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      padding: 9px 12px;
+      color: var(--orange);
+      background: rgba(3, 7, 17, .72);
+      border: 1px solid rgba(255, 122, 24, .28);
+      font-size: 11px;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+
+    .tile b {
+      display: block;
+      margin-top: 4px;
+      font-family: "Rajdhani", sans-serif;
+      color: var(--ink);
+      font-size: 23px;
+      letter-spacing: 1px;
+    }
+
+    section {
+      padding: clamp(72px, 9vw, 118px) clamp(18px, 4vw, 56px);
+      border-top: 1px solid rgba(125, 177, 216, .12);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 680px) 1fr;
+      gap: 32px;
+      align-items: end;
+      margin-bottom: 36px;
+    }
+
+    .section-head h2 {
+      margin-top: 12px;
+      font-size: clamp(34px, 4.2vw, 58px);
+      line-height: .98;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 560px;
+    }
+
+    .systems {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .engine-panel,
+    .data-panel,
+    .card,
+    .report,
+    .contact-panel {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, .24);
+    }
+
+    .engine-panel {
+      min-height: 450px;
+      background:
+        linear-gradient(90deg, rgba(3, 7, 17, .02), rgba(3, 7, 17, .5)),
+        url("assets/engine-section.png") center / cover no-repeat,
+        #101927;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .engine-panel .tag {
+      position: absolute;
+      left: 24px;
+      top: 24px;
+      color: var(--orange);
+      font-family: "Rajdhani", sans-serif;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .spec-list {
+      display: grid;
+      gap: 0;
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 18px 20px;
+      border-bottom: 1px solid rgba(125, 177, 216, .12);
+    }
+
+    .spec-row:last-child { border-bottom: 0; }
+    .spec-row span { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1.2px; }
+    .spec-row strong { font-family: "Rajdhani", sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--ink); }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .card { padding: 24px; }
+    .card h3 { color: var(--orange); font-size: 19px; margin-bottom: 14px; }
+    .card p, .card li { color: var(--muted); line-height: 1.7; font-size: 13px; }
+    .card ul { list-style: none; padding: 0; margin: 0; }
+    .card li { padding: 7px 0; border-top: 1px solid rgba(125, 177, 216, .09); }
+    .card li::before { content: ">";
+      color: var(--orange);
+      margin-right: 9px;
+    }
+
+    .programs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .program-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .program-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 3px;
+      background: linear-gradient(90deg, var(--orange), var(--cyan));
+    }
+
+    .progress {
+      height: 8px;
+      background: rgba(112, 215, 255, .1);
+      margin: 20px 0 18px;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--orange), var(--green));
+    }
+
+    .program-media {
+      position: relative;
+      height: 178px;
+      margin: -24px -24px 20px;
+      border-bottom: 1px solid rgba(125, 177, 216, .16);
+      background: #08111d;
+      overflow: hidden;
+    }
+
+    .program-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(1.06) contrast(1.06);
+    }
+
+    .program-media.diagram img {
+      object-fit: contain;
+      padding: 14px;
+      background: #eff4f7;
+      filter: grayscale(.15) contrast(1.08);
+    }
+
+    .chart-panel {
+      display: grid;
+      grid-template-columns: 1fr 310px;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .chart-image {
+      min-height: 300px;
+      border: 1px solid rgba(112, 215, 255, .22);
+      background: linear-gradient(180deg, rgba(8, 20, 40, .95), rgba(8, 20, 40, .72));
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      overflow: hidden;
+    }
+
+    .chart-image img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .data-panel { padding: 24px; }
+    .data-panel h3 { color: var(--ink); font-size: 26px; margin-bottom: 14px; }
+    .data-panel p { color: var(--muted); line-height: 1.7; margin: 0 0 18px; }
+
+    .reports {
+      display: grid;
+      gap: 14px;
+    }
+
+    .report {
+      display: grid;
+      grid-template-columns: 120px 120px 1fr;
+      gap: 18px;
+      padding: 20px;
+      align-items: start;
+    }
+
+    .report time { color: var(--orange); font-size: 12px; }
+    .pill {
+      width: fit-content;
+      color: var(--cyan);
+      border: 1px solid rgba(112, 215, 255, .25);
+      padding: 4px 9px;
+      font-size: 10px;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+
+    .report h3 { font-size: 20px; margin-bottom: 6px; }
+    .report p { margin: 0; color: var(--muted); line-height: 1.65; }
+
+    .contact {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 20px;
+    }
+
+    .contact-panel { padding: 26px; }
+    .contact-panel h3 { font-size: 26px; margin-bottom: 14px; }
+    .contact-panel p { color: var(--muted); line-height: 1.7; }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      color: var(--ink);
+      background: rgba(3, 7, 17, .74);
+      border: 1px solid rgba(112, 215, 255, .2);
+      padding: 13px 14px;
+      outline: 0;
+    }
+
+    textarea { min-height: 120px; resize: vertical; }
+    input:focus, select:focus, textarea:focus { border-color: var(--orange); }
+
+    footer {
+      padding: 34px clamp(18px, 4vw, 56px);
+      color: rgba(180, 200, 217, .65);
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 12px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .topbar { align-items: flex-start; gap: 16px; flex-direction: column; }
+      .nav { width: 100%; overflow-x: auto; padding-bottom: 4px; }
+      .hero,
+      .systems,
+      .chart-panel,
+      .contact,
+      .section-head {
+        grid-template-columns: 1fr;
+      }
+      .programs,
+      .grid-3 {
+        grid-template-columns: 1fr 1fr;
+      }
+      .image-dock {
+        grid-template-columns: 1fr;
+      }
+      .hero-visual { min-height: 520px; }
+    }
+
+    @media (max-width: 640px) {
+      .brand-logo { width: 56px; height: 56px; }
+      .brand-copy strong { font-size: 17px; }
+      .hero-logo-card { width: 132px; height: 132px; padding: 6px; }
+      .hero { padding-top: 36px; }
+      .hero-visual { min-height: 420px; }
+      .telemetry,
+      .mission-strip,
+      .programs,
+      .grid-3,
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .report { grid-template-columns: 1fr; }
+      .callout { left: 22px; right: 22px; width: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="Vaelon Space home">
+        <img class="brand-logo" src="assets/vaelon-logo-enhanced.png?v=5" alt="Vaelon Space logo">
+        <span class="brand-copy">
+          <strong>VAELON SPACE</strong>
+          <span>Aerospace engineering</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#systems">Systems</a>
+        <a href="#programs">Programs</a>
+        <a href="#performance">Performance</a>
+        <a href="#profile">Profile</a>
+        <a href="#contact" class="launch-link">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div>
+          <div class="hero-logo-card reveal">
+            <img src="assets/vaelon-logo-enhanced.png?v=5" alt="Vaelon Space logo">
+          </div>
+          <div class="eyebrow reveal"><span class="pulse"></span> Mission systems online</div>
+          <h1 class="reveal">Build the next <span class="accent">spaceflight</span> architecture.</h1>
+          <p class="hero-text reveal">Vaelon Space develops propulsion, orbital infrastructure, and high-reliability spacecraft systems for a future where deep space engineering feels precise, powerful, and reachable.</p>
+          <div class="actions reveal">
+            <a class="button primary" href="#systems">View Engineering</a>
+            <a class="button" href="#contact">Start Communication</a>
+          </div>
+          <div class="mission-strip reveal" aria-label="Mission statistics">
+            <div class="mission-cell"><span>Vac thrust</span><strong>850 kN</strong></div>
+            <div class="mission-cell"><span>ISP target</span><strong>450 s</strong></div>
+            <div class="mission-cell"><span>Program state</span><strong>Nominal</strong></div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <img class="hero-engine-img" src="assets/hall-thruster.webp?v=5" alt="Electric Hall thruster firing blue plasma">
+          <div class="visual-shade"></div>
+          <div class="callout">
+            <span>Combustion chamber</span>
+            <strong>High pressure propulsion core</strong>
+          </div>
+          <div class="telemetry">
+            <div class="tile"><span class="label">Chamber pressure</span><b>285 bar</b></div>
+            <div class="tile"><span class="label">Turbopump speed</span><b>42k RPM</b></div>
+            <div class="tile"><span class="label">Thermal state</span><b>Stable</b></div>
+            <div class="tile"><span class="label">Uplink</span><b>Active</b></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="image-dock" aria-label="Vaelon aerospace image showcase">
+        <div class="image-frame">
+          <img src="assets/plasma-test.jpg?v=5" alt="Rocket plume plasma test">
+          <span class="image-caption">Plasma test stand</span>
+        </div>
+        <div class="image-frame logo-frame">
+          <img src="assets/vaelon-logo-enhanced.png?v=5" alt="Vaelon Space company logo">
+          <span class="image-caption">Circular company mark</span>
+        </div>
+      </div>
+
+      <section id="systems">
+        <div class="section-head reveal">
+          <div>
+            <span class="label">SEC 01 / Propulsion</span>
+            <h2>Advanced engine systems</h2>
+          </div>
+          <p>Integrated propulsion design, combustion stability, additive manufacturing, and flight-ready control systems for reusable orbital operations.</p>
+        </div>
+        <div class="systems">
+          <div class="engine-panel reveal"><span class="tag">Nozzle throat / injector analysis</span></div>
+          <div class="data-panel reveal">
+            <h3>VX-1 Propulsion Stack</h3>
+            <div class="spec-list">
+              <div class="spec-row"><span>Specific impulse</span><strong>450 s</strong></div>
+              <div class="spec-row"><span>Expansion ratio</span><strong>65:1</strong></div>
+              <div class="spec-row"><span>Cycle</span><strong>Staged combustion</strong></div>
+              <div class="spec-row"><span>Cooling</span><strong>Regenerative</strong></div>
+              <div class="spec-row"><span>Materials</span><strong>Ti + carbon composite</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-3">
+          <article class="card reveal">
+            <h3>Guidance</h3>
+            <ul>
+              <li>Star tracker navigation</li>
+              <li>Autonomous rendezvous</li>
+              <li>Reaction control array</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <h3>Thermal</h3>
+            <ul>
+              <li>Heat rejection loops</li>
+              <li>Multi-layer insulation</li>
+              <li>Reentry shield material</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <h3>Power</h3>
+            <ul>
+              <li>Deployable solar arrays</li>
+              <li>Fuel cell integration</li>
+              <li>Energy storage modules</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="programs">
+        <div class="section-head reveal">
+          <div>
+            <span class="label">SEC 02 / Programs</span>
+            <h2>Engineering programs</h2>
+          </div>
+          <p>Active development tracks for propulsion, orbital assembly, and thermal protection. Each program is built for measurable progress and test-led validation.</p>
+        </div>
+        <div class="programs">
+          <article class="card program-card reveal">
+            <div class="program-media">
+              <img src="assets/hall-thruster.webp?v=5" alt="Hall thruster propulsion system">
+            </div>
+            <h3>VX-1 Propulsion</h3>
+            <p>Main propulsion module for high-efficiency orbital transfer and deep-space architecture.</p>
+            <div class="progress"><span style="width:78%"></span></div>
+            <p>78% validation complete</p>
+          </article>
+          <article class="card program-card reveal">
+            <div class="program-media diagram">
+              <img src="assets/saturn-v-diagram.png?v=5" alt="Saturn V launch vehicle diagram">
+            </div>
+            <h3>Orbital Link</h3>
+            <p>Autonomous docking, truss assembly, and orbital logistics control platform.</p>
+            <div class="progress"><span style="width:45%"></span></div>
+            <p>45% validation complete</p>
+          </article>
+          <article class="card program-card reveal">
+            <div class="program-media diagram">
+              <img src="assets/apollo-configuration.jfif?v=5" alt="Apollo launch configuration diagram">
+            </div>
+            <h3>Atmos Shield</h3>
+            <p>Thermal protection system for high-energy atmospheric entry and hypersonic testing.</p>
+            <div class="progress"><span style="width:32%"></span></div>
+            <p>32% validation complete</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="performance">
+        <div class="section-head reveal">
+          <div>
+            <span class="label">SEC 03 / Performance</span>
+            <h2>Telemetry-backed design</h2>
+          </div>
+          <p>The performance curve you shared is presented as a mission-control panel, paired with key insights for quick executive and engineering review.</p>
+        </div>
+        <div class="chart-panel">
+          <div class="chart-image reveal">
+            <img src="assets/performance-curve.png?v=3" alt="Performance curve for ISP versus throttle">
+          </div>
+          <div class="data-panel reveal">
+            <h3>ISP vs Throttle</h3>
+            <p>Performance rises cleanly across the throttle envelope, with the strongest gains between 20% and 60% throttle and a stable high-end plateau.</p>
+            <div class="spec-list">
+              <div class="spec-row"><span>Low throttle</span><strong>380 s</strong></div>
+              <div class="spec-row"><span>Nominal</span><strong>435 s</strong></div>
+              <div class="spec-row"><span>Peak range</span><strong>450 s</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="profile">
+        <div class="section-head reveal">
+          <div>
+            <span class="label">GitHub / Project Profile</span>
+            <h2>VAELON SPACE profile</h2>
+          </div>
+          <p>A clean project profile for GitHub, investors, collaborators, and visitors who want to quickly understand what the website represents.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card reveal">
+            <h3>Mission</h3>
+            <p>Build an aerospace identity around propulsion systems, orbital architecture, and mission-ready spacecraft engineering.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Website Stack</h3>
+            <ul>
+              <li>Single-page HTML profile</li>
+              <li>Responsive CSS interface</li>
+              <li>Local image asset system</li>
+              <li>Node.js preview server</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <h3>Repository Ready</h3>
+            <p>The project includes a README, asset folder, launcher file, and simple server so it can be uploaded to GitHub cleanly.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="reports">
+        <div class="section-head reveal">
+          <div>
+            <span class="label">SYS LOG / Reports</span>
+            <h2>Engineering reports</h2>
+          </div>
+          <p>Recent program updates formatted like operational logs so the page feels active, technical, and alive.</p>
+        </div>
+        <div class="reports">
+          <article class="report reveal">
+            <time>2026.06.15</time>
+            <span class="pill">Testing</span>
+            <div><h3>Propulsion module hot-fire campaign</h3><p>Full-duration test completed with chamber pressure and thrust performance within expected limits.</p></div>
+          </article>
+          <article class="report reveal">
+            <time>2026.05.22</time>
+            <span class="pill">Structural</span>
+            <div><h3>Orbital link truss validation</h3><p>Autonomous assembly sequence validated with load path margins above target.</p></div>
+          </article>
+          <article class="report reveal">
+            <time>2026.04.08</time>
+            <span class="pill">Materials</span>
+            <div><h3>TPS material qualification</h3><p>Thermal protection materials passed initial qualification for reentry heating environments.</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="section-head reveal">
+          <div>
+            <span class="label">COMMS / Contact</span>
+            <h2>Establish communication</h2>
+          </div>
+          <p>Use the contact channel for engineering inquiries, collaboration proposals, investor conversations, and research partnerships.</p>
+        </div>
+        <div class="contact">
+          <div class="contact-panel reveal">
+            <h3>Vaelon Space</h3>
+            <p>Email: thakurvirensingh1@gmail.com</p>
+            <p>Facility: Space Coast</p>
+            <p>System status: <span class="accent">Nominal</span></p>
+          </div>
+          <form class="contact-panel reveal" onsubmit="event.preventDefault(); alert('Message transmitted. Vaelon Space will respond accordingly.');">
+            <div class="form-row">
+              <label>Full name<input type="text" placeholder="Your name" required></label>
+              <label>Email<input type="email" placeholder="your@email.com" required></label>
+            </div>
+            <label>Subject
+              <select required>
+                <option value="">Select classification</option>
+                <option>Partnership Proposal</option>
+                <option>Investor Inquiry</option>
+                <option>Career Application</option>
+                <option>Research Collaboration</option>
+                <option>Media Request</option>
+              </select>
+            </label>
+            <label>Message<textarea placeholder="Transmit your message..." required></textarea></label>
+            <button class="button primary" type="submit">Transmit</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Copyright 2026 Vaelon Space. All rights reserved.</span>
+      <span>SYS VER 3.0 / UPLINK STABLE / SECURITY ACTIVE</span>
+    </footer>
+  </div>
+
+  <script>
+    const reveal = () => {
+      document.querySelectorAll('.reveal').forEach((el) => {
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.88) {
+          el.classList.add('visible');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', reveal, { passive: true });
+    window.addEventListener('load', reveal);
+    reveal();
+  </script>
+</body>
+</html>
