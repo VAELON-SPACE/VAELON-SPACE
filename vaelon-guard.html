@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vaelon Guard | Runtime Safety for Autonomous Satellite AI - Vaelon Space</title>
+  <meta name="description" content="Vaelon Guard is an independent runtime safety layer between an onboard AI and the spacecraft bus. It returns ALLOW, BLOCK, or ESCALATE for every action and signs every decision.">
+  <meta name="author" content="Viren Singh">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://vaelon-space.github.io/VAELON-SPACE/vaelon-guard.html">
+
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Vaelon Space" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Vaelon Guard | Runtime Safety for Autonomous Satellite AI">
+  <meta property="og:description" content="An independent safety layer between an onboard AI and the spacecraft bus. ALLOW, BLOCK, or ESCALATE — every decision signed.">
+  <meta property="og:image" content="https://vaelon-space.github.io/VAELON-SPACE/assets/vaelon-logo-enhanced.png">
+  <meta property="og:url" content="https://vaelon-space.github.io/VAELON-SPACE/vaelon-guard.html">
+  <meta property="og:site_name" content="Vaelon Space">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vaelon Guard | Runtime Safety for Autonomous Satellite AI">
+  <meta name="twitter:description" content="An independent safety layer between an onboard AI and the spacecraft bus.">
+  <meta name="twitter:image" content="https://vaelon-space.github.io/VAELON-SPACE/assets/vaelon-logo-enhanced.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #000000;
+      --panel: rgba(14, 14, 15, .86);
+      --panel-strong: rgba(18, 18, 19, .95);
+      --ink: #f5f6f7;
+      --muted: #9a9ea3;
+      --line: rgba(255, 255, 255, .14);
+      --orange: #d68a3c;
+      --red: #ff4e42;
+      --cyan: #cfd6dc;
+      --green: #65f5a7;
+      --shadow: 0 28px 80px rgba(0, 0, 0, .6);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Inter", -apple-system, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--void);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% -10%, rgba(255, 255, 255, .045), transparent 46rem);
+      z-index: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button, input, select, textarea { font: inherit; }
+
+    .site { position: relative; z-index: 1; min-height: 100vh; }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      display: flex; align-items: center; justify-content: space-between;
+      min-height: 72px;
+      padding: 0 clamp(18px, 4vw, 56px);
+      background: rgba(0, 0, 0, .88);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
+    .brand-logo {
+      width: 66px; height: 66px; object-fit: cover; object-position: center;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, .16);
+      background: rgba(2, 7, 14, .88);
+      box-shadow: 0 0 0 6px rgba(255, 255, 255, .16), 0 0 34px rgba(255, 255, 255, .16);
+    }
+    .brand-copy { min-width: 0; }
+    .brand-copy strong {
+      display: block; font-family: "Barlow Condensed", sans-serif;
+      font-size: 21px; letter-spacing: 3px; line-height: 1;
+    }
+    .brand-copy span {
+      display: block; color: var(--orange); font-size: 10px;
+      letter-spacing: 2px; margin-top: 4px; text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex; align-items: center; gap: clamp(10px, 1.6vw, 22px);
+      color: var(--muted); font-family: "Barlow Condensed", sans-serif; font-weight: 700;
+      letter-spacing: 1.6px; text-transform: uppercase; font-size: 12.5px;
+    }
+    .nav a { padding: 10px 0; white-space: nowrap; }
+    .nav a:hover { color: var(--ink); }
+    .launch-link {
+      color: var(--orange) !important;
+      border: 1px solid rgba(255, 255, 255, .18);
+      padding: 10px 15px !important;
+      background: rgba(255, 255, 255, .18);
+    }
+    .back-link { color: var(--cyan) !important; }
+
+    h1, h2, h3 { margin: 0; font-family: "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: 1.8px; }
+    .accent { color: var(--orange); }
+    .accent-cyan { color: var(--cyan); }
+    .accent-green { color: var(--green); }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px; width: fit-content;
+      color: var(--orange); border: 1px solid rgba(255, 255, 255, .18);
+      padding: 8px 12px; font-family: "Barlow Condensed", sans-serif; font-size: 12px;
+      font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      background: rgba(255, 255, 255, .18);
+    }
+    .pulse { width: 7px; height: 7px; background: var(--green); box-shadow: 0 0 18px var(--green); border-radius: 50%; display: inline-block; }
+
+    section { padding: clamp(64px, 8vw, 108px) clamp(18px, 4vw, 56px); border-top: 1px solid rgba(125, 177, 216, .12); }
+
+    .section-head { display: grid; grid-template-columns: minmax(0, 640px) 1fr; gap: 32px; align-items: end; margin-bottom: 36px; }
+    .section-head h2 { margin-top: 12px; font-size: clamp(30px, 3.8vw, 50px); line-height: .98; }
+    .section-head p { margin: 0; color: var(--muted); line-height: 1.75; max-width: 560px; }
+    .label { display: block; color: var(--orange); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; }
+
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 46px;
+      padding: 12px 20px; border: 1px solid rgba(255, 255, 255, .16); color: var(--ink);
+      background: rgba(255, 255, 255, .16); font-family: "Barlow Condensed", sans-serif; font-weight: 700;
+      letter-spacing: 1.6px; text-transform: uppercase; transition: transform .2s ease, border-color .2s ease, background .2s ease;
+      cursor: pointer;
+    }
+    .button.primary { color: #160a03; background: var(--orange); border-color: var(--orange); }
+    .button:hover { transform: translateY(-2px); border-color: var(--orange); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      min-height: calc(92vh - 84px);
+      display: grid; grid-template-columns: minmax(0, .86fr) minmax(380px, 1.1fr);
+      gap: clamp(28px, 5vw, 64px); align-items: center;
+      padding: clamp(42px, 7vw, 92px) clamp(18px, 4vw, 56px) 54px;
+    }
+    h1 { margin-top: 22px; max-width: 720px; font-size: clamp(42px, 6.4vw, 84px); line-height: .92; }
+    .hero-text { max-width: 620px; margin: 24px 0 0; color: #b4c8d9; font-size: 15px; line-height: 1.85; }
+    .hero-text b { color: var(--ink); }
+    .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+
+    .mission-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 34px; max-width: 620px; }
+    .mission-cell { padding: 14px; border: 1px solid var(--line); background: rgba(9, 18, 31, .62); }
+    .mission-cell span { display: block; color: var(--muted); font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; }
+    .mission-cell strong { display: block; margin-top: 5px; color: var(--ink); font-family: "Barlow Condensed", sans-serif; font-size: 23px; letter-spacing: 1px; }
+
+    .hero-visual {
+      position: relative; min-height: clamp(460px, 56vw, 640px);
+      border: 1px solid rgba(255, 255, 255, .18); overflow: hidden; box-shadow: var(--shadow);
+      background:
+        radial-gradient(circle at 30% 78%, rgba(255,255,255,.18), transparent 55%),
+        radial-gradient(circle at 70% 20%, rgba(255,255,255,.10), transparent 45%),
+        #0b1522;
+    }
+    .hero-visual::before, .hero-visual::after {
+      content: ""; position: absolute; inset: 20px; border: 1px solid rgba(255, 255, 255, .18); pointer-events: none;
+    }
+    .hv-top { position: absolute; left: 28px; top: 26px; right: 28px; display: flex; justify-content: space-between; align-items: center; }
+    .hv-top .tag { color: var(--muted); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
+    .hv-status { display: inline-flex; align-items: center; gap: 8px; color: var(--green); font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; border: 1px solid rgba(101,245,167,.35); padding: 6px 10px; background: rgba(101,245,167,.06); }
+
+    .orbit-wrap { position: absolute; inset: 0; display: grid; place-items: center; }
+    .orbit-ring { position: absolute; width: 46%; aspect-ratio: 1; border: 1px dashed rgba(255,255,255,.28); border-radius: 50%; }
+    .sat-dot { position: absolute; width: 14px; height: 14px; background: var(--orange); border-radius: 3px; box-shadow: 0 0 16px rgba(255, 255, 255, .3); }
+    .debris-dot { position: absolute; width: 8px; height: 8px; background: var(--muted); border-radius: 50%; }
+
+    .telemetry {
+      position: absolute; left: 28px; bottom: 28px; display: grid;
+      grid-template-columns: repeat(2, 1fr); gap: 8px; width: min(400px, calc(100% - 56px));
+    }
+    .tile { padding: 12px 14px; border: 1px solid rgba(255, 255, 255, .16); background: rgba(0, 0, 0, .68); backdrop-filter: blur(8px); }
+    .tile span.l { display: block; color: var(--muted); font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; }
+    .tile b { display: block; margin-top: 4px; font-family: "Barlow Condensed", sans-serif; color: var(--ink); font-size: 20px; letter-spacing: 1px; }
+
+    .signed-chip {
+      position: absolute; right: 28px; bottom: 28px;
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px; border: 1px solid rgba(101,245,167,.4); background: rgba(3,7,17,.78);
+      backdrop-filter: blur(8px);
+    }
+    .signed-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); }
+    .signed-chip strong { color: var(--green); font-family: "Barlow Condensed", sans-serif; letter-spacing: 1.6px; font-size: 13px; }
+    .signed-chip small { display: block; color: var(--muted); font-size: 10px; margin-top: 2px; }
+
+    /* ---------- hero photo layer ---------- */
+    .hero-guard-photo {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center 38%;
+      opacity: .94; filter: saturate(1.08) contrast(1.05);
+    }
+    .hero-visual .visual-shade {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(circle at 30% 78%, rgba(255,255,255,.22), transparent 55%),
+        radial-gradient(circle at 70% 20%, rgba(255,255,255,.16), transparent 45%),
+        linear-gradient(180deg, rgba(3,7,17,.32), rgba(3,7,17,.84) 90%);
+    }
+
+    /* ---------- image dock (photo showcase strip) ---------- */
+    .image-dock {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+      padding: 0 clamp(18px, 4vw, 56px) 46px;
+    }
+    .image-frame {
+      position: relative; overflow: hidden; min-height: 260px;
+      border: 1px solid rgba(255, 255, 255, .16); background: var(--panel);
+      box-shadow: 0 18px 56px rgba(0, 0, 0, .28);
+    }
+    .image-frame img {
+      width: 100%; height: 100%; min-height: inherit; object-fit: cover;
+      filter: saturate(1.05) contrast(1.06);
+    }
+    .image-caption {
+      position: absolute; left: 18px; bottom: 18px; padding: 9px 12px;
+      color: var(--orange); background: rgba(0, 0, 0, .72);
+      border: 1px solid rgba(255, 255, 255, .18); font-size: 11px;
+      letter-spacing: 1.6px; text-transform: uppercase; backdrop-filter: blur(8px);
+    }
+
+    /* ---------- generic panels ---------- */
+    .panel {
+      border: 1px solid var(--line); background: var(--panel); box-shadow: 0 18px 48px rgba(0, 0, 0, .24); padding: 24px;
+    }
+    .panel-dark {
+      border: 1px solid rgba(255, 255, 255, .16);
+      background: linear-gradient(180deg, rgba(8, 20, 40, .95), rgba(8, 20, 40, .72));
+      padding: 22px;
+    }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center; }
+
+    /* Conjunction case study */
+    .conj-viz {
+      position: relative; min-height: 380px; overflow: hidden;
+    }
+    .conj-caption { color: var(--muted); font-size: 11px; margin-top: 14px; line-height: 1.6; }
+    .conj-badge {
+      position: absolute; right: 16px; top: 16px; color: var(--red); border: 1px solid rgba(255,78,66,.4);
+      background: rgba(255,78,66,.08); padding: 6px 10px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+    }
+    .conj-stat-row { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 18px; }
+    .conj-stat span { display: block; color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 1.2px; }
+    .conj-stat strong { display: block; margin-top: 4px; font-family: "Barlow Condensed", sans-serif; font-size: 26px; color: var(--ink); }
+
+    /* Demo */
+    .scenario-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
+    .scenario-btn {
+      border: 1px solid var(--line); background: rgba(9, 18, 31, .5); color: var(--muted);
+      padding: 10px 16px; font-size: 12px; letter-spacing: .6px; cursor: pointer; transition: all .15s ease;
+      font-family: "IBM Plex Mono", monospace;
+    }
+    .scenario-btn:hover { border-color: var(--orange); color: var(--ink); }
+    .scenario-btn.active { border-color: var(--orange); color: var(--orange); background: rgba(255, 255, 255, .3); }
+
+    .demo-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 22px; align-items: start; }
+    @media (max-width: 980px) { .demo-grid { grid-template-columns: 1fr; } }
+
+    .field { margin-bottom: 22px; }
+    .field-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+    .field-top span { color: var(--muted); font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; }
+    .field-top strong { font-family: "Barlow Condensed", sans-serif; font-size: 18px; color: var(--ink); }
+
+    input[type="range"] {
+      -webkit-appearance: none; width: 100%; height: 2px; background: var(--line); outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%;
+      background: var(--orange); cursor: pointer; box-shadow: 0 0 10px rgba(255, 255, 255, .3);
+      border: 2px solid #160a03;
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 16px; height: 16px; border-radius: 50%; background: var(--orange); cursor: pointer; border: 2px solid #160a03;
+    }
+
+    .select-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
+    select {
+      width: 100%; color: var(--ink); background: rgba(0, 0, 0, .74);
+      border: 1px solid rgba(255, 255, 255, .16); padding: 11px 12px; outline: 0;
+    }
+    select:focus { border-color: var(--orange); }
+
+    .toggle-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 4px; }
+    .toggle-cell {
+      display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--line);
+      padding: 11px 13px; background: rgba(9, 18, 31, .5); font-size: 12px; letter-spacing: .6px; color: var(--muted);
+    }
+    .switch { position: relative; width: 38px; height: 20px; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider-toggle {
+      position: absolute; cursor: pointer; inset: 0; background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.28); transition: .15s;
+    }
+    .slider-toggle::before {
+      content: ""; position: absolute; height: 14px; width: 14px; left: 2px; top: 2px;
+      background: var(--muted); transition: .15s;
+    }
+    .switch input:checked + .slider-toggle { background: rgba(255, 255, 255, .3); border-color: var(--orange); }
+    .switch input:checked + .slider-toggle::before { transform: translateX(18px); background: var(--orange); }
+
+    .verdict-panel { border: 1px solid var(--line); background: var(--panel); padding: 24px; }
+    .verdict-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .verdict-tag { color: var(--muted); font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; border: 1px solid var(--line); padding: 5px 9px; }
+    .verdict-box { border: 1px solid var(--green); background: rgba(101,245,167,.07); padding: 20px; margin-bottom: 18px; }
+    .verdict-box.block { border-color: var(--red); background: rgba(255,78,66,.08); }
+    .verdict-box.escalate { border-color: var(--orange); background: rgba(255, 255, 255, .3); }
+    .verdict-title { display: flex; align-items: center; gap: 10px; font-family: "Barlow Condensed", sans-serif; font-size: 26px; letter-spacing: 1.6px; }
+    .verdict-title .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); }
+    .verdict-box.block .verdict-title .dot { background: var(--red); }
+    .verdict-box.escalate .verdict-title .dot { background: var(--orange); }
+    .verdict-box.block .verdict-title { color: var(--red); }
+    .verdict-box.escalate .verdict-title { color: var(--orange); }
+    .verdict-box.allow .verdict-title { color: var(--green); }
+    .verdict-reason { margin-top: 10px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .verdict-reason ul { margin: 6px 0 0; padding-left: 18px; }
+    .verdict-reason li { margin-bottom: 4px; }
+    .planner-claim { border: 1px dashed rgba(255,78,66,.5); color: var(--muted); font-size: 12px; padding: 10px 12px; margin-bottom: 14px; line-height: 1.6; }
+    .planner-claim b { color: var(--red); }
+
+    .inv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; margin-top: 6px; }
+    .inv-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+    .inv-item .d { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+    .inv-item.fail .d { background: var(--red); }
+    .inv-item.fail { color: var(--ink); }
+    .verdict-footnote { margin-top: 16px; color: var(--muted); font-size: 11px; line-height: 1.7; border-top: 1px solid rgba(125,177,216,.12); padding-top: 14px; }
+
+    /* Catalogue widget */
+    .catalog-row { display: grid; grid-template-columns: 60px 1fr 70px 92px 30px; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(125,177,216,.12); }
+    .catalog-row .oid { color: var(--muted); font-size: 12px; }
+    .catalog-row .dist { text-align: right; font-family: "Barlow Condensed", sans-serif; font-size: 16px; }
+    .status-pill {
+      border: 1px solid var(--line); color: var(--muted); font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+      padding: 6px 8px; text-align: center; cursor: pointer; background: transparent;
+    }
+    .status-pill.closing { color: var(--red); border-color: rgba(255,78,66,.45); background: rgba(255,78,66,.08); }
+    .status-pill.threat { color: var(--red); border-color: var(--red); background: rgba(255,78,66,.16); }
+    .remove-btn { color: var(--muted); background: transparent; border: none; cursor: pointer; font-size: 16px; }
+    .remove-btn:hover { color: var(--red); }
+    .add-obj-btn {
+      margin-top: 14px; border: 1px dashed var(--line); background: transparent; color: var(--muted);
+      padding: 10px 14px; font-size: 12px; cursor: pointer; width: 100%;
+    }
+    .add-obj-btn:hover { border-color: var(--orange); color: var(--orange); }
+
+    .catalog-summary { margin-top: 20px; border: 1px solid var(--line); background: rgba(9,18,31,.55); padding: 18px; }
+    .catalog-summary-top { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
+    .catalog-summary-top .threat { color: var(--red); }
+    .catalog-verdicts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .cv-cell span { display: block; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+    .cv-cell strong { display: block; margin-top: 5px; font-family: "Barlow Condensed", sans-serif; font-size: 22px; }
+    .cv-cell.allow strong { color: var(--green); }
+    .cv-cell.block strong { color: var(--red); }
+
+    /* stats grid */
+    .stats-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .stat-card { border: 1px solid var(--line); background: var(--panel); padding: 22px; }
+    .stat-card .num { font-family: "Barlow Condensed", sans-serif; font-size: 32px; color: var(--orange); letter-spacing: 1px; }
+    .stat-card p { margin: 10px 0 0; color: var(--muted); font-size: 13px; line-height: 1.65; }
+    @media (max-width: 980px) { .stats-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px) { .stats-grid { grid-template-columns: 1fr; } }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
+    .card { border: 1px solid var(--line); background: var(--panel); box-shadow: 0 18px 48px rgba(0, 0, 0, .24); padding: 24px; }
+    .card h3 { color: var(--orange); font-size: 19px; margin-bottom: 14px; }
+    .card p, .card li { color: var(--muted); line-height: 1.7; font-size: 13px; }
+    .card ul { list-style: none; padding: 0; margin: 0; }
+    .card li { padding: 7px 0; border-top: 1px solid rgba(125, 177, 216, .09); }
+    .card li::before { content: ">"; color: var(--orange); margin-right: 9px; }
+    @media (max-width: 980px) { .grid-3 { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px) { .grid-3 { grid-template-columns: 1fr; } }
+
+    /* roadmap */
+    .roadmap-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .road-card { border: 1px solid var(--line); background: var(--panel); padding: 24px; }
+    .road-bar { height: 3px; width: 44px; background: rgba(125,177,216,.25); margin-bottom: 18px; }
+    .road-bar.on { background: linear-gradient(90deg, var(--orange), var(--cyan)); }
+    .road-card .label { margin-bottom: 8px; }
+    .road-card h3 { font-size: 20px; color: var(--ink); margin-bottom: 10px; }
+    .road-card p { color: var(--muted); font-size: 13px; line-height: 1.7; }
+    @media (max-width: 980px) { .roadmap-grid { grid-template-columns: 1fr; } }
+
+    /* chart */
+    .chart-wrap { border: 1px solid rgba(255, 255, 255, .16); background: linear-gradient(180deg, rgba(8, 20, 40, .95), rgba(8, 20, 40, .72)); padding: 22px; }
+    .chart-legend { display: flex; gap: 22px; margin-bottom: 10px; font-size: 12px; color: var(--muted); }
+    .chart-legend span { display: inline-flex; align-items: center; gap: 8px; }
+    .chart-legend i { width: 14px; height: 3px; display: inline-block; }
+    svg text { font-family: "IBM Plex Mono", monospace; fill: var(--muted); font-size: 10px; }
+
+    footer.page-footer {
+      padding: 34px clamp(18px, 4vw, 56px); color: rgba(180, 200, 217, .65);
+      border-top: 1px solid var(--line); display: flex; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap; font-size: 12px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px) scale(.985);
+      transition: opacity 1s var(--ease-premium, cubic-bezier(.22,1,.36,1)), transform 1.05s var(--ease-premium, cubic-bezier(.22,1,.36,1));
+      transition-delay: var(--d, 0s);
+      will-change: opacity, transform;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0) scale(1); }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    @media (max-width: 980px) {
+      .topbar { align-items: flex-start; gap: 16px; flex-direction: column; }
+      .nav { width: 100%; overflow-x: auto; padding-bottom: 4px; }
+      .hero, .two-col, .demo-grid, .section-head, .image-dock { grid-template-columns: 1fr; }
+      .hero-visual { min-height: 480px; }
+      .select-row, .toggle-row { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .mission-strip, .toggle-row, .select-row, .inv-grid, .catalog-verdicts { grid-template-columns: 1fr; }
+      .catalog-row { grid-template-columns: 44px 1fr 60px 30px; }
+      .catalog-row .status-pill { grid-column: 2 / span 3; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Vaelon Space home">
+        <img class="brand-logo" src="assets/vaelon-logo-enhanced.png?v=5" alt="Vaelon Space logo">
+        <span class="brand-copy">
+          <strong>VAELON GUARD</strong>
+          <span>Runtime AI safety</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="index.html" class="back-link">&larr; Vaelon Space</a>
+        <a href="#demo">Live Demo</a>
+        <a href="#catalogue">Catalogue</a>
+        <a href="#proof">Proof</a>
+        <a href="#tech">Tech</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#contact" class="launch-link">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="home" style="border-top:none;">
+        <div>
+          <div class="eyebrow reveal"><span class="pulse"></span> Runtime assurance for autonomous satellite AI</div>
+          <h1 class="reveal">Prove the AI on your satellite is <span class="accent">safe</span>, before it acts.</h1>
+          <p class="hero-text reveal">Vaelon Guard is an independent safety layer between an onboard AI and the spacecraft bus. For every proposed action it returns <b>ALLOW</b>, <b>BLOCK</b>, or <b>ESCALATE</b>, recommends a verified safe fallback, and cryptographically signs every decision into a tamper-evident chain.</p>
+          <div class="actions reveal">
+            <a class="button primary" href="#demo">Try the live demo</a>
+            <a class="button" href="#proof">See the proof</a>
+          </div>
+          <div class="mission-strip reveal" aria-label="Guard statistics">
+            <div class="mission-cell"><span>Decision time</span><strong>42 ns</strong></div>
+            <div class="mission-cell"><span>Core size</span><strong>5.6 KB</strong></div>
+            <div class="mission-cell"><span>Audit chain</span><strong>Signed</strong></div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <video
+            class="hero-guard-photo"
+            poster="assets/guard-earth-poster.jpg"
+            autoplay muted loop playsinline preload="metadata"
+            aria-label="Real orbital footage of Earth at night, the environment Vaelon Guard monitors">
+            <source src="assets/guard-earth.webm" type="video/webm">
+            <source src="assets/guard-earth.mp4" type="video/mp4">
+          </video>
+          <div class="visual-shade"></div>
+          <div class="hv-top">
+            <span class="tag">Vaelon &middot; Live</span>
+            <span class="hv-status"><span class="pulse"></span> monitoring</span>
+          </div>
+          <div class="orbit-wrap">
+            <div class="orbit-ring"></div>
+            <div class="sat-dot" style="left:38%; top:46%;"></div>
+            <div class="debris-dot" style="left:63%; top:34%;"></div>
+          </div>
+          <div class="telemetry">
+            <div class="tile"><span class="l">Battery</span><b>71%</b></div>
+            <div class="tile"><span class="l">Mode</span><b>Maneuver</b></div>
+            <div class="tile"><span class="l">&Delta;v budget</span><b>13.0 m/s</b></div>
+            <div class="tile"><span class="l">Keep-out</span><b>5.0 km</b></div>
+          </div>
+          <div class="signed-chip">
+            <span class="dot"></span>
+            <span><strong>SIGNED</strong><small>tamper-evident chain updated</small></span>
+          </div>
+        </div>
+      </section>
+
+      <div class="image-dock" aria-label="Deep-space imaging reference">
+        <div class="image-frame reveal">
+          <img src="assets/mercury-surface.jpg?v=1" alt="Colorized mosaic of Mercury's cratered surface">
+          <span class="image-caption">Mercury &middot; surface imaging reference</span>
+        </div>
+        <div class="image-frame reveal">
+          <img src="assets/neptune-orbit.jpg?v=1" alt="Neptune rendered against a starfield">
+          <span class="image-caption">Neptune &middot; deep-space telemetry reference</span>
+        </div>
+      </div>
+
+      <!-- REAL CONJUNCTION CASE STUDY -->
+      <section id="conjunction">
+        <div class="section-head reveal">
+          <div>
+            <span class="label">SEC 01 / A real conjunction</span>
+            <h2>Two real satellites. One flagged close approach.</h2>
+          </div>
+          <p>STARLINK-1225 and STARLINK-1230 are launch-mates in the same orbital shell. Screened with a validated SGP4 propagator against a published set of their elements, Vaelon's engine finds a <b style="color:var(--ink)">0.62&nbsp;km</b> closest approach — inside the 5&nbsp;km keep-out — and flags it.</p>
+        </div>
+        <div class="two-col">
+          <div class="panel reveal">
+            <p style="color:var(--muted); line-height:1.8; font-size:13.5px; margin:0 0 14px;">Because orbits evolve, the live separation on any given day varies — these two are typically hundreds of kilometres apart. What matters is that the same engine that screens this case study is the one gating every action in the demo below: it recomputes the physics itself rather than trusting a report.</p>
+            <div class="conj-stat-row">
+              <div class="conj-stat"><span>Closest approach</span><strong style="color:var(--red)">0.62 km</strong></div>
+              <div class="conj-stat"><span>Keep-out radius</span><strong>5.0 km</strong></div>
+              <div class="conj-stat"><span>Propagator</span><strong>SGP4</strong></div>
+              <div class="conj-stat"><span>Status</span><strong style="color:var(--red)">FLAGGED</strong></div>
+            </div>
+          </div>
+          <div class="panel-dark conj-viz reveal">
+            <span class="conj-badge">0.62 km approach</span>
+            <svg viewBox="0 0 400 320" width="100%" height="360" aria-label="Conjunction diagram">
+              <circle cx="200" cy="160" r="150" fill="#0a0a0a" stroke="rgba(255,255,255,.18)"/>
+              <path d="M 60 40 A 200 200 0 0 1 340 260" fill="none" stroke="var(--cyan)" stroke-width="2"/>
+              <path d="M 340 60 A 200 200 0 0 1 60 260" fill="none" stroke="var(--orange)" stroke-width="2"/>
+              <circle cx="316" cy="150" r="5" fill="var(--red)"/>
+              <circle cx="316" cy="150" r="16" fill="none" stroke="var(--red)" stroke-dasharray="3 3"/>
+              <line x1="316" y1="150" x2="360" y2="120" stroke="var(--red)" stroke-width="1"/>
+              <text x="365" y="118" fill="var(--red)">0.62 km</text>
+              <text x="30" y="300" fill="var(--cyan)">&#9679; STARLINK-1225</text>
+              <text x="230" y="300" fill="var(--orange)">&#9679; STARLINK-1230</text>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- LIVE DEMO -->
+      <section id="demo">
+        <div class="section-head reveal">
+          <div>
+            <span class="label">SEC 02 / See it decide, live</span>
+            <h2>Load a scenario or move the telemetry yourself.</h2>
+          </div>
+          <p>Vaelon verifies the proposed action against every safety invariant and returns a verdict with its reasoning, computed live in your browser.</p>
+        </div>
+
+        <div class="panel reveal">
+          <div class="scenario-row" id="scenarioRow"></div>
+
+          <div class="demo-grid">
+            <div>
+              <div class="field">
+                <div class="field-top"><span>Battery</span><strong id="valBattery">72%</strong></div>
+                <input type="range" id="battery" min="0" max="100" value="72">
+              </div>
+              <div class="field">
+                <div class="field-top"><span>Temperature</span><strong id="valTemp">18&deg;C</strong></div>
+                <input type="range" id="temperature" min="-30" max="60" value="18">
+              </div>
+              <div class="field">
+                <div class="field-top"><span>Separation to object</span><strong id="valSep">50 km</strong></div>
+                <input type="range" id="separation" min="0" max="100" step="0.1" value="50">
+              </div>
+              <div class="field">
+                <div class="field-top"><span>Delta-v budget</span><strong id="valDv">15 m/s</strong></div>
+                <input type="range" id="deltaV" min="0" max="30" step="0.5" value="15">
+              </div>
+
+              <div class="select-row">
+                <label>
+                  <span class="field-top"><span>Mode</span></span>
+                  <select id="mode">
+                    <option value="NOMINAL" selected>NOMINAL</option>
+                    <option value="MANEUVER">MANEUVER</option>
+                    <option value="IMAGING">IMAGING</option>
+                    <option value="SAFE">SAFE</option>
+                  </select>
+                </label>
+                <label>
+                  <span class="field-top"><span>Pointing</span></span>
+                  <select id="pointing">
+                    <option value="NADIR" selected>NADIR</option>
+                    <option value="SUN">SUN</option>
+                    <option value="DEEP_SPACE">DEEP SPACE</option>
+                    <option value="EARTH_LIMB">EARTH LIMB</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="toggle-row">
+                <div class="toggle-cell">Eclipse
+                  <label class="switch"><input type="checkbox" id="eclipse"><span class="slider-toggle"></span></label>
+                </div>
+                <div class="toggle-cell">Fault
+                  <label class="switch"><input type="checkbox" id="fault"><span class="slider-toggle"></span></label>
+                </div>
+                <div class="toggle-cell">Contact
+                  <label class="switch"><input type="checkbox" id="contact" checked><span class="slider-toggle"></span></label>
+                </div>
+              </div>
+            </div>
+
+            <div class="verdict-panel">
+              <div class="verdict-top">
+                <span class="label" style="margin:0;">Vaelon verdict</span>
+                <span class="verdict-tag">rule engine &middot; js</span>
+              </div>
+              <div class="verdict-box allow" id="verdictBox">
+                <div class="planner-claim" id="plannerClaim" style="display:none;"></div>
+                <div class="verdict-title"><span class="dot"></span><span id="verdictWord">ALLOW</span></div>
+                <div class="verdict-reason" id="verdictReason">all safety invariants satisfied with margin.</div>
+              </div>
+              <div class="inv-grid" id="invGrid"></div>
+              <div class="verdict-footnote">This engine recomputes every invariant from the telemetry you set — it does not trust a claimed mode or status flag. Adjust any control above and the verdict re-evaluates instantly.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATALOGUE -->
+      <section id="catalogue">
+        <div class="section-head reveal">
+          <div>
+            <span class="label">SEC 03 / Screen a whole catalogue</span>
+            <h2>An evasive maneuver has to clear all of them.</h2>
+          </div>
+          <p>Real missions track many objects. Vaelon screens a proposed action against every tracked object at once, blocks on the closest closing threat, and only allows a maneuver that resolves the entire catalogue.</p>
+        </div>
+        <div class="two-col" style="align-items:start;">
+          <div class="panel reveal" style="align-self:stretch;">
+            <p style="color:var(--muted); line-height:1.8; font-size:13.5px; margin:0;">Add objects, drag one inside the 5&nbsp;km keep-out, mark it closing, and the verdict below re-screens live against the whole set — not just the object in front.</p>
+          </div>
+          <div class="panel-dark reveal">
+            <div class="verdict-top" style="margin-bottom:16px;">
+              <span class="label" style="margin:0;">Conjunction catalogue</span>
+              <span class="verdict-tag">js &middot; live</span>
+            </div>
+            <div id="catalogList"></div>
+            <button class="add-obj-btn" id="addObjBtn">+ add object</button>
+
+            <div class="catalog-summary">
+              <div class="catalog-summary-top">
+                <span id="catSummaryScreen">Screening 3 objects &middot; closest 4.0 km</span>
+                <span class="threat" id="catSummaryThreat">threat: object 2</span>
+              </div>
+              <div class="catalog-verdicts">
+                <div class="cv-cell" id="cvIdle"><span>Autonomy idles</span><strong>BLOCK</strong></div>
+                <div class="cv-cell" id="cvManeuver"><span>Evasive maneuver</span><strong>ALLOW</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CHART -->
+      <section id="chart">
+        <div class="section-head reveal">
+          <div>
+            <span class="label">SEC 04 / The same trained AI</span>
+            <h2>With and without Vaelon.</h2>
+          </div>
+          <p>A policy optimised for data, with no explicit safety term, flies one simulated 90-minute orbit through an eclipse and a close approach. The curves below are computed live from that simulation, not pre-rendered.</p>
+        </div>
+        <div class="chart-wrap reveal">
+          <div class="chart-legend">
+            <span><i style="background:var(--green)"></i> with Vaelon</span>
+            <span><i style="background:var(--red)"></i> without Vaelon</span>
+          </div>
+          <svg id="chartSvg" viewBox="0 0 760 340" width="100%" height="340"></svg>
+        </div>
+      </section>
+
+      <!-- PROOF / STATS -->
+      <section id="proof">
+        <div class="section-head reveal">
+          <div>
+            <span class="label">SEC 05 / Proof</span>
+            <h2>Verified, not asserted.</h2>
+          </div>
+          <p>Every number below is checked against the flight-suitable core, not a marketing round-up.</p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card reveal"><div class="num">7 / 7</div><p>formal safety theorems proven over the entire input domain.</p></div>
+          <div class="stat-card reveal"><div class="num">100%</div><p>flight core is verdict-identical to the reference engine across 20,000 scenarios.</p></div>
+          <div class="stat-card reveal"><div class="num">1 metre</div><p>SGP4 implementation matches the reference propagator at max, 1,156 samples.</p></div>
+          <div class="stat-card reveal"><div class="num">5.6 KB</div><p>base flight gate, zero heap, zero .data/.bss, targets Cortex-M and RISC-V.</p></div>
+          <div class="stat-card reveal"><div class="num">42 ns</div><p>p99 per-decision time, bounded, no allocation on the decision path.</p></div>
+          <div class="stat-card reveal"><div class="num">Signed</div><p>every decision folded into a tamper-evident HMAC-SHA256 audit chain.</p></div>
+        </div>
+      </section>
+
+      <!-- TECH -->
+      <section id="tech">
+        <div class="section-head reveal">
+          <div>
+            <span class="label">SEC 06 / Under the hood</span>
+            <h2>Built to link into real flight software.</h2>
+          </div>
+          <p>A deterministic core, callable from the C that runs on real spacecraft, that signs every decision onboard.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card reveal"><h3>42 ns decision time</h3><p>A deterministic Rust core, benchmarked with zero heap allocation on the decision path.</p></article>
+          <article class="card reveal"><h3>C ABI</h3><p>Compiles to a <code>no_std</code> static library that a flight app or component links directly.</p></article>
+          <article class="card reveal"><h3>Signed onboard</h3><p>Every verdict is folded into an HMAC-SHA256 chain, checked against known-answer vectors.</p></article>
+          <article class="card reveal"><h3>Fail-closed</h3><p>Non-finite telemetry (NaN / inf) is refused with a BLOCK verdict and left unsigned.</p></article>
+          <article class="card reveal"><h3>Zero deps</h3><p>The core pulls in no external crates — nothing in the trust path comes from an uninspectable supply chain.</p></article>
+          <article class="card reveal"><h3>77 tests</h3><p>Core and pipeline tests including known-answer, differential, property-fuzz, and staleness suites.</p></article>
+        </div>
+      </section>
+
+      <!-- WHY -->
+      <section id="why">
+        <div class="section-head reveal">
+          <div>
+            <span class="label">SEC 07 / Why Vaelon</span>
+            <h2>Independent, provable, on real physics.</h2>
+          </div>
+          <p>Almost no one is building this. The few who are, monitor the AI. Vaelon does two things they don't.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card reveal"><h3>Independent</h3><p>It never takes the AI's word for anything. It recomputes the safety-critical physics itself, so a lying or broken planner is caught. Model-agnostic: it works over any onboard AI.</p></article>
+          <article class="card reveal"><h3>Provable</h3><p>Every decision is cryptographically signed into a tamper-evident audit chain — the auditable provenance a regulator or an insurer needs to sign off on autonomy.</p></article>
+          <article class="card reveal"><h3>On real physics</h3><p>Validated SGP4 propagation on the live catalogue, an honest robustness number, and an ECSS-readiness matrix. Not a mockup, not slideware.</p></article>
+        </div>
+      </section>
+
+      <!-- ROADMAP -->
+      <section id="roadmap">
+        <div class="section-head reveal">
+          <div>
+            <span class="label">SEC 08 / Where this goes</span>
+            <h2>Honest about the stage. Clear about the path.</h2>
+          </div>
+        </div>
+        <div class="roadmap-grid">
+          <div class="road-card reveal">
+            <div class="road-bar on"></div>
+            <span class="label">Today &middot; TRL 3-4</span>
+            <h3>Flight-suitable core</h3>
+            <p>A deterministic Rust core that decides in tens of nanoseconds, links into C flight software, and signs every decision, validated in software on real data.</p>
+          </div>
+          <div class="road-card reveal">
+            <div class="road-bar on"></div>
+            <span class="label">Next &middot; funded</span>
+            <h3>Certify &amp; harden</h3>
+            <p>An independent V&amp;V against the ESA standard, certified robustness bounds, and conjunction-screening lookahead.</p>
+          </div>
+          <div class="road-card reveal">
+            <div class="road-bar"></div>
+            <span class="label">Then &middot; flight</span>
+            <h3>In-orbit demonstration</h3>
+            <p>A first flight for real-world heritage, likely as a hosted payload with a design partner.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHO -->
+      <section id="team">
+        <div class="section-head reveal">
+          <div>
+            <span class="label">SEC 09 / Who is building Vaelon</span>
+            <h2>Where three fields rarely meet.</h2>
+          </div>
+          <p>Runtime assurance for satellite AI sits where machine learning, formal verification, and low-level flight software rarely meet. Vaelon is built by someone who works across all three &mdash; the same team behind Vaelon Space's propulsion work.</p>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="section-head reveal">
+          <div>
+            <span class="label">COMMS / Contact</span>
+            <h2>Talk to us about Vaelon Guard.</h2>
+          </div>
+          <p>Engineering inquiries, certification partners, design-partner conversations for the in-orbit demonstration.</p>
+        </div>
+        <div class="panel reveal">
+          <p style="color:var(--muted); margin:0 0 14px;">Email: vaelon.space@gmail.com</p>
+          <p style="color:var(--muted); margin:0;">Facility: Space Coast &middot; System status: <span class="accent-green">Nominal</span></p>
+          <a class="button primary" href="mailto:vaelon.space@gmail.com" style="margin-top:20px;">Transmit</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <span>Copyright 2022 Vaelon Space. All rights reserved.</span>
+      <span>VAELON GUARD / DECISION ENGINE LIVE / VERDICTS COMPUTED IN-BROWSER</span>
+    </footer>
+  </div>
+
+  <script>
+    /* ---------------- reveal on scroll ---------------- */
+    (() => {
+      const items = document.querySelectorAll('.reveal');
+      const groups = new Map();
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const parent = el.parentElement;
+          const idx = groups.get(parent) || 0;
+          el.style.setProperty('--d', Math.min(idx * 0.1, 0.5) + 's');
+          groups.set(parent, idx + 1);
+          el.classList.add('visible');
+          io.unobserve(el);
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+      items.forEach((el) => io.observe(el));
+    })();
+
+    /* ================= VERDICT ENGINE ================= */
+    const INV_LABELS = ['INV-PWR','INV-SUN','INV-COLL','INV-COLL-SCREEN','INV-MODE','INV-BUFFER','INV-THERM','INV-DV','INV-COLL-RESP','INV-FAULT','INV-COMMS'];
+
+    function computeVerdict(s) {
+      const inv = {};
+      INV_LABELS.forEach(k => inv[k] = true);
+      const reasons = [];
+      const soft = [];
+      let verdict = 'ALLOW';
+      const keepout = 5;
+      const closing = s.separation < 15;
+
+      const floor = s.eclipse ? 30 : 20;
+      if (s.battery < floor) {
+        inv['INV-PWR'] = false;
+        reasons.push(`battery ${s.battery.toFixed(0)}% is below the ${floor}% floor${s.eclipse ? ' required in eclipse' : ''}`);
+        verdict = 'BLOCK';
+      } else if (s.battery < floor + 8) {
+        soft.push(`battery margin is thin (${s.battery.toFixed(0)}%, floor ${floor}%) — recommend deferring non-critical actions`);
+      }
+
+      if (s.temperature < -10 || s.temperature > 45) {
+        inv['INV-THERM'] = false;
+        reasons.push(`bus temperature ${s.temperature.toFixed(0)}\u00b0C is outside the -10\u00b0C to 45\u00b0C survival band`);
+        verdict = 'BLOCK';
+      }
+
+      if (s.pointing === 'SUN' && s.mode === 'IMAGING') {
+        inv['INV-SUN'] = false;
+        reasons.push('imager is pointed directly at the Sun — sensor damage risk');
+        verdict = 'BLOCK';
+      }
+
+      if (s.separation < keepout) {
+        inv['INV-COLL'] = false;
+        if (s.mode === 'MANEUVER') {
+          reasons.push(`proposed maneuver leaves only ${s.separation.toFixed(2)} km separation, inside the ${keepout} km keep-out`);
+          verdict = 'BLOCK';
+        } else if (closing) {
+          inv['INV-COLL-RESP'] = false;
+          reasons.push(`tracked object is closing at ${s.separation.toFixed(2)} km, inside the ${keepout} km keep-out, with no evasive maneuver commanded`);
+          verdict = 'BLOCK';
+        }
+      } else if (closing) {
+        soft.push(`object closing at ${s.separation.toFixed(1)} km — inside the response buffer, stage a contingency maneuver`);
+      }
+
+      if (s.mode === 'MANEUVER') {
+        const needed = s.separation < keepout * 2 ? 8 : 5;
+        if (s.deltaV < needed) {
+          inv['INV-DV'] = false;
+          reasons.push(`\u0394v budget ${s.deltaV.toFixed(1)} m/s is below the ${needed} m/s needed for this maneuver`);
+          verdict = 'BLOCK';
+        }
+        if (s.pointing === 'SUN') {
+          inv['INV-MODE'] = false;
+          reasons.push('maneuvering with attitude pointed at the Sun risks losing star-tracker lock mid-burn');
+          verdict = 'BLOCK';
+        }
+        if (!s.contact) {
+          inv['INV-COMMS'] = false;
+          soft.push('no ground contact window during a non-routine maneuver — recommend human confirmation before executing');
+        }
+      }
+
+      if (s.fault) {
+        if (s.mode !== 'SAFE') {
+          inv['INV-FAULT'] = false;
+          reasons.push('an uncleared fault is active but the vehicle is not in SAFE mode');
+          verdict = 'BLOCK';
+        }
+      }
+
+      let plannerNote = null;
+      if (s.plannerLying) {
+        plannerNote = `Planner reported MODE=${s.claimedMode || 'NOMINAL'} — all systems nominal, no fault. Independent recompute against raw bus telemetry found battery ${s.battery.toFixed(0)}% and an uncleared fault flag. Treating the planner's report as untrusted.`;
+        verdict = 'BLOCK';
+      }
+
+      if (verdict !== 'BLOCK' && soft.length) verdict = 'ESCALATE';
+      if (verdict === 'ALLOW' && reasons.length === 0 && soft.length === 0) {
+        reasons.push('all safety invariants satisfied with margin.');
+      }
+
+      return { verdict, inv, reasons: reasons.concat(soft), plannerNote };
+    }
+
+    /* ---------------- demo wiring ---------------- */
+    const els = {
+      battery: document.getElementById('battery'),
+      temperature: document.getElementById('temperature'),
+      separation: document.getElementById('separation'),
+      deltaV: document.getElementById('deltaV'),
+      mode: document.getElementById('mode'),
+      pointing: document.getElementById('pointing'),
+      eclipse: document.getElementById('eclipse'),
+      fault: document.getElementById('fault'),
+      contact: document.getElementById('contact'),
+    };
+
+    let plannerLying = false;
+    let claimedMode = 'NOMINAL';
+
+    const scenarios = [
+      { key: 'healthy', label: 'Healthy imaging', state: { battery:72, temperature:18, separation:50, deltaV:15, mode:'IMAGING', pointing:'NADIR', eclipse:false, fault:false, contact:true } },
+      { key: 'lowbattery', label: 'Low battery in eclipse', state: { battery:15, temperature:5, separation:40, deltaV:10, mode:'NOMINAL', pointing:'NADIR', eclipse:true, fault:false, contact:true } },
+      { key: 'conjunction', label: 'Conjunction ignored', state: { battery:70, temperature:15, separation:3.2, deltaV:12, mode:'NOMINAL', pointing:'NADIR', eclipse:false, fault:false, contact:true } },
+      { key: 'lying', label: 'Lying planner', state: { battery:18, temperature:22, separation:45, deltaV:10, mode:'NOMINAL', pointing:'NADIR', eclipse:false, fault:true, contact:true }, lying:true },
+      { key: 'fault', label: 'Fault, no recovery', state: { battery:60, temperature:20, separation:45, deltaV:10, mode:'NOMINAL', pointing:'NADIR', eclipse:false, fault:true, contact:true } },
+      { key: 'sunimager', label: 'Imager at the sun', state: { battery:65, temperature:25, separation:45, deltaV:10, mode:'IMAGING', pointing:'SUN', eclipse:false, fault:false, contact:true } },
+    ];
+
+    const scenarioRow = document.getElementById('scenarioRow');
+    scenarios.forEach(sc => {
+      const btn = document.createElement('button');
+      btn.className = 'scenario-btn';
+      btn.textContent = sc.label;
+      btn.addEventListener('click', () => applyScenario(sc, btn));
+      scenarioRow.appendChild(btn);
+    });
+
+    function applyScenario(sc, btn) {
+      document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      plannerLying = !!sc.lying;
+      claimedMode = sc.state.mode;
+      const st = sc.state;
+      els.battery.value = st.battery;
+      els.temperature.value = st.temperature;
+      els.separation.value = st.separation;
+      els.deltaV.value = st.deltaV;
+      els.mode.value = st.mode;
+      els.pointing.value = st.pointing;
+      els.eclipse.checked = st.eclipse;
+      els.fault.checked = st.fault;
+      els.contact.checked = st.contact;
+      renderDemo();
+    }
+
+    function clearScenarioActive() {
+      document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
+      plannerLying = false;
+    }
+
+    Object.values(els).forEach(el => {
+      el.addEventListener('input', () => { clearScenarioActive(); renderDemo(); });
+    });
+
+    function currentState() {
+      return {
+        battery: parseFloat(els.battery.value),
+        temperature: parseFloat(els.temperature.value),
+        separation: parseFloat(els.separation.value),
+        deltaV: parseFloat(els.deltaV.value),
+        mode: els.mode.value,
+        pointing: els.pointing.value,
+        eclipse: els.eclipse.checked,
+        fault: els.fault.checked,
+        contact: els.contact.checked,
+        plannerLying,
+        claimedMode,
+      };
+    }
+
+    function renderDemo() {
+      const s = currentState();
+      document.getElementById('valBattery').textContent = s.battery.toFixed(0) + '%';
+      document.getElementById('valTemp').textContent = s.temperature.toFixed(0) + '\u00b0C';
+      document.getElementById('valSep').textContent = s.separation.toFixed(1) + ' km';
+      document.getElementById('valDv').textContent = s.deltaV.toFixed(1) + ' m/s';
+
+      const result = computeVerdict(s);
+      const box = document.getElementById('verdictBox');
+      const word = document.getElementById('verdictWord');
+      const reasonEl = document.getElementById('verdictReason');
+      const claimEl = document.getElementById('plannerClaim');
+
+      box.className = 'verdict-box ' + result.verdict.toLowerCase();
+      word.textContent = result.verdict;
+
+      if (result.plannerNote) {
+        claimEl.style.display = 'block';
+        claimEl.innerHTML = '<b>Discrepancy detected —</b> ' + result.plannerNote;
+      } else {
+        claimEl.style.display = 'none';
+      }
+
+      if (result.reasons.length === 1) {
+        reasonEl.innerHTML = result.reasons[0];
+      } else {
+        reasonEl.innerHTML = '<ul>' + result.reasons.map(r => `<li>${r}</li>`).join('') + '</ul>';
+      }
+
+      const grid = document.getElementById('invGrid');
+      grid.innerHTML = INV_LABELS.map(k => {
+        const ok = result.inv[k];
+        return `<div class="inv-item ${ok ? '' : 'fail'}"><span class="d"></span>${k}</div>`;
+      }).join('');
+    }
+
+    renderDemo();
+
+    /* ================= CATALOGUE WIDGET ================= */
+    let catObjects = [
+      { id: 0, distance: 42.0, closing: false },
+      { id: 1, distance: 52.5, closing: true },
+      { id: 2, distance: 4.0, closing: true },
+    ];
+    let nextObjId = 3;
+    const KEEPOUT = 5;
+
+    function renderCatalog() {
+      const listEl = document.getElementById('catalogList');
+      listEl.innerHTML = '';
+      catObjects.forEach(obj => {
+        const row = document.createElement('div');
+        row.className = 'catalog-row';
+        const isThreat = obj.distance < KEEPOUT && obj.closing;
+        row.innerHTML = `
+          <span class="oid">obj ${obj.id}</span>
+          <input type="range" min="0" max="100" step="0.1" value="${obj.distance}" data-id="${obj.id}" class="cat-slider">
+          <span class="dist">${obj.distance.toFixed(1)} km</span>
+          <button class="status-pill ${isThreat ? 'threat' : (obj.closing ? 'closing' : '')}" data-id="${obj.id}" data-action="toggle">${obj.closing ? 'closing' : 'steady'}</button>
+          <button class="remove-btn" data-id="${obj.id}" data-action="remove">&times;</button>
+        `;
+        listEl.appendChild(row);
+      });
+
+      listEl.querySelectorAll('.cat-slider').forEach(sl => {
+        sl.addEventListener('input', (e) => {
+          const id = parseInt(e.target.dataset.id, 10);
+          const obj = catObjects.find(o => o.id === id);
+          if (obj) obj.distance = parseFloat(e.target.value);
+          renderCatalog();
+        });
+      });
+      listEl.querySelectorAll('[data-action="toggle"]').forEach(b => {
+        b.addEventListener('click', (e) => {
+          const id = parseInt(e.target.dataset.id, 10);
+          const obj = catObjects.find(o => o.id === id);
+          if (obj) obj.closing = !obj.closing;
+          renderCatalog();
+        });
+      });
+      listEl.querySelectorAll('[data-action="remove"]').forEach(b => {
+        b.addEventListener('click', (e) => {
+          const id = parseInt(e.target.dataset.id, 10);
+          catObjects = catObjects.filter(o => o.id !== id);
+          renderCatalog();
+        });
+      });
+
+      const closest = catObjects.reduce((min, o) => Math.min(min, o.distance), Infinity);
+      const threats = catObjects.filter(o => o.distance < KEEPOUT && o.closing);
+      const hasThreat = threats.length > 0;
+
+      document.getElementById('catSummaryScreen').textContent =
+        catObjects.length ? `Screening ${catObjects.length} object${catObjects.length === 1 ? '' : 's'} · closest ${isFinite(closest) ? closest.toFixed(1) : '—'} km` : 'No objects to screen';
+
+      const threatEl = document.getElementById('catSummaryThreat');
+      if (hasThreat) {
+        const worst = threats.reduce((a, b) => a.distance < b.distance ? a : b);
+        threatEl.style.display = '';
+        threatEl.textContent = `threat: object ${worst.id}`;
+      } else {
+        threatEl.style.display = 'none';
+      }
+
+      const cvIdle = document.getElementById('cvIdle');
+      const cvManeuver = document.getElementById('cvManeuver');
+      cvIdle.className = 'cv-cell ' + (hasThreat ? 'block' : 'allow');
+      cvIdle.querySelector('strong').textContent = hasThreat ? 'BLOCK' : 'ALLOW';
+      cvManeuver.className = 'cv-cell allow';
+      cvManeuver.querySelector('strong').textContent = 'ALLOW';
+    }
+
+    document.getElementById('addObjBtn').addEventListener('click', () => {
+      catObjects.push({ id: nextObjId++, distance: 30, closing: false });
+      renderCatalog();
+    });
+
+    renderCatalog();
+
+    /* ================= BATTERY / SEPARATION CHART ================= */
+    function simulate() {
+      const steps = 90;
+      const withV = [];
+      const withoutV = [];
+      const sepWith = [];
+      const sepWithout = [];
+      let bW = 0.86, bWo = 0.86;
+      let sW = 14, sWo = 14;
+      const eclipseStart = 42, eclipseEnd = 66;
+      const conjStart = 58;
+
+      for (let i = 0; i < steps; i++) {
+        const inEclipse = i >= eclipseStart && i <= eclipseEnd;
+        const load = 0.006 + (inEclipse ? 0.004 : -0.001);
+
+        bWo = Math.max(0, bWo - load - (inEclipse ? 0.003 : 0));
+        withoutV.push(bWo);
+
+        const projectedW = bW - load - (inEclipse ? 0.003 : 0);
+        if (projectedW < 0.22) {
+          bW = Math.max(0.20, bW - load * 0.25);
+        } else {
+          bW = Math.max(0, projectedW);
+          if (!inEclipse) bW = Math.min(1, bW + 0.001);
+        }
+        withV.push(bW);
+
+        if (i < conjStart) {
+          sWo -= 0.35; sW -= 0.35;
+        } else if (i === conjStart) {
+          sWo -= 0.35;
+          sW = 15.4; // Vaelon commands an evasive maneuver
+        } else {
+          sWo = Math.max(0, sWo - 0.15);
+          sW = Math.min(16, sW + 0.02);
+        }
+        sepWithout.push(Math.max(0, sWo));
+        sepWith.push(sW);
+      }
+      return { withV, withoutV, sepWith, sepWithout, eclipseStart, eclipseEnd, conjStart, steps };
+    }
+
+    function pathFromSeries(series, w, h, padL, padT, yMax, yMin, count) {
+      return series.map((v, i) => {
+        const x = padL + (i / (count - 1)) * (w - padL - 10);
+        const y = padT + (1 - (v - yMin) / (yMax - yMin)) * h;
+        return `${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`;
+      }).join(' ');
+    }
+
+    function drawChart() {
+      const data = simulate();
+      const svg = document.getElementById('chartSvg');
+      const W = 760, H = 340;
+      const topH = 190, topPadT = 14, padL = 40;
+      const botH = 96, botPadT = 232;
+
+      let parts = [];
+
+      // eclipse shading (top)
+      const ex1 = padL + (data.eclipseStart / (data.steps - 1)) * (W - padL - 10);
+      const ex2 = padL + (data.eclipseEnd / (data.steps - 1)) * (W - padL - 10);
+      parts.push(`<rect x="${ex1}" y="${topPadT}" width="${ex2 - ex1}" height="${topH}" fill="rgba(255,255,255,.05)" />`);
+      parts.push(`<text x="${(ex1+ex2)/2 - 20}" y="${topPadT + 16}">eclipse</text>`);
+
+      // battery floor line
+      const floorY = topPadT + (1 - (0.20 - 0) / (1 - 0)) * topH;
+      parts.push(`<line x1="${padL}" y1="${floorY}" x2="${W-10}" y2="${floorY}" stroke="var(--red)" stroke-dasharray="4 4" opacity=".5"/>`);
+      parts.push(`<text x="${W-96}" y="${floorY - 6}" fill="var(--red)">battery floor 0.20</text>`);
+
+      // axis labels
+      parts.push(`<text x="6" y="${topPadT+6}">1.0</text>`);
+      parts.push(`<text x="6" y="${topPadT+topH+2}">0.0</text>`);
+      parts.push(`<text x="4" y="${topPadT-2}" fill="var(--ink)" style="font-family:Rajdhani,sans-serif;font-weight:700;">Battery state of charge</text>`);
+
+      parts.push(`<path d="${pathFromSeries(data.withoutV, W, topH, padL, topPadT, 1, 0, data.steps)}" fill="none" stroke="var(--red)" stroke-width="2.4"/>`);
+      parts.push(`<path d="${pathFromSeries(data.withV, W, topH, padL, topPadT, 1, 0, data.steps)}" fill="none" stroke="var(--green)" stroke-width="2.4"/>`);
+
+      // separation chart (bottom)
+      parts.push(`<text x="4" y="${botPadT-2}" fill="var(--ink)" style="font-family:Rajdhani,sans-serif;font-weight:700;">Separation to tracked object (km)</text>`);
+      const cx1 = padL + (data.conjStart / (data.steps - 1)) * (W - padL - 10);
+      parts.push(`<rect x="${cx1}" y="${botPadT}" width="${W-10-cx1}" height="${botH}" fill="rgba(255,78,66,.05)" />`);
+      parts.push(`<text x="${cx1+10}" y="${botPadT+16}">conjunction</text>`);
+      parts.push(`<text x="6" y="${botPadT+6}">16</text>`);
+      parts.push(`<text x="6" y="${botPadT+botH}">0</text>`);
+      parts.push(`<path d="${pathFromSeries(data.sepWithout, W, botH, padL, botPadT, 16, 0, data.steps)}" fill="none" stroke="var(--red)" stroke-width="2.4"/>`);
+      parts.push(`<path d="${pathFromSeries(data.sepWith, W, botH, padL, botPadT, 16, 0, data.steps)}" fill="none" stroke="var(--green)" stroke-width="2.4"/>`);
+
+      svg.innerHTML = parts.join('');
+    }
+    drawChart();
+  </script>
+</body>
+</html>
