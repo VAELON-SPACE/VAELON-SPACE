@@ -963,6 +963,163 @@
     /* staggered reveal helper — JS sets --d per element */
     .reveal { transition-delay: var(--d, 0s); }
 
+    /* ---------- Legal notice panel (HUD/telemetry style, matches site language) ---------- */
+    .disclaimer-bar {
+      position: relative;
+      padding: clamp(56px, 7vw, 84px) clamp(18px, 4vw, 56px) clamp(64px, 8vw, 96px);
+      background:
+        radial-gradient(ellipse 900px 300px at 50% 0%, rgba(125, 177, 216, .08), transparent 70%),
+        var(--deep-black);
+      border-top: 1px solid rgba(125, 177, 216, .18);
+    }
+
+    .disclaimer-frame {
+      position: relative;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 30px clamp(22px, 4vw, 40px) 26px;
+      border: 1px solid rgba(125, 177, 216, .22);
+      background: rgba(6, 12, 22, .6);
+    }
+
+    /* HUD corner brackets, same visual language as telemetry/callout panels */
+    .disclaimer-frame::before,
+    .disclaimer-frame::after,
+    .disclaimer-frame .corner-br,
+    .disclaimer-frame .corner-bl {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-color: #7db1d8;
+      opacity: .9;
+    }
+    .disclaimer-frame::before { top: -1px; left: -1px; border-top: 2px solid #7db1d8; border-left: 2px solid #7db1d8; }
+    .disclaimer-frame::after  { top: -1px; right: -1px; border-top: 2px solid #7db1d8; border-right: 2px solid #7db1d8; }
+    .disclaimer-frame .corner-bl { bottom: -1px; left: -1px; border-bottom: 2px solid #7db1d8; border-left: 2px solid #7db1d8; }
+    .disclaimer-frame .corner-br { bottom: -1px; right: -1px; border-bottom: 2px solid #7db1d8; border-right: 2px solid #7db1d8; }
+
+    .disclaimer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-bottom: 18px;
+      margin-bottom: 22px;
+      border-bottom: 1px solid rgba(125, 177, 216, .18);
+    }
+
+    .disclaimer-top .label { color: #9cc4e6; margin: 0; }
+
+    .disclaimer-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #9cc4e6;
+      font-family: "Inter", sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      border: 1px solid rgba(125, 177, 216, .35);
+      padding: 5px 10px;
+    }
+
+    .disclaimer-status .pulse-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #7db1d8;
+      box-shadow: 0 0 8px 1px rgba(125, 177, 216, .8);
+    }
+
+    .disclaimer-body h3 {
+      font-size: clamp(22px, 2.6vw, 30px);
+      color: #e7f1fa;
+      margin-bottom: 14px;
+      line-height: 1.05;
+    }
+
+    .disclaimer-body p {
+      margin: 0 0 12px;
+      color: rgba(207, 224, 240, .68);
+      font-size: 13px;
+      line-height: 1.85;
+      max-width: 640px;
+    }
+
+    .disclaimer-body p:last-of-type { margin-bottom: 0; }
+
+    .disclaimer-body .brand-strike { color: #cfe0f0; font-weight: 600; letter-spacing: .3px; }
+
+    .disclaimer-contacts {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(125, 177, 216, .18);
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .disclaimer-contact span {
+      display: block;
+      color: #7d95a9;
+      font-size: 10px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .disclaimer-contact strong {
+      display: block;
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: .3px;
+      color: #eaf3fa;
+      text-transform: none;
+    }
+
+    .disclaimer-contact a.mail-link {
+      color: #9cc4e6;
+      font-family: "Inter", sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(125, 177, 216, .4);
+      transition: color .25s ease, border-color .25s ease;
+    }
+
+    .disclaimer-contact a.mail-link:hover { color: #cfe0f0; border-color: #cfe0f0; }
+
+    .disclaimer-sign {
+      margin-top: 22px;
+      color: rgba(125, 177, 216, .55);
+      font-size: 10px;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    .trademark {
+      font-size: .55em;
+      vertical-align: super;
+      letter-spacing: 0;
+      opacity: .75;
+    }
+
+    @media (max-width: 640px) {
+      .disclaimer-contacts { grid-template-columns: 1fr; }
+    }
+
+    .tm-mark {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .5px;
+      vertical-align: super;
+      margin-left: 1px;
+      color: rgba(180, 200, 217, .6);
+    }
+
     @media (max-width: 980px) {
       .mars-layout { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -1309,7 +1466,7 @@
       <a class="brand" href="#home" aria-label="Vaelon Space home">
         <img class="brand-logo" src="assets/vaelon-logo-enhanced.png?v=5" alt="Vaelon Space logo">
         <span class="brand-copy">
-          <strong>VAELON SPACE</strong>
+          <strong>VAELON SPACE<span class="trademark">&trade;</span></strong>
           <span>Aerospace engineering</span>
         </span>
       </a>
@@ -1645,7 +1802,7 @@
       <div class="footer-inner">
         <div class="footer-grid">
           <div class="footer-brand">
-            <strong style="font-family:'Rajdhani',sans-serif;letter-spacing:2px;font-size:19px;color:var(--ink);">VAELON SPACE</strong>
+            <strong style="font-family:'Rajdhani',sans-serif;letter-spacing:2px;font-size:19px;color:var(--ink);">VAELON SPACE<span class="trademark">&trade;</span></strong>
             <p>Aerospace engineering company developing advanced propulsion systems, orbital architecture, and mission-ready spacecraft.</p>
             <p style="margin:0 0 18px;color:var(--neptune-soft);font-family:'Rajdhani',sans-serif;font-weight:700;letter-spacing:1.2px;font-size:13px;text-transform:uppercase;">Founder &amp; CEO &mdash; Viren Singh</p>
             <div class="footer-social">
@@ -1717,6 +1874,43 @@
         </div>
       </div>
     </footer>
+
+    <div class="disclaimer-bar">
+      <div class="disclaimer-frame">
+        <span class="corner-bl"></span>
+        <span class="corner-br"></span>
+
+        <div class="disclaimer-top">
+          <span class="label">SEC 06 / Legal Notice</span>
+          <span class="disclaimer-status"><span class="pulse-dot"></span>Verified Source</span>
+        </div>
+
+        <div class="disclaimer-body">
+          <h3>Disclaimer &amp; Official Contact</h3>
+          <p>Several unaffiliated "Vaelon" branded sites and profiles exist elsewhere on the internet. <span class="brand-strike">VAELON SPACE<span class="trademark">&trade;</span></span> holds no partnership, collaboration, or association with any of them, in any form or shape.</p>
+          <p>This company is solely represented by the individuals listed below. Any other party claiming to speak for or act on behalf of <span class="brand-strike">VAELON SPACE<span class="trademark">&trade;</span></span> is not authorized to do so.</p>
+        </div>
+
+        <div class="disclaimer-contacts">
+          <div class="disclaimer-contact">
+            <span>Founder &amp; CEO</span>
+            <strong>Viren Singh</strong>
+            <a class="mail-link" href="mailto:thakurvirensingh1@gmail.com">thakurvirensingh1@gmail.com</a>
+          </div>
+          <div class="disclaimer-contact">
+            <span>Head Manager</span>
+            <strong>Moksh Sharma</strong>
+          </div>
+          <div class="disclaimer-contact">
+            <span>General Inquiries</span>
+            <strong>Vaelon Space</strong>
+            <a class="mail-link" href="mailto:vaelon.space@gmail.com">vaelon.space@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="disclaimer-sign">VAELON SPACE<span class="trademark">&trade;</span> &middot; All rights reserved &middot; EST. 2022</div>
+      </div>
+    </div>
   </div>
 
   <a class="float-social" href="https://www.instagram.com/vaelon.space/" target="_blank" rel="noopener noreferrer" aria-label="Vaelon Space on Instagram">
