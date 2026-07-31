@@ -895,6 +895,32 @@
     .footer-col a { color: var(--muted); font-size: 13px; transition: color .25s ease, padding-left .25s ease; }
     .footer-col a:hover { color: var(--neptune-soft); padding-left: 4px; }
 
+    .footer-team {
+      padding: 26px 0;
+      border-bottom: 1px solid rgba(125, 177, 216, .1);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-team h4 {
+      font-family: "Barlow Condensed", sans-serif;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 0;
+      padding-right: 14px;
+      border-right: 1px solid rgba(255, 255, 255, .14);
+    }
+
+    .footer-team span {
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: .3px;
+    }
+
     .footer-bottom {
       display: flex;
       justify-content: space-between;
@@ -944,6 +970,8 @@
 
     @media (max-width: 640px) {
       .footer-grid { grid-template-columns: 1fr; }
+      .footer-team { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .footer-team h4 { border-right: none; padding-right: 0; }
       .float-social { right: 16px; bottom: 16px; width: 46px; height: 46px; }
     }
 
@@ -1677,6 +1705,12 @@
             </ul>
           </div>
         </div>
+
+        <div class="footer-team">
+          <h4>Team</h4>
+          <span>Head Manager &mdash; Moksh Sharma</span>
+        </div>
+
         <div class="footer-bottom">
           <span>&copy; 2022&ndash;2026 Vaelon Space. All rights reserved. Founder &amp; CEO: Viren Singh.</span>
           <span>SYS VER 3.0 / UPLINK STABLE / SECURITY ACTIVE / EST: 7th June 2022</span>
