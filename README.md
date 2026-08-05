@@ -1,6 +1,6 @@
 # VAELON SPACE Website
 
-An aerospace-themed company profile website for **VAELON SPACE**, built as a single-page HTML/CSS/JS project with local image assets, circular logo branding, propulsion visuals, mission-style sections, and a lightweight Node.js local server.
+An aerospace-themed company profile website for **VAELON SPACE**, built as a Multiple-page HTML/CSS/JS project with local image assets, circular logo branding, propulsion visuals, mission-style sections, and a lightweight Node.js local server.
 
 ## Preview
 
