@@ -52,10 +52,66 @@
   <meta name="twitter:description" content="Aerospace engineering company developing advanced propulsion systems and Project VX-1.">
   <meta name="twitter:image" content="https://vaelon.space/assets/vaelon-logo-enhanced.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
+    /* Self-hosted fonts — avoids the Google Fonts CDN so the correct weights/
+       styles always load on GitHub Pages, regardless of network conditions,
+       ad-blockers, or third-party-request restrictions. */
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/inter-400.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/inter-500.woff2") format("woff2");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/inter-600.woff2") format("woff2");
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/inter-700.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/inter-800.woff2") format("woff2");
+      font-weight: 800;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Barlow Condensed";
+      src: url("assets/fonts/barlow-condensed-600.woff2") format("woff2");
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Barlow Condensed";
+      src: url("assets/fonts/barlow-condensed-700.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Barlow Condensed";
+      src: url("assets/fonts/barlow-condensed-800.woff2") format("woff2");
+      font-weight: 800;
+      font-style: normal;
+      font-display: swap;
+    }
     :root {
       --void: #000000;
       --panel: rgba(14, 14, 15, .86);
@@ -331,7 +387,7 @@
 
     h1, h2, h3 {
       margin: 0;
-      font-family: "Barlow Condensed", sans-serif;
+      font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .2px;
@@ -440,7 +496,7 @@
       display: block;
       margin-top: 6px;
       color: var(--ink);
-      font-family: "Barlow Condensed", sans-serif;
+      font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
       font-weight: 700;
       font-size: 27px;
       letter-spacing: .5px;
@@ -502,7 +558,7 @@
     .callout strong {
       display: block;
       margin-top: 8px;
-      font-family: "Barlow Condensed", sans-serif;
+      font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
       font-weight: 700;
       font-size: 24px;
       letter-spacing: .4px;
@@ -585,7 +641,7 @@
     .tile b {
       display: block;
       margin-top: 4px;
-      font-family: "Barlow Condensed", sans-serif;
+      font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
       color: var(--ink);
       font-size: 23px;
       letter-spacing: 1px;
@@ -673,7 +729,7 @@
 
     .mars-point strong {
       display: block;
-      font-family: "Barlow Condensed", sans-serif;
+      font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
       font-weight: 700;
       font-size: 19px;
       letter-spacing: .4px;
@@ -870,7 +926,7 @@
     .footer-social svg { width: 18px; height: 18px; }
 
     .footer-col h4 {
-      font-family: "Barlow Condensed", sans-serif;
+      font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
       color: var(--ink);
       font-size: 13px;
       letter-spacing: 2px;
@@ -892,7 +948,7 @@
     }
 
     .footer-team h4 {
-      font-family: "Barlow Condensed", sans-serif;
+      font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
       color: var(--muted);
       font-size: 11px;
       letter-spacing: 2px;
@@ -1026,7 +1082,7 @@
 
     .disclaimer-contact strong {
       display: block;
-      font-family: "Barlow Condensed", sans-serif;
+      font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
       font-weight: 700;
       font-size: 16px;
       letter-spacing: .3px;
@@ -1150,7 +1206,7 @@
       left: 24px;
       top: 24px;
       color: var(--orange);
-      font-family: "Barlow Condensed", sans-serif;
+      font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -1171,7 +1227,7 @@
 
     .spec-row:last-child { border-bottom: 0; }
     .spec-row span { color: var(--muted); font-size: 12.5px; text-transform: uppercase; letter-spacing: 1.2px; }
-    .spec-row strong { font-family: "Barlow Condensed", sans-serif; font-size: 27px; letter-spacing: 1px; color: var(--ink); }
+    .spec-row strong { font-family: "Barlow Condensed", "Arial Narrow", sans-serif; font-size: 27px; letter-spacing: 1px; color: var(--ink); }
 
     .grid-3 {
       display: grid;
@@ -1330,7 +1386,7 @@
       margin-bottom: 5px;
     }
     .sim-row strong {
-      font-family: "Barlow Condensed", sans-serif;
+      font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
       font-size: 19px;
       letter-spacing: .4px;
       color: var(--ink);
@@ -1354,7 +1410,7 @@
     }
     .sim-result strong {
       display: block;
-      font-family: "Barlow Condensed", sans-serif;
+      font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
       font-size: clamp(38px, 4.6vw, 60px);
       line-height: 1;
       color: var(--ink);
@@ -1531,7 +1587,7 @@
       display: block;
       margin-bottom: 10px;
       color: var(--muted);
-      font-family: "Barlow Condensed", sans-serif;
+      font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
       font-weight: 700;
       font-size: 14px;
       letter-spacing: 2px;
@@ -1637,7 +1693,7 @@
       width: 100%; height: 100%; object-fit: cover; filter: saturate(1.06) contrast(1.06);
     }
     .program-row-meta { display: block; color: var(--muted); font-size: 11.5px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 4px; }
-    .program-row-body h4 { margin: 0 0 4px; font-family: "Barlow Condensed", sans-serif; font-size: 20px; font-weight: 700; color: var(--ink); text-transform: uppercase; }
+    .program-row-body h4 { margin: 0 0 4px; font-family: "Barlow Condensed", "Arial Narrow", sans-serif; font-size: 20px; font-weight: 700; color: var(--ink); text-transform: uppercase; }
     .program-row-body p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; max-width: 480px; }
     .program-row .status-pill { margin: 0; white-space: nowrap; }
     @media (max-width: 980px) {
@@ -1664,7 +1720,7 @@
     .research-item:hover { padding-left: 14px; background: rgba(255, 255, 255, .03); }
     .research-num {
       color: var(--muted);
-      font-family: "Barlow Condensed", sans-serif;
+      font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
       font-weight: 700;
       font-size: 20px;
       letter-spacing: 1px;
@@ -1699,7 +1755,7 @@
       display: block;
       margin-bottom: 14px;
       color: var(--orange);
-      font-family: "Barlow Condensed", sans-serif;
+      font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
       font-weight: 700;
       font-size: 15px;
       letter-spacing: 1.5px;
