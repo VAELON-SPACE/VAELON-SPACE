@@ -190,6 +190,28 @@
         .btn-contact:hover { background: var(--white); color: var(--black); border-color: var(--white); }
 
         @media (max-width: 900px) { nav.primary-nav { display: none; } }
+                /* Back to Main Site Button */
+        .btn-back {
+            border: 1px solid var(--line-strong);
+            padding: 0.55rem 1.1rem;
+            font-family: var(--sans);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            background: transparent;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+        .btn-back:hover {
+            background: var(--white);
+            color: var(--black);
+            border-color: var(--white);
+        }
 
         /* Sub-nav (in-page sections) */
         .subnav-wrap {
@@ -948,6 +970,7 @@
                 <span class="nav-stub" style="color: var(--gray-1); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; padding-bottom: 3px;">Library</span>
                 <span class="nav-stub" style="color: var(--gray-1); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; padding-bottom: 3px;">Vaelon Guard</span>
             </nav>
+            <a href="https://vaelon.space/" class="btn-back">← Back to Main</a>
             <span class="btn-contact">Contact</span>
         </div>
     </header>
