@@ -970,7 +970,7 @@
                 <span class="nav-stub" style="color: var(--gray-1); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; padding-bottom: 3px;">Library</span>
                 <span class="nav-stub" style="color: var(--gray-1); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; padding-bottom: 3px;">Vaelon Guard</span>
             </nav>
-            <a href="https://vaelon.space/" class="btn-back">← Back to Main</a>
+<a href="https://vaelon.space/" target="_self" id="backToMain" class="btn-back">← Back to Main</a>
             <span class="btn-contact">Contact</span>
         </div>
     </header>
@@ -1437,10 +1437,11 @@
             document.getElementById('scrollProgress').style.width = pct + '%';
         });
 
-        // Disable all external link clicks
-        document.querySelectorAll('a[href^="http"]').forEach(a => {
-            a.addEventListener('click', (e) => e.preventDefault());
-        });
+// Allow Back button to work
+document.getElementById('backToMain')?.addEventListener('click', function(e) {
+    // Don't block this one - let it navigate
+    // We're letting the browser handle it naturally
+}, true); // The 'true' makes it run first before other handlers
 
         // Placeholder nav links (pages not built yet) — inert, no navigation
         document.querySelectorAll('.nav-stub').forEach(el => {
