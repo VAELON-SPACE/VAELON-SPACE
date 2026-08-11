@@ -20,7 +20,7 @@
     <!-- Open Graph tags for social media sharing -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Project VX-1 | Sounding Rocket Engineering - Vaelon Space">
-    <meta property="og:description" content="A precision sounding rocket engineered for 3,500m altitude with dual-deployment recovery and redundant avionics.">
+    <meta property="og:description" content="A precision sounding rocket engineered for 3,500 meters altitude with dual-deployment recovery and redundant avionics.">
     <meta property="og:image" content="https://vaelon-space.github.io/VAELON-SPACE/assets/vaelon-logo-enhanced.png">
     <meta property="og:url" content="https://vaelon-space.github.io/VAELON-SPACE/vx1-project.html">
     <meta property="og:site_name" content="Vaelon Space">
@@ -28,56 +28,58 @@
     <!-- Twitter Card tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Project VX-1 | Sounding Rocket Engineering - Vaelon Space">
-    <meta name="twitter:description" content="A precision sounding rocket engineered for 3,500m altitude with dual-deployment recovery and redundant avionics.">
+    <meta name="twitter:description" content="A precision sounding rocket engineered for 3,500 meters altitude with dual-deployment recovery and redundant avionics.">
     <meta name="twitter:image" content="https://vaelon-space.github.io/VAELON-SPACE/assets/vaelon-logo-enhanced.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg-primary: #0d1117;
-            --bg-secondary: #161b22;
-            --bg-tertiary: #21262d;
-            --text-primary: #e6edf3;
-            --text-secondary: #8b949e;
-            --text-tertiary: #6e7681;
-            --border: #30363d;
-            --accent: #1f6feb;
-            --accent-light: #388bfd;
-            --success: #238636;
-            --warning: #d29922;
-            --danger: #da3633;
+            --black: #050506;
+            --bg-1: #0a0b0d;
+            --bg-2: #131417;
+            --bg-3: #1b1c20;
+            --line: rgba(255,255,255,0.08);
+            --line-strong: rgba(255,255,255,0.16);
+            --white: #f4f5f6;
+            --gray-1: #9aa0a6;
+            --gray-2: #666b72;
+            --accent: #ff5c28;
+            --accent-dim: rgba(255,92,40,0.14);
+            --danger: #ff5757;
+            --warn: #e0a742;
+            --ease-premium: cubic-bezier(.22, 1, .36, 1);
+            --mono: 'IBM Plex Mono', monospace;
+            --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --display: 'Archivo', -apple-system, sans-serif;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { background: var(--black); }
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto; }
 
         body {
-            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
+            font-family: var(--sans);
+            background-color: var(--black);
+            color: var(--white);
             line-height: 1.6;
             font-size: 15px;
+            overflow-x: hidden;
         }
 
-        :root {
-            --ease-premium: cubic-bezier(.22, 1, .36, 1);
-        }
+        img { display: block; max-width: 100%; }
 
         .reveal {
             opacity: 0;
-            transform: translateY(40px) scale(.985);
+            transform: translateY(36px);
             transition: opacity 1s var(--ease-premium), transform 1.05s var(--ease-premium);
             transition-delay: var(--d, 0s);
             will-change: opacity, transform;
         }
-        .reveal.visible { opacity: 1; transform: translateY(0) scale(1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
         @media (prefers-reduced-motion: reduce) {
             .reveal { opacity: 1; transform: none; transition: none; }
         }
@@ -87,632 +89,840 @@
             top: 0;
             left: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            background: var(--accent);
             z-index: 1000;
             width: 0%;
         }
 
+        /* ============ HEADER ============ */
         header {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(13, 17, 23, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 2rem;
+            background: rgba(5, 5, 6, 0.82);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line);
+            padding: 0.9rem 2rem;
         }
 
         .header-content {
-            max-width: 1400px;
+            max-width: 1500px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 2rem;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: -0.3px;
-            text-transform: uppercase;
-            color: var(--text-primary);
+            gap: 0.85rem;
+            text-decoration: none;
+            color: var(--white);
+            cursor: default; /* Prevent cursor change */
+            pointer-events: none; /* Disable clicking entirely */
         }
 
         .logo-mark {
-            width: 32px;
-            height: 32px;
-            background: var(--accent);
-            border-radius: 4px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1.5px solid var(--line-strong);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
-            font-weight: 700;
-            color: white;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .logo-mark img { width: 60%; height: 60%; object-fit: contain; pointer-events: none; } /* Prevent image clicks */
+
+        .logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+        .logo-wordmark {
+            font-family: var(--display);
+            font-size: 1.02rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .logo-sub {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 1.6px;
+            color: var(--gray-1);
+            text-transform: uppercase;
+            margin-top: 1px;
         }
 
-        nav {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
+        nav.primary-nav { display: flex; gap: 2rem; align-items: center; }
 
-        nav a {
-            color: var(--text-secondary);
+        nav.primary-nav a {
+            color: var(--gray-1);
             text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
             transition: color 0.2s ease;
             border-bottom: 2px solid transparent;
-            padding-bottom: 2px;
+            padding-bottom: 3px;
+            cursor: default; /* Prevent cursor change on disabled nav items */
         }
+        nav.primary-nav a:hover { color: var(--white); border-bottom-color: var(--accent); }
+        nav.primary-nav a.current { color: var(--white); border-bottom-color: var(--accent); }
 
-        nav a:hover {
-            color: var(--accent-light);
-            border-bottom-color: var(--accent);
+        .btn-contact {
+            border: 1px solid var(--line-strong);
+            padding: 0.55rem 1.1rem;
+            font-family: var(--sans);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            cursor: default; /* Prevent cursor change on disabled button */
+            pointer-events: none; /* Disable clicking entirely */
         }
+        .btn-contact:hover { background: var(--white); color: var(--black); border-color: var(--white); }
 
-        @media (max-width: 768px) {
-            nav { display: none; }
+        @media (max-width: 900px) { nav.primary-nav { display: none; } }
+
+        /* Sub-nav (in-page sections) */
+        .subnav-wrap {
+            position: sticky;
+            top: 61px;
+            z-index: 90;
+            background: rgba(5,5,6,0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
         }
-
-        .container {
-            max-width: 1400px;
+        .subnav {
+            max-width: 1500px;
             margin: 0 auto;
             padding: 0 2rem;
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            scrollbar-width: none;
         }
-
-        section {
-            padding: 6rem 0;
+        .subnav::-webkit-scrollbar { display: none; }
+        .subnav a {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--gray-1);
+            text-decoration: none;
+            padding: 0.85rem 0.9rem;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+            transition: color 0.2s ease, border-color 0.2s ease;
+            cursor: pointer; /* Only these should be clickable for scrolling */
         }
+        .subnav a:hover, .subnav a.active { color: var(--accent); border-bottom-color: var(--accent); }
 
+        .container { max-width: 1500px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 6.5rem 0; }
+
+        /* ============ HERO ============ */
         .hero {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
             position: relative;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-text h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            letter-spacing: -1px;
-            color: var(--text-primary);
-        }
-
-        .hero-text h1 .highlight {
-            color: var(--accent-light);
-        }
-
-        .hero-text p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-            max-width: 500px;
-        }
-
-        .cta-buttons {
+            min-height: 94vh;
             display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
+            align-items: flex-end;
+            border-bottom: 1px solid var(--line);
+            overflow: hidden;
+            isolation: isolate;
         }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(180deg, rgba(5,5,6,0.15) 0%, rgba(5,5,6,0.35) 45%, rgba(5,5,6,0.94) 92%),
+                linear-gradient(90deg, rgba(5,5,6,0.75) 0%, rgba(5,5,6,0.1) 42%, rgba(5,5,6,0.05) 100%),
+                url('https://www.nasa.gov/wp-content/uploads/2023/11/wff-2023-080-157.jpg');
+            background-size: cover;
+            background-position: center 60%;
+            z-index: -2;
+            transform: scale(1.04);
+        }
+        .hero-grain {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            opacity: 0.05;
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        .hero-eyebrow {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gray-1);
+            margin-bottom: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .hero-eyebrow .tag-pill {
+            border: 1px solid var(--line-strong);
+            padding: 0.3rem 0.65rem;
+            color: var(--white);
+            font-size: 0.68rem;
+            letter-spacing: 1.2px;
+        }
+
+        .hero-content { max-width: 900px; padding-bottom: 5.5rem; }
+
+        .hero-content h1 {
+            font-family: var(--display);
+            font-size: clamp(2.6rem, 6vw, 5.2rem);
+            font-weight: 900;
+            line-height: 0.98;
+            letter-spacing: -1.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.6rem;
+        }
+        .hero-content h1 .hl { color: var(--accent); }
+
+        .hero-content p {
+            font-size: 1.08rem;
+            color: var(--gray-1);
+            max-width: 620px;
+            line-height: 1.8;
+            margin-bottom: 2.2rem;
+        }
+
+        .cta-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
 
         .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            font-weight: 600;
+            padding: 0.85rem 1.6rem;
+            font-family: var(--sans);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
             cursor: pointer;
             transition: all 0.2s ease;
             border: 1px solid transparent;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-primary { background: var(--white); color: var(--black); border-color: var(--white); }
+        .btn-primary:hover { background: var(--accent); border-color: var(--accent); color: var(--white); }
+        .btn-secondary { background: transparent; color: var(--white); border-color: var(--line-strong); }
+        .btn-secondary:hover { border-color: var(--white); }
+
+        /* Disable CTA buttons that would redirect */
+        .btn-primary, .btn-secondary {
+            pointer-events: none; /* Disable clicking entirely */
+            opacity: 0.7;
+            cursor: default;
         }
 
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-            border-color: var(--accent);
-        }
-
-        .btn-primary:hover {
-            background: var(--accent-light);
-            border-color: var(--accent-light);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--accent);
-            border-color: var(--accent);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(31, 111, 235, 0.1);
-        }
-
-        .hero-visual {
-            position: relative;
-            min-height: 420px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            background: #000;
-        }
-
-        .hero-visual video {
+        /* Telemetry readout box, top-right of hero */
+        .hud-readout {
             position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            top: 2.5rem;
+            right: 2rem;
+            z-index: 2;
+            border: 1px solid var(--line-strong);
+            background: rgba(5,5,6,0.55);
+            backdrop-filter: blur(6px);
+            padding: 1rem 1.2rem;
+            font-family: var(--mono);
+            min-width: 190px;
         }
-
-        .hero-visual::after {
-            content: "";
+        .hud-readout .hr-row { display: flex; justify-content: space-between; gap: 1.2rem; padding: 0.3rem 0; font-size: 0.72rem; }
+        .hud-readout .hr-label { color: var(--gray-2); letter-spacing: 0.8px; text-transform: uppercase; }
+        .hud-readout .hr-value { color: var(--accent); font-weight: 600; }
+        .hud-corner {
             position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(13, 17, 23, .05), rgba(13, 17, 23, .55) 85%);
-            pointer-events: none;
+            width: 22px; height: 22px;
+            border-color: var(--gray-1);
+            opacity: 0.55;
         }
-
-        .hero-visual .hv-tag {
-            position: absolute;
-            left: 18px;
-            bottom: 16px;
-            z-index: 1;
-            padding: 7px 11px;
-            border: 1px solid var(--border);
-            background: rgba(13, 17, 23, .72);
-            backdrop-filter: blur(8px);
-            border-radius: 6px;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11px;
-            letter-spacing: 1px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-        }
+        .hud-corner.tl { top: 90px; left: 2rem; border-top: 1px solid; border-left: 1px solid; }
+        .hud-corner.br { bottom: 2rem; right: 2rem; border-bottom: 1px solid; border-right: 1px solid; }
 
         @media (max-width: 768px) {
-            .hero-content { grid-template-columns: 1fr; }
-            .hero-text h1 { font-size: 2.2rem; }
-            .hero-visual { min-height: 260px; }
+            .hero-content h1 { font-size: 2.3rem; }
+            .hud-readout { display: none; }
         }
 
-        .metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
+        /* ============ VEHICLE MODEL (3D) ============ */
+        #model { padding-top: 3.2rem; }
+        .model-frame {
+            position: relative;
+            height: 640px;
+            border: 1px solid var(--line);
+            background:
+                radial-gradient(ellipse at 50% 18%, rgba(255,92,40,0.07) 0%, rgba(255,92,40,0) 55%),
+                linear-gradient(180deg, var(--bg-2) 0%, var(--bg-1) 100%);
+            overflow: hidden;
         }
-
-        .metric-card {
-            background: var(--bg-secondary);
-            padding: 1.5rem;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            transition: all 0.2s ease;
+        .model-frame canvas { display: block; width: 100%; height: 100%; }
+        .model-hud-corner {
+            position: absolute;
+            width: 20px; height: 20px;
+            border-color: var(--gray-1);
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: 3;
         }
-
-        .metric-card:hover {
-            border-color: var(--accent);
-            background: var(--bg-tertiary);
-        }
-
-        .metric-label {
-            font-size: 0.8rem;
-            color: var(--text-tertiary);
-            margin-bottom: 0.5rem;
+        .model-hud-corner.tl { top: 1.2rem; left: 1.2rem; border-top: 1px solid; border-left: 1px solid; }
+        .model-hud-corner.tr { top: 1.2rem; right: 1.2rem; border-top: 1px solid; border-right: 1px solid; }
+        .model-hud-corner.bl { bottom: 1.2rem; left: 1.2rem; border-bottom: 1px solid; border-left: 1px solid; }
+        .model-hud-corner.br { bottom: 1.2rem; right: 1.2rem; border-bottom: 1px solid; border-right: 1px solid; }
+        .model-tag {
+            position: absolute;
+            top: 1.4rem; left: 1.6rem;
+            z-index: 3;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 1.4px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
+            color: var(--gray-1);
+            pointer-events: none;
         }
-
-        .metric-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            font-family: 'IBM Plex Mono', monospace;
-            color: var(--accent-light);
-            margin-bottom: 0.25rem;
-        }
-
-        .metric-unit {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        h2 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.5px;
-            color: var(--text-primary);
-        }
-
-        .section-subtitle {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-
-        .specs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .spec-card {
-            background: var(--bg-secondary);
-            padding: 1.5rem;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            transition: all 0.2s ease;
-        }
-
-        .spec-card:hover {
-            border-color: var(--accent);
-            background: var(--bg-tertiary);
-        }
-
-        .spec-category {
-            color: var(--accent-light);
-            font-weight: 700;
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
+        .model-tag strong { display: block; color: var(--white); font-size: 0.8rem; letter-spacing: 1px; margin-top: 2px; }
+        .model-hint {
+            position: absolute;
+            bottom: 1.4rem; right: 1.6rem;
+            z-index: 3;
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.8px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .spec-item {
+            color: var(--gray-2);
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.75rem;
-            font-size: 0.9rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 1px solid var(--border);
+            align-items: center;
+            gap: 0.5rem;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
         }
-
-        .spec-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .spec-label {
-            color: var(--text-secondary);
-        }
-
-        .spec-value {
-            font-family: 'IBM Plex Mono', monospace;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .flight-phases {
-            background: var(--bg-secondary);
-            padding: 2rem;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-        }
-
-        .phases-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 0.75rem;
-            margin-bottom: 2rem;
-        }
-
-        .phase-btn {
-            padding: 0.75rem;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .phase-btn:hover {
-            border-color: var(--accent);
-            background: rgba(31, 111, 235, 0.1);
-        }
-
-        .phase-btn.active {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: white;
-        }
-
-        .phase-detail {
-            background: var(--bg-tertiary);
-            padding: 2rem;
-            border-radius: 6px;
-            border: 1px solid var(--accent);
-        }
-
-        .phase-detail h3 {
-            color: var(--accent-light);
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .phase-metric {
-            margin-bottom: 1rem;
-        }
-
-        .phase-metric-label {
-            font-size: 0.8rem;
-            color: var(--text-tertiary);
-            margin-bottom: 0.25rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
-        }
-
-        .phase-metric-value {
-            font-size: 1.1rem;
-            font-family: 'IBM Plex Mono', monospace;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .chart-container {
-            background: var(--bg-secondary);
-            padding: 2rem;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            margin-bottom: 1.5rem;
-        }
-
-        .chart-title {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        canvas {
-            width: 100% !important;
-            height: auto !important;
-        }
-
-        .risk-item {
-            background: var(--bg-secondary);
-            padding: 1.5rem;
-            border-radius: 6px;
-            border-left: 3px solid var(--danger);
-            margin-bottom: 1rem;
-            transition: all 0.2s ease;
-        }
-
-        .risk-item:hover {
-            border-left-color: var(--accent);
-            background: var(--bg-tertiary);
-        }
-
-        .risk-title {
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .risk-severity {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: rgba(218, 54, 51, 0.15);
-            color: var(--danger);
-            border-radius: 4px;
-            font-size: 0.75rem;
-            margin-bottom: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-
-        .risk-description {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .team-section {
-            background: var(--bg-secondary);
-            padding: 2rem;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 2rem;
-            align-items: start;
-        }
-
-        .team-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 6px;
-            background: var(--accent);
+        .model-hint svg { width: 13px; height: 13px; opacity: 0.7; }
+        .model-loading {
+            position: absolute;
+            inset: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 48px;
+            flex-direction: column;
+            gap: 0.7rem;
+            z-index: 4;
+            background: var(--bg-1);
+            transition: opacity 0.5s ease;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--gray-1);
+        }
+        .model-loading .spin {
+            width: 26px; height: 26px;
+            border: 1.5px solid var(--line-strong);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: modelspin 0.8s linear infinite;
+        }
+        @keyframes modelspin { to { transform: rotate(360deg); } }
+        .model-loading.hidden { opacity: 0; pointer-events: none; }
+        .model-hotspot {
+            position: absolute;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+            transition: opacity 0.15s ease;
+            cursor: pointer; /* Only hotspots should be clickable */
+        }
+        .model-hotspot-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255,92,40,0.22), 0 0 10px rgba(255,92,40,0.65);
+            cursor: pointer;
+            position: relative;
+        }
+        .model-hotspot-dot::after {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border: 1px solid rgba(255,92,40,0.55);
+            border-radius: 50%;
+            animation: hotspotPulse 2.2s ease-out infinite;
+        }
+        @keyframes hotspotPulse {
+            0% { transform: scale(0.6); opacity: 0.9; }
+            100% { transform: scale(2.1); opacity: 0; }
+        }
+        .model-hotspot-num {
+            position: absolute;
+            left: 16px; top: 50%;
+            transform: translateY(-50%);
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--white);
+            background: rgba(10,11,13,0.78);
+            border: 1px solid var(--line-strong);
+            padding: 3px 7px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .model-hotspot:hover .model-hotspot-num { opacity: 1; }
+        .model-hotspot-tip {
+            position: absolute;
+            bottom: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            width: 230px;
+            background: var(--bg-2);
+            border: 1px solid var(--line-strong);
+            padding: 0.8rem 0.9rem;
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            line-height: 1.6;
+            color: var(--gray-1);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.22s ease, transform 0.22s ease;
+            z-index: 6;
+        }
+        .model-hotspot-tip strong {
+            display: block;
+            color: var(--white);
+            font-size: 0.72rem;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+        .model-hotspot.active .model-hotspot-tip,
+        .model-hotspot:hover .model-hotspot-tip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+        }
+        @media (max-width: 768px) {
+            .model-hotspot-tip { width: 175px; font-size: 0.62rem; }
+        }
+        .model-legend {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--line);
+            border: 1px solid var(--line);
+            margin-top: 1px;
+        }
+        .model-legend div {
+            background: var(--bg-2);
+            padding: 0.9rem 1.1rem;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+        }
+        .model-legend .ml-label { color: var(--gray-2); text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 0.5rem; }
+        .model-legend .ml-swatch { width: 9px; height: 9px; flex-shrink: 0; border-radius: 1px; }
+        .model-legend .ml-value { color: var(--white); margin-top: 0.3rem; font-size: 0.72rem; }
+        @media (max-width: 768px) {
+            .model-frame { height: 460px; }
+            .model-legend { grid-template-columns: repeat(2, 1fr); }
+        }
+        .model-fallback {
+            position: absolute; inset: 0;
+            display: none;
+            align-items: center; justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--gray-1);
+            z-index: 5;
+            background: var(--bg-1);
         }
 
-        .team-info h3 {
-            font-size: 1.3rem;
+        /* ============ METRICS ============ */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1px;
+            background: var(--line);
+            border: 1px solid var(--line);
+            margin-bottom: 0;
+        }
+        .metric-card {
+            background: var(--black);
+            padding: 1.75rem 1.5rem;
+            transition: background 0.2s ease;
+        }
+        .metric-card:hover { background: var(--bg-1); }
+        .metric-label {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--gray-2);
+            margin-bottom: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: var(--display);
+            color: var(--white);
             margin-bottom: 0.25rem;
         }
+        .metric-unit { font-family: var(--mono); font-size: 0.75rem; color: var(--gray-1); }
 
-        .team-role {
-            color: var(--accent-light);
-            font-weight: 700;
+        /* ============ SECTION HEADS ============ */
+        .eyebrow {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
             margin-bottom: 1rem;
-            font-size: 0.85rem;
+        }
+        h2 {
+            font-family: var(--display);
+            font-size: clamp(1.9rem, 3.4vw, 2.7rem);
+            font-weight: 800;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+        .section-subtitle { color: var(--gray-1); font-size: 1rem; margin-bottom: 2.8rem; max-width: 560px; }
+
+        /* ============ SPECS ============ */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1px;
+            background: var(--line);
+            border: 1px solid var(--line);
+        }
+        .spec-card { background: var(--bg-1); padding: 1.75rem; transition: background 0.2s ease; }
+        .spec-card:hover { background: var(--bg-2); }
+        .spec-category {
+            color: var(--accent);
+            font-family: var(--mono);
+            font-weight: 600;
+            font-size: 0.75rem;
+            margin-bottom: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.85rem;
+            font-size: 0.88rem;
+            padding-bottom: 0.85rem;
+            border-bottom: 1px solid var(--line);
+        }
+        .spec-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .spec-label { color: var(--gray-1); }
+        .spec-value { font-family: var(--mono); font-weight: 600; color: var(--white); }
+
+        h3.subhead {
+            font-family: var(--display);
+            margin-top: 3rem;
+            margin-bottom: 1.2rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: var(--white);
+        }
+
+        .table-responsive { overflow-x: auto; margin: 0; border: 1px solid var(--line); }
+        table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+        th {
+            background: var(--bg-2);
+            padding: 0.9rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--line);
+            color: var(--accent);
+            font-family: var(--mono);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            font-size: 0.72rem;
+        }
+        td { padding: 0.9rem 1rem; border-bottom: 1px solid var(--line); color: var(--gray-1); }
+        tr:last-child td { border-bottom: none; }
+        td strong { color: var(--white); font-weight: 600; }
+        tr:hover td { background: var(--bg-1); }
+
+        /* ============ FLIGHT PHASES ============ */
+        .flight-phases {
+            background: var(--bg-1);
+            padding: 2rem;
+            border: 1px solid var(--line);
+        }
+        .phases-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.6rem;
+            margin-bottom: 2rem;
+        }
+        .phase-btn {
+            padding: 0.8rem 0.6rem;
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            color: var(--gray-1);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            font-weight: 600;
+            text-align: center;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
+        .phase-btn:hover { border-color: var(--gray-1); color: var(--white); }
+        .phase-btn.active { background: var(--accent); border-color: var(--accent); color: var(--white); }
 
-        .team-bio {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            line-height: 1.7;
-            font-size: 0.95rem;
+        .phase-detail { background: var(--bg-2); padding: 2rem; border: 1px solid var(--accent); }
+        .phase-detail h3 {
+            font-family: var(--display);
+            color: var(--white);
+            font-size: 1.35rem;
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
         }
-
-        .team-quote {
-            color: var(--text-secondary);
-            font-style: italic;
-            font-size: 0.95rem;
+        .phase-metric { margin-bottom: 1.1rem; }
+        .phase-metric-label {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--gray-2);
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
+        .phase-metric-value { font-size: 1.05rem; font-family: var(--mono); font-weight: 600; color: var(--accent); }
 
+        /* ============ MARKET / CHART ============ */
+        .chart-container { background: var(--bg-1); padding: 2rem; border: 1px solid var(--line); margin-bottom: 1px; }
+        .chart-title { font-family: var(--mono); font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--gray-1); text-transform: uppercase; letter-spacing: 0.8px; }
+        canvas { width: 100% !important; height: auto !important; }
+
+        .stat-box {
+            background: var(--bg-2);
+            padding: 1.1rem 1.3rem;
+            border: 1px solid var(--line);
+            font-size: 0.88rem;
+            color: var(--gray-1);
+        }
+        .stat-box strong { color: var(--accent); font-family: var(--mono); }
+
+        .market-note {
+            background: var(--bg-1);
+            padding: 1.75rem;
+            border: 1px solid var(--line);
+            margin-top: 1px;
+        }
+        .market-note h3 { font-family: var(--display); color: var(--white); margin-bottom: 1rem; font-size: 1.1rem; text-transform: uppercase; }
+        .market-note p { color: var(--gray-1); margin-bottom: 1rem; line-height: 1.8; }
+        .market-note ul { color: var(--gray-1); margin-left: 1.4rem; line-height: 1.9; font-size: 0.9rem; }
+
+        /* ============ RISKS ============ */
+        .risk-item {
+            background: var(--bg-1);
+            padding: 1.6rem 1.75rem;
+            border-left: 2px solid var(--danger);
+            margin-bottom: 1px;
+            transition: background 0.2s ease;
+        }
+        .risk-item.medium { border-left-color: var(--warn); }
+        .risk-item:hover { background: var(--bg-2); }
+        .risk-title { font-family: var(--display); font-weight: 700; margin-bottom: 0.5rem; color: var(--white); font-size: 1.02rem; }
+        .risk-severity {
+            display: inline-block;
+            padding: 0.25rem 0.7rem;
+            background: rgba(255,87,87,0.12);
+            color: var(--danger);
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            margin-bottom: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .risk-item.medium .risk-severity { background: rgba(224,167,66,0.12); color: var(--warn); }
+        .risk-description { color: var(--gray-1); font-size: 0.9rem; margin-bottom: 0.75rem; }
+        .risk-item p.mitigation { color: var(--gray-1); font-size: 0.88rem; line-height: 1.7; }
+        .risk-item p.mitigation strong { color: var(--white); }
+
+        /* ============ TEAM ============ */
+        .team-section {
+            background: var(--bg-1);
+            padding: 2.5rem;
+            border: 1px solid var(--line);
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 2.2rem;
+            align-items: start;
+        }
+        .team-avatar {
+            width: 130px;
+            height: 130px;
+            border: 1px solid var(--line-strong);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--display);
+            font-size: 44px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        .team-info h3 { font-family: var(--display); font-size: 1.4rem; margin-bottom: 0.3rem; text-transform: uppercase; }
+        .team-role {
+            color: var(--accent);
+            font-family: var(--mono);
+            font-weight: 600;
+            margin-bottom: 1.1rem;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .team-bio { color: var(--gray-1); margin-bottom: 1.1rem; line-height: 1.8; font-size: 0.95rem; }
+        .team-quote { color: var(--gray-1); font-style: italic; font-size: 0.95rem; border-left: 2px solid var(--accent); padding-left: 1rem; }
+
+        /* ============ CTA ============ */
         .cta-section {
-            background: var(--bg-secondary);
-            padding: 3rem 2rem;
-            border-radius: 6px;
+            background: var(--bg-1);
+            padding: 4rem 2rem;
             text-align: center;
-            border: 1px solid var(--border);
+            border: 1px solid var(--line);
         }
+        .cta-section h2 { margin-bottom: 0.75rem; }
+        .cta-section p { color: var(--gray-1); margin-bottom: 2.2rem; font-size: 1rem; }
 
-        .cta-section h2 {
-            margin-bottom: 0.75rem;
-        }
-
-        .cta-section p {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-size: 1rem;
-        }
-
-        footer {
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border);
-            padding: 3rem 2rem 1.5rem;
-            margin-top: 4rem;
-        }
-
+        /* ============ FOOTER ============ */
+        footer { background: var(--black); border-top: 1px solid var(--line); padding: 3.5rem 2rem 1.75rem; }
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
-
         .footer-section h4 {
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-            font-weight: 700;
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            margin-bottom: 1.1rem;
+            color: var(--white);
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
-
         .footer-section a {
             display: block;
-            color: var(--text-secondary);
+            color: var(--gray-1);
             text-decoration: none;
             font-size: 0.85rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
             transition: color 0.2s ease;
+            cursor: default;
+            pointer-events: none;
         }
-
-        .footer-section a:hover {
-            color: var(--accent-light);
-        }
-
+        .footer-section a:hover { color: var(--accent); }
         .footer-bottom {
-            border-top: 1px solid var(--border);
-            padding-top: 1.5rem;
+            border-top: 1px solid var(--line);
+            padding-top: 1.75rem;
             text-align: center;
-            color: var(--text-tertiary);
-            font-size: 0.8rem;
+            color: var(--gray-2);
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.4px;
         }
 
-        .table-responsive {
-            overflow-x: auto;
-            margin: 1.5rem 0;
-        }
+        .section-divider { display: none; } /* replaced by grid hairlines */
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
+        /* ============ PHOTO ELEMENTS ============ */
+        .specs-visual {
+            position: relative;
+            height: 340px;
+            margin-bottom: 3rem;
+            overflow: hidden;
+            border: 1px solid var(--line);
         }
-
-        th {
-            background: var(--bg-tertiary);
-            padding: 0.75rem;
-            text-align: left;
-            border: 1px solid var(--border);
-            color: var(--accent-light);
-            font-weight: 700;
+        .specs-visual img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(15%) contrast(1.05); pointer-events: none; } /* Prevent image clicks */
+        .specs-visual::after {
+            content: "";
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(5,5,6,0) 40%, rgba(5,5,6,0.9) 100%);
+            pointer-events: none;
+        }
+        .specs-visual .sv-caption {
+            position: absolute;
+            left: 1.75rem; bottom: 1.5rem;
+            z-index: 2;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            letter-spacing: 0.3px;
-            font-size: 0.8rem;
+            color: var(--gray-1);
+            pointer-events: none;
         }
+        .specs-visual .sv-caption strong { color: var(--white); display: block; font-family: var(--display); font-size: 1.1rem; text-transform: none; letter-spacing: 0; margin-bottom: 0.2rem; }
 
-        td {
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
+        .photo-break {
+            position: relative;
+            min-height: 62vh;
+            display: flex;
+            align-items: center;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            overflow: hidden;
+            isolation: isolate;
         }
-
-        tr:hover {
-            background: var(--bg-tertiary);
+        .photo-break .pb-bg {
+            position: absolute; inset: 0;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            transform: scale(1.03);
         }
-
-        .section-divider {
-            height: 1px;
-            background: var(--border);
-            margin: 4rem 0;
+        .photo-break .pb-bg::after {
+            content: "";
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(5,5,6,0.55) 0%, rgba(5,5,6,0.25) 35%, rgba(5,5,6,0.85) 100%);
         }
-
-        .stat-box {
-            background: var(--bg-tertiary);
-            padding: 1rem;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            margin-bottom: 0.75rem;
-            font-size: 0.9rem;
+        .photo-break .pb-content { position: relative; z-index: 1; }
+        .photo-break .eyebrow { color: var(--accent); }
+        .photo-break h3 {
+            font-family: var(--display);
+            font-size: clamp(1.7rem, 4vw, 3rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            max-width: 750px;
+            line-height: 1.1;
+            margin-bottom: 1rem;
         }
-
-        .stat-box strong {
-            color: var(--accent-light);
+        .photo-break p { color: var(--gray-1); max-width: 520px; font-size: 1rem; line-height: 1.8; }
+        .photo-break .pb-credit {
+            position: absolute; right: 2rem; bottom: 1.5rem;
+            font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.6px;
+            color: var(--gray-2); text-transform: uppercase;
+            pointer-events: none;
         }
 
         @media (max-width: 768px) {
-            .team-section {
-                grid-template-columns: 1fr;
-            }
-            .team-avatar {
-                width: 100%;
-                height: 120px;
-            }
-            h2 {
-                font-size: 1.6rem;
-            }
-            section {
-                padding: 3rem 0;
-            }
-            .hero-text h1 {
-                font-size: 2rem;
-            }
+            .team-section { grid-template-columns: 1fr; }
+            .team-avatar { width: 100%; height: 120px; }
+            section { padding: 3.5rem 0; }
         }
     </style>
 </head>
@@ -722,201 +932,290 @@
     <header>
         <div class="header-content">
             <div class="logo">
-                <div class="logo-mark">V</div>
-                <span>Vaelon Space</span>
+                <div class="logo-mark">
+                    <img src="assets/vaelon-logo.png" alt="Vaelon Space logo">
+                </div>
+                <div class="logo-text">
+                    <span class="logo-wordmark">Vaelon Space</span>
+                    <span class="logo-sub">Aerospace Engineering</span>
+                </div>
             </div>
-            <nav>
-                <a href="index.html">&larr; Home</a>
-                <a href="#specs">Specifications</a>
-                <a href="#flight">Flight</a>
-                <a href="#market">Market</a>
-                <a href="#risks">Risks</a>
-                <a href="#team">Team</a>
+            <nav class="primary-nav">
+                <span class="nav-stub" style="color: var(--gray-1); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; padding-bottom: 3px;">Systems</span>
+                <span class="nav-stub current" style="color: var(--white); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; border-bottom: 2px solid var(--accent); padding-bottom: 3px;">Programs</span>
+                <span class="nav-stub" style="color: var(--gray-1); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; padding-bottom: 3px;">Research</span>
+                <span class="nav-stub" style="color: var(--gray-1); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; padding-bottom: 3px;">Mars Mission</span>
+                <span class="nav-stub" style="color: var(--gray-1); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; padding-bottom: 3px;">Library</span>
+                <span class="nav-stub" style="color: var(--gray-1); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; padding-bottom: 3px;">Vaelon Guard</span>
             </nav>
+            <span class="btn-contact">Contact</span>
         </div>
     </header>
+
+    <div class="subnav-wrap">
+        <div class="subnav">
+            <a href="#specs">Specifications</a>
+            <a href="#flight">Flight Profile</a>
+            <a href="#market">Market</a>
+            <a href="#risks">Risk Assessment</a>
+            <a href="#team">Team</a>
+        </div>
+    </div>
 
     <main>
         <!-- Hero Section -->
         <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-grain"></div>
+            <div class="hud-corner tl"></div>
+            <div class="hud-corner br"></div>
+
+            <div class="hud-readout">
+                <div class="hr-row"><span class="hr-label">Apogee</span><span class="hr-value">3,500 m</span></div>
+                <div class="hr-row"><span class="hr-label">Peak Thrust</span><span class="hr-value">~500 N</span></div>
+                <div class="hr-row"><span class="hr-label">Max Vel.</span><span class="hr-value">Mach 0.7</span></div>
+                <div class="hr-row"><span class="hr-label">Status</span><span class="hr-value">In Development</span></div>
+            </div>
+
             <div class="container">
                 <div class="hero-content">
-                    <div class="hero-text">
-                        <h1>Project <span class="highlight">VX-1</span></h1>
-                        <p>A precision sounding rocket engineered to achieve 3,500 meters altitude with advanced dual-deployment recovery systems and redundant avionics. Designed for atmospheric research, space science, and educational applications.</p>
-                        <div class="cta-buttons">
-                            <button class="btn btn-primary">Download Report</button>
-                            <button class="btn btn-secondary">View Details</button>
-                        </div>
+                    <div class="hero-eyebrow">
+                        <span>Vaelon Space / Programs</span>
+                        <span class="tag-pill">Project 01 &middot; Research / Development</span>
                     </div>
-                    <div class="hero-visual">
-                        <video poster="assets/vx1-earth-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Real orbital footage of Earth from the ISS">
-                            <source src="assets/vx1-earth.webm" type="video/webm">
-                            <source src="assets/vx1-earth.mp4" type="video/mp4">
-                        </video>
-                        <span class="hv-tag">Target apogee &middot; 3,500 m AGL</span>
+                    <h1>Project <span class="hl">VX&#8209;1</span></h1>
+                    <p>A precision-engineered sounding rocket built to reach 3,500 meters AGL with dual-deployment recovery and redundant avionics — the propulsion stack anchoring Vaelon Space's atmospheric research line.</p>
+                    <div class="cta-buttons">
+                        <span class="btn btn-primary">Download Report &rarr;</span>
+                        <a href="#specs" class="btn btn-secondary">View Specifications &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vehicle Model (interactive 3D) -->
+        <section id="model">
+            <div class="container">
+                <div class="eyebrow">Sec 00 / Vehicle Model</div>
+                <h2>VX&#8209;1 in Three Dimensions</h2>
+                <p class="section-subtitle">Procedurally modeled to spec &mdash; Von K&aacute;rm&aacute;n nosecone, 76&nbsp;mm airframe, through-the-wall fin set. Drag to rotate, scroll to zoom, tap a marker for the design rationale behind each zone.</p>
+
+                <div class="model-frame reveal" id="modelFrame">
+                    <div class="model-tag">Vaelon Space / VX&#8209;1<strong id="modelStatus">Rendering</strong></div>
+                    <div class="model-hud-corner tl"></div>
+                    <div class="model-hud-corner tr"></div>
+                    <div class="model-hud-corner bl"></div>
+                    <div class="model-hud-corner br"></div>
+                    <div class="model-hint" id="modelHint">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a3 3 0 106 0 3 3 0 00-6 0z"/><path d="M4 12s2.5-6 8-6 8 6 8 6-2.5 6-8 6-8-6-8-6z"/></svg>
+                        Drag to orbit &middot; scroll to zoom &middot; tap markers for design notes
+                    </div>
+                    <div class="model-loading" id="modelLoading">
+                        <div class="spin"></div>
+                        <span>Loading vehicle geometry&hellip;</span>
+                    </div>
+                    <div class="model-fallback" id="modelFallback">
+                        Interactive 3D view requires WebGL and an internet connection to load the render engine.<br><br>
+                        Refer to the Vehicle Cutaway (Sec&nbsp;01.1) below for a full dimensioned diagram.
+                    </div>
+                </div>
+                <div class="model-legend">
+                    <div>
+                        <div class="ml-label"><span class="ml-swatch" style="background:#e9eaec;"></span>Airframe</div>
+                        <div class="ml-value">Fiberglass/phenolic composite</div>
+                    </div>
+                    <div>
+                        <div class="ml-label"><span class="ml-swatch" style="background:#2b2f33;"></span>Fins</div>
+                        <div class="ml-value">G10 fiberglass, through-the-wall</div>
+                    </div>
+                    <div>
+                        <div class="ml-label"><span class="ml-swatch" style="background:#9aa0a6;"></span>Fittings</div>
+                        <div class="ml-value">Aluminum 6061&#8209;T6, CNC</div>
+                    </div>
+                    <div>
+                        <div class="ml-label"><span class="ml-swatch" style="background:#ff5c28;"></span>Coupler band</div>
+                        <div class="ml-value">Recovery bay seam</div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Quick Metrics -->
-        <section>
-            <div class="container">
-                <div class="metrics">
-                    <div class="metric-card">
-                        <div class="metric-label">Target Altitude</div>
-                        <div class="metric-value">3.5 km</div>
-                        <div class="metric-unit">Above Ground Level</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-label">Peak Thrust</div>
-                        <div class="metric-value">~500 N</div>
-                        <div class="metric-unit">Newtons</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-label">Max Velocity</div>
-                        <div class="metric-value">240 m/s</div>
-                        <div class="metric-unit">Mach 0.7</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-label">Gross Liftoff Weight</div>
-                        <div class="metric-value">5.2 kg</div>
-                        <div class="metric-unit">Total Mass</div>
-                    </div>
+        <section style="padding-top: 0; padding-bottom: 0;">
+            <div class="metrics">
+                <div class="metric-card">
+                    <div class="metric-label">Target Altitude</div>
+                    <div class="metric-value">3.5 km</div>
+                    <div class="metric-unit">Above Ground Level</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Peak Thrust</div>
+                    <div class="metric-value">~500 N</div>
+                    <div class="metric-unit">Newtons</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Max Velocity</div>
+                    <div class="metric-value">240 m/s</div>
+                    <div class="metric-unit">Mach 0.7</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Gross Liftoff Weight</div>
+                    <div class="metric-value">5.2 kg</div>
+                    <div class="metric-unit">Total Mass</div>
                 </div>
             </div>
         </section>
 
-        <div class="section-divider"></div>
-
         <!-- Technical Specifications -->
         <section id="specs">
             <div class="container">
+                <div class="eyebrow">Sec 01 / Vehicle</div>
                 <h2>Technical Specifications</h2>
-                <p class="section-subtitle">Complete vehicle specifications and design parameters</p>
+                <p class="section-subtitle">Complete vehicle specifications and design parameters.</p>
+
+                <div class="specs-visual reveal">
+                    <img src="https://www.nasa.gov/wp-content/uploads/2018/09/sounding_rocket_for_icymi_180907.jpg" alt="Sounding rocket horizontal on the launch pad during integration" loading="lazy">
+                    <div class="sv-caption">
+                        <strong>Vehicle Integration</strong>
+                        Reference: sounding rocket on launch rail, pre-flight configuration
+                    </div>
+                </div>
 
                 <div class="specs-grid">
                     <div class="spec-card">
                         <div class="spec-category">Vehicle Dimensions</div>
-                        <div class="spec-item">
-                            <span class="spec-label">Total Length</span>
-                            <span class="spec-value">1.8 m</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Fuselage Diameter</span>
-                            <span class="spec-value">76 mm</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Dry Weight</span>
-                            <span class="spec-value">3.8 kg</span>
-                        </div>
+                        <div class="spec-item"><span class="spec-label">Total Length</span><span class="spec-value">1.8 m</span></div>
+                        <div class="spec-item"><span class="spec-label">Fuselage Diameter</span><span class="spec-value">76 mm</span></div>
+                        <div class="spec-item"><span class="spec-label">Dry Weight</span><span class="spec-value">3.8 kg</span></div>
                     </div>
-
                     <div class="spec-card">
                         <div class="spec-category">Performance Envelope</div>
-                        <div class="spec-item">
-                            <span class="spec-label">Peak Thrust</span>
-                            <span class="spec-value">~500 N</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Max Velocity</span>
-                            <span class="spec-value">240 m/s</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Peak Acceleration</span>
-                            <span class="spec-value">~50 m/s²</span>
-                        </div>
+                        <div class="spec-item"><span class="spec-label">Peak Thrust</span><span class="spec-value">~500 N</span></div>
+                        <div class="spec-item"><span class="spec-label">Max Velocity</span><span class="spec-value">240 m/s</span></div>
+                        <div class="spec-item"><span class="spec-label">Peak Acceleration</span><span class="spec-value">~50 m/s&sup2;</span></div>
                     </div>
-
                     <div class="spec-card">
                         <div class="spec-category">Propulsion System</div>
-                        <div class="spec-item">
-                            <span class="spec-label">Motor Type</span>
-                            <span class="spec-value">APCP</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Motor Class</span>
-                            <span class="spec-value">J/K-Class</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Burn Duration</span>
-                            <span class="spec-value">2.5 s</span>
-                        </div>
+                        <div class="spec-item"><span class="spec-label">Motor Type</span><span class="spec-value">APCP</span></div>
+                        <div class="spec-item"><span class="spec-label">Motor Class</span><span class="spec-value">J/K-Class</span></div>
+                        <div class="spec-item"><span class="spec-label">Burn Duration</span><span class="spec-value">2.5 s</span></div>
                     </div>
-
                     <div class="spec-card">
                         <div class="spec-category">Recovery System</div>
-                        <div class="spec-item">
-                            <span class="spec-label">Drogue Chute</span>
-                            <span class="spec-value">24 inch</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Main Chute</span>
-                            <span class="spec-value">60 inch</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Landing Speed</span>
-                            <span class="spec-value">~5 m/s</span>
-                        </div>
+                        <div class="spec-item"><span class="spec-label">Drogue Chute</span><span class="spec-value">24 inch</span></div>
+                        <div class="spec-item"><span class="spec-label">Main Chute</span><span class="spec-value">60 inch</span></div>
+                        <div class="spec-item"><span class="spec-label">Landing Speed</span><span class="spec-value">~5 m/s</span></div>
                     </div>
                 </div>
 
-                <h3 style="margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.2rem; color: var(--text-primary);">Design & Engineering</h3>
+                <h3 class="subhead">Design &amp; Engineering</h3>
                 <div class="table-responsive">
                     <table>
                         <thead>
-                            <tr>
-                                <th>Component</th>
-                                <th>Material</th>
-                                <th>Specification</th>
-                                <th>Purpose</th>
-                            </tr>
+                            <tr><th>Component</th><th>Material</th><th>Specification</th><th>Purpose</th></tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><strong>Airframe</strong></td>
-                                <td>Fiberglass/Phenolic</td>
-                                <td>3 mm wall, 76 mm OD</td>
-                                <td>Structural integrity</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Nosecone</strong></td>
-                                <td>Fiberglass Composite</td>
-                                <td>Von Kármán profile</td>
-                                <td>Drag minimization</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Fins</strong></td>
-                                <td>G10 Fiberglass</td>
-                                <td>Through-the-wall mount</td>
-                                <td>Aerodynamic stability</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Motor Retainer</strong></td>
-                                <td>Aluminum 6061-T6</td>
-                                <td>CNC machined</td>
-                                <td>Motor retention</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Avionics Sled</strong></td>
-                                <td>PETG/ABS</td>
-                                <td>3D printed</td>
-                                <td>Electronics housing</td>
-                            </tr>
+                            <tr><td><strong>Airframe</strong></td><td>Fiberglass/Phenolic</td><td>3 mm wall, 76 mm OD</td><td>Structural integrity</td></tr>
+                            <tr><td><strong>Nosecone</strong></td><td>Fiberglass Composite</td><td>Von K&aacute;rm&aacute;n profile</td><td>Drag minimization</td></tr>
+                            <tr><td><strong>Fins</strong></td><td>G10 Fiberglass</td><td>Through-the-wall mount</td><td>Aerodynamic stability</td></tr>
+                            <tr><td><strong>Motor Retainer</strong></td><td>Aluminum 6061-T6</td><td>CNC machined</td><td>Motor retention</td></tr>
+                            <tr><td><strong>Avionics Sled</strong></td><td>PETG/ABS</td><td>3D printed</td><td>Electronics housing</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </section>
 
-        <div class="section-divider"></div>
+        <!-- Vehicle Cutaway -->
+        <section id="cutaway" style="padding-top: 0;">
+            <div class="container">
+                <div class="eyebrow">Sec 01.1 / Structure</div>
+                <h2>Vehicle Cutaway</h2>
+                <p class="section-subtitle">Internal component layout, nose to tail &mdash; scale reference only.</p>
+
+                <div class="cutaway-frame reveal">
+                    <svg viewBox="0 0 1500 560" xmlns="http://www.w3.org/2000/svg" class="cutaway-svg">
+                        <!-- centerline -->
+                        <line x1="90" y1="260" x2="1430" y2="260" stroke="rgba(255,255,255,0.18)" stroke-width="1" stroke-dasharray="2 6"/>
+
+                        <!-- fins (rear, drawn behind body) -->
+                        <polygon points="150,205 230,205 168,110 128,150" fill="none" stroke="var(--gray-1)" stroke-width="1.5"/>
+                        <polygon points="150,315 230,315 168,410 128,370" fill="none" stroke="var(--gray-1)" stroke-width="1.5"/>
+
+                        <!-- outer hull: body tube -->
+                        <path d="M 150,205 L 1120,205 L 1120,315 L 150,315 Z" fill="none" stroke="var(--white)" stroke-width="1.75"/>
+
+                        <!-- nose cone (Von Karman ogive approximation) -->
+                        <path d="M 1120,205 C 1230,205 1300,215 1350,240 C 1390,258 1415,260 1430,260 C 1415,260 1390,262 1350,280 C 1300,305 1230,315 1120,315" fill="none" stroke="var(--white)" stroke-width="1.75"/>
+
+                        <!-- motor bay (internal, accent) -->
+                        <rect x="210" y="225" width="290" height="70" fill="var(--accent-dim)" stroke="var(--accent)" stroke-width="1.25"/>
+                        <line x1="230" y1="225" x2="230" y2="295" stroke="var(--accent)" stroke-width="1" opacity="0.5"/>
+                        <line x1="480" y1="225" x2="480" y2="295" stroke="var(--accent)" stroke-width="1" opacity="0.5"/>
+                        <circle cx="355" cy="260" r="16" fill="none" stroke="var(--accent)" stroke-width="1"/>
+
+                        <!-- coupler -->
+                        <rect x="500" y="220" width="18" height="80" fill="rgba(255,255,255,0.04)" stroke="var(--line-strong)" stroke-width="1"/>
+
+                        <!-- recovery bay -->
+                        <rect x="560" y="220" width="230" height="80" fill="rgba(255,255,255,0.03)" stroke="var(--gray-1)" stroke-width="1.25"/>
+                        <path d="M 590,290 L 610,232 L 630,290 L 650,232 L 670,290 L 690,232 L 710,290 L 730,232 L 750,290" fill="none" stroke="var(--gray-1)" stroke-width="1"/>
+
+                        <!-- avionics bay -->
+                        <rect x="830" y="225" width="180" height="70" fill="var(--accent-dim)" stroke="var(--accent)" stroke-width="1.25"/>
+                        <g stroke="var(--accent)" stroke-width="0.75" opacity="0.7">
+                            <line x1="850" y1="240" x2="990" y2="240"/>
+                            <line x1="850" y1="255" x2="990" y2="255"/>
+                            <line x1="850" y1="270" x2="990" y2="270"/>
+                            <line x1="850" y1="285" x2="990" y2="285"/>
+                        </g>
+                        <circle cx="870" cy="240" r="2.5" fill="var(--accent)"/>
+                        <circle cx="920" cy="255" r="2.5" fill="var(--accent)"/>
+                        <circle cx="960" cy="270" r="2.5" fill="var(--accent)"/>
+                        <circle cx="890" cy="285" r="2.5" fill="var(--accent)"/>
+
+                        <!-- dimension line: total length -->
+                        <line x1="128" y1="460" x2="1430" y2="460" stroke="var(--gray-1)" stroke-width="1"/>
+                        <line x1="128" y1="450" x2="128" y2="470" stroke="var(--gray-1)" stroke-width="1"/>
+                        <line x1="1430" y1="450" x2="1430" y2="470" stroke="var(--gray-1)" stroke-width="1"/>
+                        <text x="779" y="490" text-anchor="middle" class="ct-dim">1.8 M &middot; TOTAL LENGTH</text>
+
+                        <!-- diameter callout -->
+                        <circle cx="1300" cy="500" r="26" fill="none" stroke="var(--gray-1)" stroke-width="1"/>
+                        <line x1="1274" y1="500" x2="1326" y2="500" stroke="var(--gray-1)" stroke-width="0.75" stroke-dasharray="2 3"/>
+                        <text x="1300" y="545" text-anchor="middle" class="ct-dim">&#8960; 76 MM O.D.</text>
+
+                        <!-- leader lines + labels -->
+                        <line x1="1250" y1="240" x2="1250" y2="70" stroke="var(--gray-2)" stroke-width="0.75"/>
+                        <circle cx="1250" cy="240" r="2.5" fill="var(--white)"/>
+                        <text x="1250" y="55" text-anchor="middle" class="ct-label">NOSECONE<tspan x="1250" dy="14" class="ct-sub">Von K&aacute;rm&aacute;n &middot; fiberglass composite</tspan></text>
+
+                        <line x1="920" y1="225" x2="920" y2="70" stroke="var(--gray-2)" stroke-width="0.75"/>
+                        <circle cx="920" cy="225" r="2.5" fill="var(--accent)"/>
+                        <text x="920" y="55" text-anchor="middle" class="ct-label">AVIONICS BAY<tspan x="920" dy="14" class="ct-sub">Redundant altimeters &middot; dual ejection</tspan></text>
+
+                        <line x1="675" y1="220" x2="675" y2="70" stroke="var(--gray-2)" stroke-width="0.75"/>
+                        <circle cx="675" cy="220" r="2.5" fill="var(--white)"/>
+                        <text x="675" y="55" text-anchor="middle" class="ct-label">RECOVERY BAY<tspan x="675" dy="14" class="ct-sub">24in drogue &middot; 60in main</tspan></text>
+
+                        <line x1="355" y1="225" x2="355" y2="70" stroke="var(--gray-2)" stroke-width="0.75"/>
+                        <circle cx="355" cy="225" r="2.5" fill="var(--accent)"/>
+                        <text x="355" y="55" text-anchor="middle" class="ct-label">MOTOR BAY<tspan x="355" dy="14" class="ct-sub">APCP &middot; J/K-class &middot; 2.5s burn</tspan></text>
+
+                        <line x1="190" y1="315" x2="190" y2="410" stroke="var(--gray-2)" stroke-width="0.75"/>
+                        <circle cx="190" cy="315" r="2.5" fill="var(--white)"/>
+                        <text x="190" y="428" text-anchor="middle" class="ct-label">FINS<tspan x="190" dy="14" class="ct-sub">G10 &middot; through-the-wall mount</tspan></text>
+                    </svg>
+                </div>
+            </div>
+        </section>
 
         <!-- Flight Phases -->
         <section id="flight">
             <div class="container">
-                <h2>Flight Phases</h2>
-                <p class="section-subtitle">Mission timeline and phase analysis</p>
+                <div class="eyebrow">Sec 02 / Mission Timeline</div>
+                <h2>Flight Profile</h2>
+                <p class="section-subtitle">Mission timeline and phase-by-phase performance analysis.</p>
 
                 <div class="flight-phases">
                     <div class="phases-list">
@@ -928,64 +1227,51 @@
                         <button class="phase-btn" onclick="showPhase(5)">Main</button>
                         <button class="phase-btn" onclick="showPhase(6)">Landing</button>
                     </div>
-
                     <div class="phase-detail" id="phaseDetail">
                         <h3>Liftoff</h3>
-                        <div class="phase-metric">
-                            <div class="phase-metric-label">Duration</div>
-                            <div class="phase-metric-value">0-1 second</div>
-                        </div>
-                        <div class="phase-metric">
-                            <div class="phase-metric-label">Altitude Range</div>
-                            <div class="phase-metric-value">0 m</div>
-                        </div>
-                        <div class="phase-metric">
-                            <div class="phase-metric-label">Velocity</div>
-                            <div class="phase-metric-value">0 → 15-20 m/s</div>
-                        </div>
-                        <div class="phase-metric">
-                            <div class="phase-metric-label">Description</div>
-                            <p style="color: var(--text-secondary); margin-top: 0.5rem;">Motor ignition, rocket accelerates on launch rail, free flight begins at rail exit.</p>
-                        </div>
+                        <div class="phase-metric"><div class="phase-metric-label">Duration</div><div class="phase-metric-value">0-1 second</div></div>
+                        <div class="phase-metric"><div class="phase-metric-label">Altitude Range</div><div class="phase-metric-value">0 m</div></div>
+                        <div class="phase-metric"><div class="phase-metric-label">Velocity</div><div class="phase-metric-value">0 &rarr; 15-20 m/s</div></div>
+                        <div class="phase-metric"><div class="phase-metric-label">Description</div><p style="color: var(--gray-1); margin-top: 0.5rem; font-family: var(--sans);">Motor ignition, rocket accelerates on launch rail, free flight begins at rail exit.</p></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="section-divider"></div>
+        <!-- Photo Break -->
+        <section class="photo-break">
+            <div class="pb-bg" style="background-image: url('https://www.nasa.gov/wp-content/uploads/2023/02/wff-2021-011-002.jpeg');"></div>
+            <div class="container pb-content">
+                <div class="eyebrow reveal">Ignition &middot; T+0.4s</div>
+                <h3 class="reveal">Every gram of thrust engineered against every gram of drag.</h3>
+                <p class="reveal">VX-1's propulsion stack is sized to clear the rail at 15&ndash;20 m/s and hold full burn for 2.5 seconds — the margin that decides whether the vehicle reaches 3,500 m or falls short of the recovery window.</p>
+            </div>
+            <div class="pb-credit">Reference photo &middot; NASA / Wallops Flight Facility</div>
+        </section>
 
         <!-- Market Analysis -->
         <section id="market">
             <div class="container">
+                <div class="eyebrow">Sec 03 / Industry</div>
                 <h2>Market Analysis</h2>
-                <p class="section-subtitle">Sounding rocket industry overview and growth projections</p>
+                <p class="section-subtitle">Global sounding rocket industry overview and growth projections.</p>
 
                 <div class="chart-container">
-                    <div class="chart-title">Global Sounding Rocket Market (2024-2035)</div>
+                    <div class="chart-title">Global Sounding Rocket Market &middot; 2024&ndash;2035</div>
                     <canvas id="marketChart" style="height: 300px;"></canvas>
                 </div>
 
-                <div class="specs-grid">
-                    <div class="stat-box">
-                        <strong>2024 Market Size:</strong> $799.2 Million
-                    </div>
-                    <div class="stat-box">
-                        <strong>2035 Projection:</strong> $1.5 Billion
-                    </div>
-                    <div class="stat-box">
-                        <strong>CAGR:</strong> 5.9% Annual Growth
-                    </div>
-                    <div class="stat-box">
-                        <strong>Primary Segment:</strong> Atmospheric Research (38%)
-                    </div>
+                <div class="specs-grid" style="margin-top: 1px;">
+                    <div class="stat-box"><strong>2024 Market Size:</strong> $799.2 Million</div>
+                    <div class="stat-box"><strong>2035 Projection:</strong> $1.5 Billion</div>
+                    <div class="stat-box"><strong>CAGR:</strong> 5.9% Annual Growth</div>
+                    <div class="stat-box"><strong>Primary Segment:</strong> Atmospheric Research (38%)</div>
                 </div>
 
-                <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 6px; border: 1px solid var(--border); margin-top: 1.5rem;">
-                    <h3 style="color: var(--accent-light); margin-bottom: 1rem; font-size: 1.1rem;">Market Positioning</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.7;">
-                        Vaelon Space targets the educational and emerging commercial segments through proven sounding rocket technology and strategic partnerships with research institutions and universities.
-                    </p>
-                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; line-height: 1.8; font-size: 0.9rem;">
+                <div class="market-note">
+                    <h3>Market Positioning</h3>
+                    <p>Vaelon Space targets the educational and emerging commercial segments through proven sounding rocket technology and strategic partnerships with research institutions and universities.</p>
+                    <ul>
                         <li>University partnerships for student rocket teams</li>
                         <li>Spaceport America Cup participation and sponsorships</li>
                         <li>Commercial payload hosting services</li>
@@ -996,94 +1282,74 @@
             </div>
         </section>
 
-        <div class="section-divider"></div>
-
         <!-- Risk Assessment -->
         <section id="risks">
             <div class="container">
+                <div class="eyebrow">Sec 04 / Safety</div>
                 <h2>Risk Assessment</h2>
-                <p class="section-subtitle">Identified risks and mitigation strategies</p>
+                <p class="section-subtitle">Identified risks and mitigation strategies.</p>
 
                 <div class="risk-item">
                     <div class="risk-title">Motor CATO (Catastrophic Failure)</div>
                     <div class="risk-severity">High Severity</div>
                     <div class="risk-description">Potential airframe destruction and mission failure</div>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                        <strong>Mitigation:</strong> Use only certified APCP motors, conduct static fire test, verify motor certification documents, use retention system rated for 5x peak thrust.
-                    </p>
+                    <p class="mitigation"><strong>Mitigation:</strong> Use only certified APCP motors, conduct static fire test, verify motor certification documents, use retention system rated for 5x peak thrust.</p>
                 </div>
-
                 <div class="risk-item">
                     <div class="risk-title">Structural Failure (Airframe Rupture)</div>
                     <div class="risk-severity">High Severity</div>
                     <div class="risk-description">Loss of vehicle and potential injury</div>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                        <strong>Mitigation:</strong> Design with 2.0 caliber static margin, conduct FEA analysis, pressure test to 20 bar, through-the-wall fin mounting.
-                    </p>
+                    <p class="mitigation"><strong>Mitigation:</strong> Design with 2.0 caliber static margin, conduct FEA analysis, pressure test to 20 bar, through-the-wall fin mounting.</p>
                 </div>
-
                 <div class="risk-item">
                     <div class="risk-title">Parachute Failure</div>
                     <div class="risk-severity">High Severity</div>
                     <div class="risk-description">Loss of vehicle if parachutes tear or entangle</div>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                        <strong>Mitigation:</strong> Use high-quality ripstop nylon, inspect before each flight, proper packing technique, deployment bag, shock cords rated for 10+ g.
-                    </p>
+                    <p class="mitigation"><strong>Mitigation:</strong> Use high-quality ripstop nylon, inspect before each flight, proper packing technique, deployment bag, shock cords rated for 10+ g.</p>
                 </div>
-
-                <div class="risk-item">
+                <div class="risk-item medium">
                     <div class="risk-title">Early Parachute Deployment</div>
                     <div class="risk-severity">Medium Severity</div>
                     <div class="risk-description">Rocket descends under drogue only, extended flight time</div>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                        <strong>Mitigation:</strong> Dual redundant barometric altimeters, independent ejection circuits, altitude calibration, redundant power supplies.
-                    </p>
+                    <p class="mitigation"><strong>Mitigation:</strong> Dual redundant barometric altimeters, independent ejection circuits, altitude calibration, redundant power supplies.</p>
                 </div>
-
                 <div class="risk-item">
                     <div class="risk-title">Loss of Vehicle (Unrecoverable)</div>
                     <div class="risk-severity">High Severity</div>
                     <div class="risk-description">Vehicle cannot be located and recovered</div>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                        <strong>Mitigation:</strong> GPS tracking with real-time telemetry, RF beacon (900 MHz), high-visibility parachute, recovery team with GPS receiver.
-                    </p>
+                    <p class="mitigation"><strong>Mitigation:</strong> GPS tracking with real-time telemetry, RF beacon (900 MHz), high-visibility parachute, recovery team with GPS receiver.</p>
                 </div>
             </div>
         </section>
 
-        <div class="section-divider"></div>
-
         <!-- Team Section -->
         <section id="team">
             <div class="container">
+                <div class="eyebrow">Sec 05 / Organization</div>
                 <h2>Organization</h2>
-                <p class="section-subtitle">Leadership and team structure</p>
+                <p class="section-subtitle">Leadership and team structure.</p>
 
                 <div class="team-section">
                     <div class="team-avatar">V</div>
                     <div class="team-info">
                         <h3>Viren Singh</h3>
-                        <div class="team-role">Founder & CEO</div>
-                        <p class="team-bio">
-                            Aerospace engineer and founder of Vaelon Space. Leads the design, engineering, and development of Project VX-1. Dedicated to advancing sounding rocket technology and establishing Vaelon Space as a leader in suborbital flight systems for research and education.
-                        </p>
-                        <p class="team-quote">"Precision engineering. Reliable performance. Mission success."</p>
+                        <div class="team-role">Founder &amp; CEO</div>
+                        <p class="team-bio">Aerospace engineer and founder of Vaelon Space. Leads the design, engineering, and development of Project VX-1. Dedicated to advancing sounding rocket technology and establishing Vaelon Space as a leader in suborbital flight systems for research and education.</p>
+                        <p class="team-quote">Precision engineering. Reliable performance. Mission success.</p>
                     </div>
                 </div>
             </div>
         </section>
-
-        <div class="section-divider"></div>
 
         <!-- CTA Section -->
         <section>
             <div class="container">
                 <div class="cta-section">
                     <h2>Project Documentation</h2>
-                    <p>Access comprehensive technical reports and specifications</p>
-                    <div class="cta-buttons" style="justify-content: center; gap: 1rem;">
-                        <button class="btn btn-primary">Download Full Report</button>
-                        <button class="btn btn-secondary">Contact</button>
+                    <p>Access comprehensive technical reports and specifications.</p>
+                    <div class="cta-buttons" style="justify-content: center;">
+                        <span class="btn btn-primary">Download Full Report &rarr;</span>
+                        <a href="#" class="btn btn-secondary" onclick="event.preventDefault();">Contact &rarr;</a>
                     </div>
                 </div>
             </div>
@@ -1096,20 +1362,20 @@
                 <div class="footer-section">
                     <h4>Project</h4>
                     <a href="#specs">Specifications</a>
-                    <a href="#flight">Flight Analysis</a>
+                    <a href="#flight">Flight Profile</a>
                     <a href="#risks">Risk Assessment</a>
                 </div>
                 <div class="footer-section">
                     <h4>Resources</h4>
                     <a href="#market">Market Analysis</a>
                     <a href="#team">Team</a>
-                    <a href="#">Documentation</a>
+                    <a href="#">Library</a>
                 </div>
                 <div class="footer-section">
                     <h4>Company</h4>
-                    <a href="#">About</a>
+                    <a href="index.html">Home</a>
                     <a href="#">Contact</a>
-                    <a href="#">Social</a>
+                    <a href="#">All Programs</a>
                 </div>
                 <div class="footer-section">
                     <h4>Legal</h4>
@@ -1124,98 +1390,95 @@
         </div>
     </footer>
 
+    <!-- Lenis smooth scroll -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
     <script>
-        // Scroll Progress Bar
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrolled = (scrollTop / docHeight) * 100;
-            document.getElementById('scrollProgress').style.width = scrolled + '%';
+        // Heavy, weighted smooth scroll
+        const lenis = new Lenis({
+            duration: 1.5,
+            easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+            wheelMultiplier: 1,
+            touchMultiplier: 1.3,
+            infinite: false
         });
 
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        lenis.on('scroll', ({ scroll, limit }) => {
+            const pct = limit > 0 ? (scroll / limit) * 100 : 0;
+            document.getElementById('scrollProgress').style.width = pct + '%';
+        });
+
+        // Disable all external link clicks
+        document.querySelectorAll('a[href^="http"]').forEach(a => {
+            a.addEventListener('click', (e) => e.preventDefault());
+        });
+
+        // Placeholder nav links (pages not built yet) — inert, no navigation
+        document.querySelectorAll('.nav-stub').forEach(el => {
+            el.addEventListener('click', (e) => e.preventDefault());
+        });
+
+        // Smooth in-page anchor scrolling via Lenis - ONLY for subnav and valid section links
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            const targetSel = a.getAttribute('href');
+            const target = document.querySelector(targetSel);
+            if (target) {
+                a.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    lenis.scrollTo(target, { offset: -110, duration: 1.4 });
+                });
+            } else {
+                // If the target doesn't exist, prevent navigation
+                a.addEventListener('click', (e) => e.preventDefault());
+            }
+        });
+
+        // Highlight active sub-nav item on scroll
+        const subLinks = document.querySelectorAll('.subnav a');
+        const trackedSections = ['specs', 'flight', 'market', 'risks', 'team'].map(id => document.getElementById(id));
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    subLinks.forEach(l => l.classList.remove('active'));
+                    const match = document.querySelector('.subnav a[href="#' + entry.target.id + '"]');
+                    if (match) match.classList.add('active');
+                }
+            });
+        }, { rootMargin: '-40% 0px -50% 0px' });
+        trackedSections.forEach(s => s && navObserver.observe(s));
+    </script>
+
+    <script>
         // Flight Phases Data
         const phases = [
-            {
-                title: 'Liftoff',
-                duration: '0-1 second',
-                altitude: '0 m',
-                velocity: '0 → 15-20 m/s',
-                description: 'Motor ignition, rocket accelerates on launch rail, free flight begins at rail exit.'
-            },
-            {
-                title: 'Powered Ascent',
-                duration: '2.5 seconds',
-                altitude: '0-1,200 m',
-                velocity: '15 m/s → 180 m/s',
-                description: 'Motor burns at full thrust, rocket accelerates upward, peak velocity reached near burnout.'
-            },
-            {
-                title: 'Coast Phase',
-                duration: '~30 seconds',
-                altitude: '1,200 m → 3,500 m',
-                velocity: '180 m/s → 0 m/s',
-                description: 'Motor off, ballistic flight under gravity, rocket coasts upward and reaches maximum altitude.'
-            },
-            {
-                title: 'Apogee',
-                duration: 'Instantaneous',
-                altitude: '3,500 m AGL',
-                velocity: '0 m/s',
-                description: 'Rocket reaches maximum altitude, vertical velocity becomes zero, drogue ejection charge fires.'
-            },
-            {
-                title: 'Drogue Descent',
-                duration: '~180 seconds',
-                altitude: '3,500 m → 300 m',
-                velocity: '0 m/s → -25 m/s',
-                description: 'Drogue chute deploys at apogee, rocket descends at constant velocity, stabilization maintained.'
-            },
-            {
-                title: 'Main Deployment',
-                duration: '1-2 seconds',
-                altitude: '300 m AGL',
-                velocity: '-25 m/s → -5 m/s',
-                description: 'Barometric sensor detects 300 m altitude, main ejection charge fires, descent rate reduces.'
-            },
-            {
-                title: 'Landing',
-                duration: '~60 seconds',
-                altitude: '300 m → 0 m',
-                velocity: '~5 m/s',
-                description: 'Main chute provides controlled descent, rocket approaches landing zone, safe landing achieved.'
-            }
+            { title: 'Liftoff', duration: '0-1 second', altitude: '0 m', velocity: '0 &rarr; 15-20 m/s', description: 'Motor ignition, rocket accelerates on launch rail, free flight begins at rail exit.' },
+            { title: 'Powered Ascent', duration: '2.5 seconds', altitude: '0-1,200 m', velocity: '15 m/s &rarr; 180 m/s', description: 'Motor burns at full thrust, rocket accelerates upward, peak velocity reached near burnout.' },
+            { title: 'Coast Phase', duration: '~30 seconds', altitude: '1,200 m &rarr; 3,500 m', velocity: '180 m/s &rarr; 0 m/s', description: 'Motor off, ballistic flight under gravity, rocket coasts upward and reaches maximum altitude.' },
+            { title: 'Apogee', duration: 'Instantaneous', altitude: '3,500 m AGL', velocity: '0 m/s', description: 'Rocket reaches maximum altitude, vertical velocity becomes zero, drogue ejection charge fires.' },
+            { title: 'Drogue Descent', duration: '~180 seconds', altitude: '3,500 m &rarr; 300 m', velocity: '0 m/s &rarr; -25 m/s', description: 'Drogue chute deploys at apogee, rocket descends at constant velocity, stabilization maintained.' },
+            { title: 'Main Deployment', duration: '1-2 seconds', altitude: '300 m AGL', velocity: '-25 m/s &rarr; -5 m/s', description: 'Barometric sensor detects 300 m altitude, main ejection charge fires, descent rate reduces.' },
+            { title: 'Landing', duration: '~60 seconds', altitude: '300 m &rarr; 0 m', velocity: '~5 m/s', description: 'Main chute provides controlled descent, rocket approaches landing zone, safe landing achieved.' }
         ];
 
         function showPhase(index) {
             const phase = phases[index];
             const detail = document.getElementById('phaseDetail');
-            
             detail.innerHTML = `
                 <h3>${phase.title}</h3>
-                <div class="phase-metric">
-                    <div class="phase-metric-label">Duration</div>
-                    <div class="phase-metric-value">${phase.duration}</div>
-                </div>
-                <div class="phase-metric">
-                    <div class="phase-metric-label">Altitude Range</div>
-                    <div class="phase-metric-value">${phase.altitude}</div>
-                </div>
-                <div class="phase-metric">
-                    <div class="phase-metric-label">Velocity</div>
-                    <div class="phase-metric-value">${phase.velocity}</div>
-                </div>
-                <div class="phase-metric">
-                    <div class="phase-metric-label">Description</div>
-                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">${phase.description}</p>
-                </div>
+                <div class="phase-metric"><div class="phase-metric-label">Duration</div><div class="phase-metric-value">${phase.duration}</div></div>
+                <div class="phase-metric"><div class="phase-metric-label">Altitude Range</div><div class="phase-metric-value">${phase.altitude}</div></div>
+                <div class="phase-metric"><div class="phase-metric-label">Velocity</div><div class="phase-metric-value">${phase.velocity}</div></div>
+                <div class="phase-metric"><div class="phase-metric-label">Description</div><p style="color: var(--gray-1); margin-top: 0.5rem; font-family: var(--sans);">${phase.description}</p></div>
             `;
-
-            document.querySelectorAll('.phase-btn').forEach((btn, i) => {
-                btn.classList.toggle('active', i === index);
-            });
+            document.querySelectorAll('.phase-btn').forEach((btn, i) => btn.classList.toggle('active', i === index));
         }
 
-        // Auto-cycle through phases
         let currentPhase = 0;
         setInterval(() => {
             currentPhase = (currentPhase + 1) % phases.length;
@@ -1226,83 +1489,60 @@
         function drawMarketChart() {
             const canvas = document.getElementById('marketChart');
             if (!canvas) return;
-            
             const ctx = canvas.getContext('2d');
             const width = canvas.parentElement.offsetWidth;
             const height = 300;
-            
             canvas.width = width;
             canvas.height = height;
 
             const data = [
-                { year: '2024', value: 799 },
-                { year: '2025', value: 846 },
-                { year: '2026', value: 900 },
-                { year: '2028', value: 1050 },
-                { year: '2030', value: 1200 },
-                { year: '2035', value: 1500 }
+                { year: '2024', value: 799 }, { year: '2025', value: 846 }, { year: '2026', value: 900 },
+                { year: '2028', value: 1050 }, { year: '2030', value: 1200 }, { year: '2035', value: 1500 }
             ];
-
             const maxValue = 1500;
             const padding = 50;
             const chartWidth = width - 2 * padding;
             const chartHeight = height - 2 * padding;
 
-            // Background
-            ctx.fillStyle = '#161b22';
+            ctx.fillStyle = '#131417';
             ctx.fillRect(0, 0, width, height);
 
-            // Grid
-            ctx.strokeStyle = 'rgba(48, 54, 61, 0.5)';
+            ctx.strokeStyle = 'rgba(255,255,255,0.07)';
             ctx.lineWidth = 1;
             for (let i = 0; i <= 5; i++) {
                 const y = padding + (chartHeight / 5) * i;
-                ctx.beginPath();
-                ctx.moveTo(padding, y);
-                ctx.lineTo(width - padding, y);
-                ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(padding, y); ctx.lineTo(width - padding, y); ctx.stroke();
             }
 
-            // Axes
-            ctx.strokeStyle = 'rgba(139, 148, 158, 0.5)';
-            ctx.lineWidth = 1;
+            ctx.strokeStyle = 'rgba(154,160,166,0.4)';
             ctx.beginPath();
-            ctx.moveTo(padding, padding);
-            ctx.lineTo(padding, height - padding);
-            ctx.lineTo(width - padding, height - padding);
+            ctx.moveTo(padding, padding); ctx.lineTo(padding, height - padding); ctx.lineTo(width - padding, height - padding);
             ctx.stroke();
 
-            // Data line
-            ctx.strokeStyle = '#1f6feb';
+            ctx.strokeStyle = '#ff5c28';
             ctx.lineWidth = 2;
             ctx.beginPath();
             data.forEach((point, index) => {
                 const x = padding + (chartWidth / (data.length - 1)) * index;
                 const y = height - padding - (point.value / maxValue) * chartHeight;
-                if (index === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
+                if (index === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
             });
             ctx.stroke();
 
-            // Points
-            ctx.fillStyle = '#388bfd';
+            ctx.fillStyle = '#ff5c28';
             data.forEach((point, index) => {
                 const x = padding + (chartWidth / (data.length - 1)) * index;
                 const y = height - padding - (point.value / maxValue) * chartHeight;
-                ctx.beginPath();
-                ctx.arc(x, y, 4, 0, Math.PI * 2);
-                ctx.fill();
+                ctx.beginPath(); ctx.arc(x, y, 3.5, 0, Math.PI * 2); ctx.fill();
             });
 
-            // Labels
-            ctx.fillStyle = 'rgba(139, 148, 158, 0.8)';
-            ctx.font = '12px "IBM Plex Mono"';
+            ctx.fillStyle = 'rgba(154,160,166,0.9)';
+            ctx.font = '11px "IBM Plex Mono"';
             ctx.textAlign = 'center';
             data.forEach((point, index) => {
                 const x = padding + (chartWidth / (data.length - 1)) * index;
                 ctx.fillText(point.year, x, height - padding + 20);
             });
-
             ctx.textAlign = 'right';
             for (let i = 0; i <= 5; i++) {
                 const value = Math.round((maxValue / 5) * i);
@@ -1310,35 +1550,16 @@
                 ctx.fillText('$' + value + 'M', padding - 10, y + 4);
             }
         }
-
         window.addEventListener('load', drawMarketChart);
         window.addEventListener('resize', drawMarketChart);
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // Apple-style fade-up on scroll: auto-tag section headings, cards, and grids
+        // Apple-style fade-up on scroll
         (() => {
             const selectors = [
-                'main > section h2',
-                'main > section .section-subtitle',
-                '.metric-card',
-                '.spec-card',
-                '.stat-box',
-                '.phase-detail',
-                '.risk-item',
-                '.team-section',
-                '.table-responsive',
-                '.footer-section',
-                '#market .container > .chart-container, #market canvas'
+                'main > section h2', 'main > section .section-subtitle', '.metric-card', '.spec-card',
+                '.stat-box', '.phase-detail', '.risk-item', '.team-section', '.table-responsive',
+                '.footer-section', '#market .container > .chart-container, #market canvas', '.photo-break h3', '.photo-break p',
+                '.specs-visual', '.cutaway-frame', '.model-frame', '.model-legend'
             ];
             const items = document.querySelectorAll(selectors.join(','));
             items.forEach(el => el.classList.add('reveal'));
@@ -1350,13 +1571,716 @@
                     const el = entry.target;
                     const parent = el.parentElement;
                     const idx = groups.get(parent) || 0;
-                    el.style.setProperty('--d', Math.min(idx * 0.1, 0.5) + 's');
+                    el.style.setProperty('--d', Math.min(idx * 0.08, 0.4) + 's');
                     groups.set(parent, idx + 1);
                     el.classList.add('visible');
                     io.unobserve(el);
                 });
             }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
             items.forEach((el) => io.observe(el));
+        })();
+    </script>
+
+    <!-- ============ VX-1 3D VEHICLE MODEL ============ -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+        (function initVX1Model() {
+            const frame = document.getElementById('modelFrame');
+            if (!frame) return;
+            const loadingEl = document.getElementById('modelLoading');
+            const statusEl = document.getElementById('modelStatus');
+            const hintEl = document.getElementById('modelHint');
+            const fallbackEl = document.getElementById('modelFallback');
+
+            function showFallback() {
+                if (fallbackEl) fallbackEl.style.display = 'flex';
+                if (loadingEl) loadingEl.classList.add('hidden');
+            }
+
+            let hasWebGL = true;
+            try {
+                const testCanvas = document.createElement('canvas');
+                hasWebGL = !!(window.WebGLRenderingContext &&
+                    (testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl')));
+            } catch (e) { hasWebGL = false; }
+            if (!hasWebGL) { showFallback(); return; }
+
+            try {
+                const scene = new THREE.Scene();
+
+                const camera = new THREE.PerspectiveCamera(38, frame.clientWidth / frame.clientHeight, 0.01, 100);
+
+                const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                renderer.setSize(frame.clientWidth, frame.clientHeight);
+                renderer.shadowMap.enabled = true;
+                renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+                renderer.toneMapping = THREE.ACESFilmicToneMapping;
+                renderer.toneMappingExposure = 1.05;
+                renderer.outputColorSpace = THREE.SRGBColorSpace;
+                frame.insertBefore(renderer.domElement, frame.firstChild);
+
+                // Soft studio environment for realistic PBR reflections
+                const pmrem = new THREE.PMREMGenerator(renderer);
+                scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+                // ---------- Lighting ----------
+                const hemi = new THREE.HemisphereLight(0x9aa5ad, 0x0a0b0d, 0.55);
+                scene.add(hemi);
+
+                const key = new THREE.DirectionalLight(0xffffff, 2.5);
+                key.position.set(2.4, 3.6, 2.2);
+                key.castShadow = true;
+                key.shadow.mapSize.set(1024, 1024);
+                key.shadow.camera.near = 0.1;
+                key.shadow.camera.far = 10;
+                key.shadow.camera.left = -1.2;
+                key.shadow.camera.right = 1.2;
+                key.shadow.camera.top = 1.2;
+                key.shadow.camera.bottom = -1.2;
+                key.shadow.bias = -0.001;
+                scene.add(key);
+
+                const fillLight = new THREE.DirectionalLight(0xaecbff, 0.45);
+                fillLight.position.set(-2.6, 1.2, -1.6);
+                scene.add(fillLight);
+
+                const rim = new THREE.PointLight(0xff5c28, 5.5, 8, 2);
+                rim.position.set(-0.9, 1.6, -1.3);
+                scene.add(rim);
+
+                // ---------- Materials ----------
+                const compositeMat = new THREE.MeshPhysicalMaterial({
+                    color: 0xe9eaec, roughness: 0.38, metalness: 0.02,
+                    clearcoat: 0.55, clearcoatRoughness: 0.28, envMapIntensity: 0.9
+                });
+                const finMat = new THREE.MeshPhysicalMaterial({
+                    color: 0x1c2023, roughness: 0.5, metalness: 0.05,
+                    clearcoat: 0.2, clearcoatRoughness: 0.4, envMapIntensity: 0.6
+                });
+                const metalMat = new THREE.MeshStandardMaterial({
+                    color: 0x9aa0a6, roughness: 0.32, metalness: 0.92, envMapIntensity: 1.1
+                });
+                const darkMetalMat = new THREE.MeshStandardMaterial({
+                    color: 0x232629, roughness: 0.45, metalness: 0.85, envMapIntensity: 0.9
+                });
+                const accentMat = new THREE.MeshPhysicalMaterial({
+                    color: 0xff5c28, roughness: 0.42, metalness: 0.05,
+                    clearcoat: 0.4, clearcoatRoughness: 0.3
+                });
+                const lineMat = new THREE.MeshStandardMaterial({
+                    color: 0x3a3d41, roughness: 0.6, metalness: 0.1
+                });
+
+                const totalLength = 1.8;
+                const bodyRadius = 0.038;
+                const noseLength = 0.40;
+                const bodyLength = totalLength - noseLength;
+                const rocket = new THREE.Group();
+
+                const whiteMat = new THREE.MeshPhysicalMaterial({
+                    color: 0xeceef0, roughness: 0.45, metalness: 0.04, clearcoat: 0.3, clearcoatRoughness: 0.35
+                });
+                const glassMat = new THREE.MeshPhysicalMaterial({
+                    color: 0x0a0d10, roughness: 0.08, metalness: 0.15, clearcoat: 1.0, clearcoatRoughness: 0.03,
+                    transmission: 0.55, ior: 1.45, envMapIntensity: 1.6
+                });
+
+                // ---------- Hard-surface greeble helpers ----------
+                function orientRadial(mesh, angle, radius) {
+                    const dir = new THREE.Vector3(Math.cos(angle), 0, Math.sin(angle));
+                    mesh.position.x = dir.x * radius;
+                    mesh.position.z = dir.z * radius;
+                    mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+                    return mesh;
+                }
+                function boltAt(angle, y, radius, boltR = 0.0016, boltH = 0.0028, mat = metalMat) {
+                    const mesh = new THREE.Mesh(new THREE.CylinderGeometry(boltR, boltR, boltH, 6), mat);
+                    orientRadial(mesh, angle, radius + boltH / 2);
+                    mesh.position.y = y;
+                    mesh.castShadow = true;
+                    return mesh;
+                }
+                function boltRing(parent, y, radius, count, boltR, boltH, mat, startAngle = 0) {
+                    for (let i = 0; i < count; i++) {
+                        parent.add(boltAt(startAngle + (i / count) * Math.PI * 2, y, radius, boltR, boltH, mat));
+                    }
+                }
+                function rivetAt(angle, y, radius, r = 0.0009, mat = metalMat) {
+                    const mesh = new THREE.Mesh(new THREE.SphereGeometry(r, 8, 6, 0, Math.PI * 2, 0, Math.PI / 2), mat);
+                    orientRadial(mesh, angle, radius);
+                    mesh.position.y = y;
+                    return mesh;
+                }
+                function rivetLine(parent, angle, y0, y1, radius, count, mat) {
+                    for (let i = 0; i <= count; i++) {
+                        const y = y0 + (y1 - y0) * (i / count);
+                        parent.add(rivetAt(angle, y, radius, 0.0009, mat));
+                    }
+                }
+                // Thin curved seam / stringer strip that follows the tube's curvature
+                function seamStrip(y0, y1, radius, angle, width, mat) {
+                    const geo = new THREE.CylinderGeometry(radius, radius, y1 - y0, 10, 1, true, angle - width / 2, width);
+                    const mesh = new THREE.Mesh(geo, mat);
+                    mesh.position.y = (y0 + y1) / 2;
+                    return mesh;
+                }
+                function filletBead(angle, y0, y1, mat) {
+                    const geo = new THREE.CylinderGeometry(0.0026, 0.0026, y1 - y0, 10, 1, false, Math.PI * 0.5, Math.PI);
+                    const mesh = new THREE.Mesh(geo, mat);
+                    mesh.position.y = (y0 + y1) / 2;
+                    const dir = new THREE.Vector3(Math.cos(angle), 0, Math.sin(angle));
+                    mesh.position.x = dir.x * (bodyRadius - 0.0012);
+                    mesh.position.z = dir.z * (bodyRadius - 0.0012);
+                    mesh.rotation.y = -angle;
+                    mesh.castShadow = true;
+                    return mesh;
+                }
+
+                // ===================== NOSE CONE =====================
+                // Von K\u00e1rm\u00e1n ogive nosecone (LD-Haack, C = 0)
+                function noseRadiusAt(xFromTip, L, R) {
+                    const theta = Math.acos(1 - (2 * xFromTip) / L);
+                    return (R / Math.sqrt(Math.PI)) * Math.sqrt(theta - Math.sin(2 * theta) / 2);
+                }
+                const noseSegs = 64;
+                const nosePts = [];
+                for (let i = 0; i <= noseSegs; i++) {
+                    const t = i / noseSegs;
+                    const xFromTip = noseLength * (1 - t);
+                    const r = Math.max(noseRadiusAt(xFromTip, noseLength, bodyRadius), 0.0004);
+                    nosePts.push(new THREE.Vector2(r, t * noseLength));
+                }
+                const nose = new THREE.Mesh(new THREE.LatheGeometry(nosePts, 72), compositeMat);
+                nose.position.y = bodyLength;
+                nose.castShadow = true; nose.receiveShadow = true;
+                rocket.add(nose);
+
+                // Segmented pitot / static probe extending from the tip
+                const probeGroup = new THREE.Group();
+                const probeShaft = new THREE.Mesh(new THREE.CylinderGeometry(0.0016, 0.002, 0.046, 16), metalMat);
+                probeShaft.position.y = 0.023;
+                probeGroup.add(probeShaft);
+                const probeCollar = new THREE.Mesh(new THREE.CylinderGeometry(0.0026, 0.0026, 0.004, 16), darkMetalMat);
+                probeCollar.position.y = 0.002;
+                probeGroup.add(probeCollar);
+                const staticRing = new THREE.Mesh(new THREE.TorusGeometry(0.0022, 0.0006, 8, 20), darkMetalMat);
+                staticRing.rotation.x = Math.PI / 2;
+                staticRing.position.y = 0.018;
+                probeGroup.add(staticRing);
+                const probeTip = new THREE.Mesh(new THREE.ConeGeometry(0.0015, 0.011, 16), darkMetalMat);
+                probeTip.position.y = 0.052;
+                probeGroup.add(probeTip);
+                probeGroup.position.y = bodyLength + noseLength;
+                probeGroup.traverse((m) => { if (m.isMesh) m.castShadow = true; });
+                rocket.add(probeGroup);
+
+                // Separation joint ring at nose/body interface with flange bolt pattern
+                const jointRing = new THREE.Mesh(new THREE.TorusGeometry(bodyRadius + 0.0011, 0.0016, 10, 56), darkMetalMat);
+                jointRing.rotation.x = Math.PI / 2;
+                jointRing.position.y = bodyLength;
+                rocket.add(jointRing);
+                boltRing(rocket, bodyLength, bodyRadius + 0.0023, 24, 0.0013, 0.0026, metalMat);
+
+                // ===================== BODY ZONE LAYOUT =====================
+                const fAvTop = 1.0;
+                const fAvBot = 0.80;
+                const fIsBot = 0.66;
+                const yAvTop = bodyLength * fAvTop;
+                const yAvBot = bodyLength * fAvBot;
+                const yIsBot = bodyLength * fIsBot;
+                const yPropBot = 0;
+
+                // ===================== PAYLOAD & AVIONICS BAY =====================
+                const avBay = new THREE.Mesh(
+                    new THREE.CylinderGeometry(bodyRadius, bodyRadius, yAvTop - yAvBot, 64, 1, false),
+                    compositeMat
+                );
+                avBay.position.y = (yAvTop + yAvBot) / 2;
+                avBay.castShadow = true; avBay.receiveShadow = true;
+                rocket.add(avBay);
+
+                const panelAngles = [0, Math.PI / 2, Math.PI, Math.PI * 1.5];
+                panelAngles.forEach((a) => {
+                    rocket.add(seamStrip(yAvBot, yAvTop, bodyRadius + 0.0006, a, 0.02, lineMat));
+                    rivetLine(rocket, a - 0.11, yAvBot + 0.004, yAvTop - 0.006, bodyRadius + 0.0007, 7, metalMat);
+                    rivetLine(rocket, a + 0.11, yAvBot + 0.004, yAvTop - 0.006, bodyRadius + 0.0007, 7, metalMat);
+                });
+                [yAvBot, yAvTop - 0.002].forEach((y) => {
+                    const r = new THREE.Mesh(new THREE.TorusGeometry(bodyRadius + 0.0006, 0.0009, 8, 48), lineMat);
+                    r.rotation.x = Math.PI / 2;
+                    r.position.y = y;
+                    rocket.add(r);
+                });
+
+                // Stub telemetry antennas
+                [Math.PI * 0.22, Math.PI * 1.15].forEach((a, idx) => {
+                    const antGroup = new THREE.Group();
+                    const stub = new THREE.Mesh(new THREE.CylinderGeometry(0.0012, 0.0016, 0.016, 10), darkMetalMat);
+                    stub.position.y = 0.008;
+                    antGroup.add(stub);
+                    const tip = new THREE.Mesh(new THREE.SphereGeometry(0.0014, 8, 8), metalMat);
+                    tip.position.y = 0.016;
+                    antGroup.add(tip);
+                    const base = new THREE.Mesh(new THREE.CylinderGeometry(0.0022, 0.0022, 0.0015, 10), darkMetalMat);
+                    antGroup.add(base);
+                    orientRadial(antGroup, a, bodyRadius);
+                    antGroup.position.y = yAvBot + (yAvTop - yAvBot) * (0.35 + idx * 0.28);
+                    antGroup.traverse((m) => { if (m.isMesh) m.castShadow = true; });
+                    rocket.add(antGroup);
+                });
+
+                // Inspection hatch with hinge, latch and corner fasteners
+                const hatchGroup = new THREE.Group();
+                const hatchW = 0.028, hatchH = 0.038, hatchD = 0.0022;
+                const hatchPanel = new THREE.Mesh(new THREE.BoxGeometry(hatchW, hatchD, hatchH), darkMetalMat);
+                hatchPanel.position.y = hatchD / 2 + 0.0004;
+                hatchGroup.add(hatchPanel);
+                const hinge = new THREE.Mesh(new THREE.CylinderGeometry(0.0013, 0.0013, hatchW, 10), metalMat);
+                hinge.rotation.z = Math.PI / 2;
+                hinge.position.set(0, hatchD, hatchH / 2 + 0.001);
+                hatchGroup.add(hinge);
+                const latch = new THREE.Mesh(new THREE.BoxGeometry(0.006, 0.003, 0.005), metalMat);
+                latch.position.set(0, hatchD + 0.001, -hatchH / 2 - 0.001);
+                hatchGroup.add(latch);
+                [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([sx, sy]) => {
+                    const f = new THREE.Mesh(new THREE.CylinderGeometry(0.0011, 0.0011, 0.0018, 6), metalMat);
+                    f.position.set(sx * hatchW * 0.36, hatchD + 0.0009, sy * hatchH * 0.36);
+                    hatchGroup.add(f);
+                });
+                const hatchAngle = Math.PI * 0.68;
+                orientRadial(hatchGroup, hatchAngle, bodyRadius);
+                hatchGroup.position.y = yAvBot + (yAvTop - yAvBot) * 0.55;
+                hatchGroup.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+                rocket.add(hatchGroup);
+
+                // Optical/GPS sensor window, recessed with a bezel ring
+                const sensorGroup = new THREE.Group();
+                const sensorBezel = new THREE.Mesh(new THREE.CylinderGeometry(0.0065, 0.0065, 0.0018, 20), darkMetalMat);
+                sensorGroup.add(sensorBezel);
+                const sensorLens = new THREE.Mesh(new THREE.CylinderGeometry(0.005, 0.005, 0.0009, 20), glassMat);
+                sensorLens.position.y = 0.001;
+                sensorGroup.add(sensorLens);
+                boltRing(sensorGroup, 0.0009, 0.0075, 6, 0.0008, 0.0016, metalMat);
+                const sensorAngle = Math.PI * 1.42;
+                orientRadial(sensorGroup, sensorAngle, bodyRadius);
+                sensorGroup.position.y = yAvBot + (yAvTop - yAvBot) * 0.78;
+                sensorGroup.traverse((m) => { if (m.isMesh) m.castShadow = true; });
+                rocket.add(sensorGroup);
+
+                // ===================== INTERSTAGE — OPEN TRUSS =====================
+                const isTrussRadius = bodyRadius * 0.92;
+                const trussCount = 8;
+                const trussTopRing = new THREE.Mesh(new THREE.TorusGeometry(bodyRadius, 0.0015, 8, 48), darkMetalMat);
+                trussTopRing.rotation.x = Math.PI / 2;
+                trussTopRing.position.y = yAvBot;
+                rocket.add(trussTopRing);
+                const trussBotRing = new THREE.Mesh(new THREE.TorusGeometry(bodyRadius, 0.0015, 8, 48), darkMetalMat);
+                trussBotRing.rotation.x = Math.PI / 2;
+                trussBotRing.position.y = yIsBot;
+                rocket.add(trussBotRing);
+
+                for (let i = 0; i < trussCount; i++) {
+                    const a = (i / trussCount) * Math.PI * 2;
+                    const strut = new THREE.Mesh(new THREE.CylinderGeometry(0.0013, 0.0013, yAvBot - yIsBot, 8), darkMetalMat);
+                    orientRadial(strut, a, isTrussRadius);
+                    strut.position.y = (yAvBot + yIsBot) / 2;
+                    strut.castShadow = true;
+                    rocket.add(strut);
+
+                    const aNext = ((i + 1) / trussCount) * Math.PI * 2;
+                    const p0 = new THREE.Vector3(Math.cos(a) * isTrussRadius, yIsBot + 0.003, Math.sin(a) * isTrussRadius);
+                    const p1 = new THREE.Vector3(Math.cos(aNext) * isTrussRadius, yAvBot - 0.003, Math.sin(aNext) * isTrussRadius);
+                    const mid = p0.clone().lerp(p1, 0.5);
+                    const diagLen = p0.distanceTo(p1);
+                    const diag = new THREE.Mesh(new THREE.CylinderGeometry(0.0009, 0.0009, diagLen, 6), lineMat);
+                    diag.position.copy(mid);
+                    diag.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), p1.clone().sub(p0).normalize());
+                    rocket.add(diag);
+                }
+
+                // Cable tray running down the interstage
+                const trayAngle = Math.PI * 0.15;
+                rocket.add(seamStrip(yIsBot, yAvBot, isTrussRadius * 1.03, trayAngle, 0.11, darkMetalMat));
+                for (let i = 0; i <= 6; i++) {
+                    const y = yIsBot + (yAvBot - yIsBot) * (i / 6);
+                    const clip = new THREE.Mesh(new THREE.BoxGeometry(0.006, 0.0015, 0.003), metalMat);
+                    orientRadial(clip, trayAngle, isTrussRadius * 1.05);
+                    clip.position.y = y;
+                    rocket.add(clip);
+                }
+
+                // ===================== PROPULSION BODY TUBE =====================
+                const propTube = new THREE.Mesh(
+                    new THREE.CylinderGeometry(bodyRadius, bodyRadius, yIsBot - yPropBot, 64, 1, false),
+                    compositeMat
+                );
+                propTube.position.y = (yIsBot + yPropBot) / 2;
+                propTube.castShadow = true; propTube.receiveShadow = true;
+                rocket.add(propTube);
+
+                [0.06, 0.20, 0.34, 0.48].forEach((f) => {
+                    const y = yPropBot + (yIsBot - yPropBot) * f;
+                    const ring = new THREE.Mesh(new THREE.TorusGeometry(bodyRadius + 0.0004, 0.0007, 6, 56), lineMat);
+                    ring.rotation.x = Math.PI / 2;
+                    ring.position.y = y;
+                    rocket.add(ring);
+                });
+                [0, Math.PI / 2, Math.PI, Math.PI * 1.5].forEach((a) => {
+                    rocket.add(seamStrip(yPropBot + 0.01, yIsBot - 0.01, bodyRadius + 0.0004, a, 0.015, lineMat));
+                    rivetLine(rocket, a - 0.05, yPropBot + 0.02, yIsBot - 0.02, bodyRadius + 0.0006, 10, metalMat);
+                    rivetLine(rocket, a + 0.05, yPropBot + 0.02, yIsBot - 0.02, bodyRadius + 0.0006, 10, metalMat);
+                });
+
+                // Launch-rail lug standoffs (fore + aft)
+                function buildLaunchLug(y) {
+                    const lugGroup = new THREE.Group();
+                    const post = new THREE.Mesh(new THREE.BoxGeometry(0.006, 0.009, 0.02), darkMetalMat);
+                    post.position.y = 0.0045;
+                    lugGroup.add(post);
+                    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.0045, 0.0016, 8, 16), metalMat);
+                    ring.rotation.x = Math.PI / 2;
+                    ring.position.y = 0.009;
+                    lugGroup.add(ring);
+                    orientRadial(lugGroup, Math.PI * 0.02, bodyRadius);
+                    lugGroup.position.y = y;
+                    lugGroup.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+                    return lugGroup;
+                }
+                rocket.add(buildLaunchLug(yPropBot + (yIsBot - yPropBot) * 0.12));
+                rocket.add(buildLaunchLug(yPropBot + (yIsBot - yPropBot) * 0.82));
+
+                // Feed-line conduit with routing clamps, umbilical box down toward the motor
+                const conduitAngle = Math.PI * 1.35;
+                rocket.add(seamStrip(yPropBot + 0.02, yPropBot + (yIsBot - yPropBot) * 0.28, bodyRadius + 0.0016, conduitAngle, 0.05, darkMetalMat));
+                for (let i = 0; i <= 5; i++) {
+                    const y = yPropBot + 0.02 + ((yPropBot + (yIsBot - yPropBot) * 0.28) - (yPropBot + 0.02)) * (i / 5);
+                    const clamp = new THREE.Mesh(new THREE.TorusGeometry(0.0032, 0.0009, 6, 12, Math.PI), metalMat);
+                    orientRadial(clamp, conduitAngle, bodyRadius + 0.0016);
+                    clamp.position.y = y;
+                    rocket.add(clamp);
+                }
+
+                // Aft igniter access hatch — bolted circular plate
+                const aftHatchGroup = new THREE.Group();
+                const aftPlate = new THREE.Mesh(new THREE.CylinderGeometry(0.011, 0.011, 0.0018, 20), darkMetalMat);
+                aftPlate.position.y = 0.0009;
+                aftHatchGroup.add(aftPlate);
+                boltRing(aftHatchGroup, 0.0014, 0.0092, 8, 0.0009, 0.0018, metalMat);
+                const aftHatchAngle = Math.PI * 0.5;
+                orientRadial(aftHatchGroup, aftHatchAngle, bodyRadius);
+                aftHatchGroup.position.y = yPropBot + (yIsBot - yPropBot) * 0.09;
+                aftHatchGroup.traverse((m) => { if (m.isMesh) m.castShadow = true; });
+                rocket.add(aftHatchGroup);
+
+                // Hazard / staging stripe band
+                const bandY = yPropBot + (yIsBot - yPropBot) * 0.66;
+                const bandH = (yIsBot - yPropBot) * 0.055;
+                const stripeCount = 16;
+                for (let i = 0; i < stripeCount; i++) {
+                    const a0 = (i / stripeCount) * Math.PI * 2;
+                    const width = (Math.PI * 2) / stripeCount;
+                    const mat = i % 2 === 0 ? accentMat : whiteMat;
+                    const geo = new THREE.CylinderGeometry(bodyRadius + 0.0009, bodyRadius + 0.0009, bandH, 4, 1, true, a0, width);
+                    const seg = new THREE.Mesh(geo, mat);
+                    seg.position.y = bandY;
+                    rocket.add(seg);
+                }
+                [bandY - bandH / 2, bandY + bandH / 2].forEach((y) => {
+                    const r = new THREE.Mesh(new THREE.TorusGeometry(bodyRadius + 0.0009, 0.0006, 6, 48), darkMetalMat);
+                    r.rotation.x = Math.PI / 2;
+                    r.position.y = y;
+                    rocket.add(r);
+                });
+
+                // Multi-pin umbilical disconnect box
+                const umbGroup = new THREE.Group();
+                const umbBox = new THREE.Mesh(new THREE.BoxGeometry(0.022, 0.009, 0.028), darkMetalMat);
+                umbBox.position.y = 0.0045;
+                umbGroup.add(umbBox);
+                for (let r = 0; r < 3; r++) {
+                    for (let c = 0; c < 3; c++) {
+                        const pin = new THREE.Mesh(new THREE.CylinderGeometry(0.0008, 0.0008, 0.003, 8), metalMat);
+                        pin.position.set((c - 1) * 0.006, 0.0105, (r - 1) * 0.008);
+                        umbGroup.add(pin);
+                    }
+                }
+                const umbConn = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, 0.004, 16), darkMetalMat);
+                umbConn.rotation.z = Math.PI / 2;
+                umbConn.position.set(0.013, 0.0045, 0);
+                umbGroup.add(umbConn);
+                const umbAngle = Math.PI * 1.35;
+                orientRadial(umbGroup, umbAngle, bodyRadius);
+                umbGroup.position.y = yPropBot + (yIsBot - yPropBot) * 0.28;
+                umbGroup.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+                rocket.add(umbGroup);
+
+                // ===================== FIN CAN / EMPENNAGE =====================
+                function buildFin() {
+                    const rootChord = 0.20, tipChord = 0.075, sweep = 0.085, span = 0.105, thickness = 0.003;
+                    const shape = new THREE.Shape();
+                    shape.moveTo(0, 0);
+                    shape.lineTo(0, -rootChord);
+                    shape.lineTo(span, -sweep - tipChord);
+                    shape.lineTo(span, -sweep);
+                    shape.closePath();
+                    const geo = new THREE.ExtrudeGeometry(shape, {
+                        depth: thickness, bevelEnabled: true, bevelThickness: 0.0005, bevelSize: 0.0006, bevelSegments: 2
+                    });
+                    geo.translate(0, 0, -thickness / 2);
+                    geo.translate(bodyRadius - 0.002, 0, 0);
+                    return { geo, rootChord };
+                }
+                const { geo: finGeo, rootChord } = buildFin();
+                const finTrailingY = bodyLength * 0.028;
+                const finLeadingY = finTrailingY + rootChord;
+                for (let i = 0; i < 4; i++) {
+                    const finAngle = (Math.PI / 2) * i;
+                    const fin = new THREE.Mesh(finGeo, finMat);
+                    fin.castShadow = true; fin.receiveShadow = true;
+                    fin.position.y = finLeadingY;
+                    fin.rotateY(finAngle);
+                    rocket.add(fin);
+
+                    rocket.add(filletBead(finAngle - 0.10, finTrailingY, finLeadingY, finMat));
+                    rocket.add(filletBead(finAngle + 0.10, finTrailingY, finLeadingY, finMat));
+
+                    for (let k = 0; k <= 3; k++) {
+                        const y = finTrailingY + rootChord * (k / 3);
+                        rocket.add(boltAt(finAngle - 0.035, y, bodyRadius + 0.0015, 0.0012, 0.0024, metalMat));
+                        rocket.add(boltAt(finAngle + 0.035, y, bodyRadius + 0.0015, 0.0012, 0.0024, metalMat));
+                    }
+
+                    // Tapered leading-edge cap — thin metal strip along the swept edge, child of the fin
+                    const finSpan = 0.105, finSweep = 0.085;
+                    const edgeA = new THREE.Vector3(bodyRadius - 0.002, 0, 0);
+                    const edgeB = new THREE.Vector3(finSpan + bodyRadius - 0.002, -finSweep, 0);
+                    const edgeDir = edgeB.clone().sub(edgeA);
+                    const edgeLen = edgeDir.length();
+                    const edgeCap = new THREE.Mesh(new THREE.CylinderGeometry(0.001, 0.0004, edgeLen, 8), metalMat);
+                    edgeCap.position.copy(edgeA).addScaledVector(edgeDir, 0.5);
+                    edgeCap.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), edgeDir.clone().normalize());
+                    edgeCap.castShadow = true;
+                    fin.add(edgeCap);
+                }
+
+                // Motor retainer + recessed nozzle (tail)
+                const retainer = new THREE.Mesh(
+                    new THREE.CylinderGeometry(bodyRadius * 0.98, bodyRadius * 0.98, bodyLength * 0.018, 48),
+                    metalMat
+                );
+                retainer.position.y = bodyLength * 0.009;
+                retainer.castShadow = true;
+                rocket.add(retainer);
+                boltRing(rocket, bodyLength * 0.014, bodyRadius * 0.99, 12, 0.0011, 0.002, darkMetalMat);
+
+                const nozzle = new THREE.Mesh(
+                    new THREE.CylinderGeometry(bodyRadius * 0.5, bodyRadius * 0.26, bodyLength * 0.03, 32),
+                    darkMetalMat
+                );
+                nozzle.position.y = -bodyLength * 0.012;
+                nozzle.castShadow = true;
+                rocket.add(nozzle);
+                const nozzleLip = new THREE.Mesh(new THREE.TorusGeometry(bodyRadius * 0.5, 0.0009, 8, 32), metalMat);
+                nozzleLip.rotation.x = Math.PI / 2;
+                nozzleLip.position.y = -bodyLength * 0.012 + bodyLength * 0.015;
+                rocket.add(nozzleLip);
+
+                // ===================== PRINTED PLACARDS (canvas decals) =====================
+                function makePlacardTexture(lines, opts = {}) {
+                    const w = 320, h = 160;
+                    const cnv = document.createElement('canvas');
+                    cnv.width = w; cnv.height = h;
+                    const ctx = cnv.getContext('2d');
+                    ctx.fillStyle = opts.bg || '#0e1013';
+                    ctx.fillRect(0, 0, w, h);
+                    ctx.strokeStyle = opts.border || 'rgba(255,255,255,0.28)';
+                    ctx.lineWidth = 4;
+                    ctx.strokeRect(6, 6, w - 12, h - 12);
+                    ctx.textAlign = 'center';
+                    ctx.fillStyle = opts.fg || '#f4f5f6';
+                    ctx.font = '700 34px "IBM Plex Mono", monospace';
+                    ctx.fillText(lines[0], w / 2, 58);
+                    ctx.font = '500 18px "IBM Plex Mono", monospace';
+                    ctx.fillStyle = opts.fg2 || '#9aa0a6';
+                    lines.slice(1).forEach((line, i) => ctx.fillText(line, w / 2, 92 + i * 24));
+                    const tex = new THREE.CanvasTexture(cnv);
+                    tex.colorSpace = THREE.SRGBColorSpace;
+                    tex.anisotropy = 4;
+                    return tex;
+                }
+                function addPlacard(text1, text2, angle, y, w = 0.034, h = 0.017, opts = {}) {
+                    const geo = new THREE.PlaneGeometry(w, h);
+                    geo.rotateX(-Math.PI / 2);
+                    const tex = makePlacardTexture([text1, text2].filter(Boolean), opts);
+                    const mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ map: tex, roughness: 0.55, metalness: 0.04 }));
+                    mesh.position.y = 0.0006;
+                    const group = new THREE.Group();
+                    group.add(mesh);
+                    orientRadial(group, angle, bodyRadius);
+                    group.position.y = y;
+                    rocket.add(group);
+                    return group;
+                }
+                addPlacard('VX-1', 'VAELON SPACE \u00b7 S/N 001', Math.PI * 0.85, yPropBot + (yIsBot - yPropBot) * 0.42, 0.036, 0.018);
+                addPlacard('ARM BEFORE FLIGHT', 'HIGH ENERGY \u00b7 KEEP CLEAR', umbAngle + 0.55, yPropBot + (yIsBot - yPropBot) * 0.28, 0.028, 0.013, {
+                    bg: '#2a1208', border: 'rgba(255,140,80,0.5)', fg: '#ffb37a', fg2: '#ff9a5c'
+                });
+
+                scene.add(rocket);
+                rocket.position.y = -(totalLength / 2) + 0.02;
+
+                // ===================== ANNOTATED DESIGN HOTSPOTS =====================
+                const hotspotDefs = [
+                    {
+                        num: '01', label: 'Nose Cone',
+                        pos: new THREE.Vector3(bodyRadius * 1.8, bodyLength + noseLength * 0.5, 0),
+                        text: 'Von K\u00e1rm\u00e1n ogive (LD-Haack, C=0) minimizes wave drag. The segmented pitot boom samples dynamic pressure ahead of the bow shock; a bolted flange lets the nose separate cleanly for recovery.'
+                    },
+                    {
+                        num: '02', label: 'Avionics Bay',
+                        pos: new THREE.Vector3(bodyRadius * 1.8, (yAvTop + yAvBot) / 2, 0),
+                        text: 'Dual redundant altimeters and independent ejection circuits sit behind removable skin panels. The hinged hatch gives ground crew access without splitting the airframe.'
+                    },
+                    {
+                        num: '03', label: 'Interstage Truss',
+                        pos: new THREE.Vector3(isTrussRadius * 2.0, (yAvBot + yIsBot) / 2, 0),
+                        text: 'An open lattice saves mass versus a solid coupler while exposing the cable tray that carries ejection-charge and igniter leads between bays.'
+                    },
+                    {
+                        num: '04', label: 'Propulsion Tube',
+                        pos: new THREE.Vector3(bodyRadius * 1.8, yIsBot * 0.42, 0),
+                        text: 'Weld-seamed airframe around the motor casing. The hazard band marks the staging line; the multi-pin umbilical feeds ground power and arm signals up to the pad disconnect.'
+                    },
+                    {
+                        num: '05', label: 'Fin Can',
+                        pos: new THREE.Vector3(bodyRadius * 1.6, finTrailingY + rootChord * 0.25, 0),
+                        text: 'Four swept, through-the-wall fins with root fillets and bolted mounts hold structural margin through max-Q, trading a little drag for roll stability.'
+                    }
+                ];
+                const hotspotEls = [];
+                hotspotDefs.forEach((def) => {
+                    const marker = new THREE.Object3D();
+                    marker.position.copy(def.pos);
+                    rocket.add(marker);
+
+                    const el = document.createElement('div');
+                    el.className = 'model-hotspot';
+                    el.innerHTML =
+                        '<div class="model-hotspot-dot"></div>' +
+                        '<div class="model-hotspot-num">' + def.num + ' \u00b7 ' + def.label + '</div>' +
+                        '<div class="model-hotspot-tip"><strong>' + def.label + '</strong>' + def.text + '</div>';
+                    el.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const wasActive = el.classList.contains('active');
+                        hotspotEls.forEach((h) => h.el.classList.remove('active'));
+                        if (!wasActive) el.classList.add('active');
+                    });
+                    frame.appendChild(el);
+                    hotspotEls.push({ marker, el });
+                });
+                frame.addEventListener('pointerdown', () => {
+                    hotspotEls.forEach((h) => h.el.classList.remove('active'));
+                }, { passive: true });
+
+                const hotspotVec = new THREE.Vector3();
+                function updateHotspots() {
+                    const rect = frame.getBoundingClientRect();
+                    if (!rect.width || !rect.height) return;
+                    hotspotEls.forEach(({ marker, el }) => {
+                        marker.getWorldPosition(hotspotVec);
+                        hotspotVec.project(camera);
+                        const behind = hotspotVec.z > 1 || hotspotVec.z < -1;
+                        const x = (hotspotVec.x * 0.5 + 0.5) * rect.width;
+                        const y = (-hotspotVec.y * 0.5 + 0.5) * rect.height;
+                        el.style.left = x + 'px';
+                        el.style.top = y + 'px';
+                        el.style.opacity = behind ? '0' : '1';
+                        el.style.pointerEvents = behind ? 'none' : 'auto';
+                    });
+                }
+
+                // Ground shadow catcher
+                const ground = new THREE.Mesh(
+                    new THREE.PlaneGeometry(6, 6),
+                    new THREE.ShadowMaterial({ opacity: 0.35 })
+                );
+                ground.rotation.x = -Math.PI / 2;
+                ground.position.y = -(totalLength / 2) + 0.019;
+                ground.receiveShadow = true;
+                scene.add(ground);
+
+                // ---------- Camera / controls ----------
+                camera.position.set(0.92, 0.42, 1.08);
+                const controls = new OrbitControls(camera, renderer.domElement);
+                controls.target.set(0, 0.04, 0);
+                controls.enableDamping = true;
+                controls.dampingFactor = 0.07;
+                controls.minDistance = 0.42;
+                controls.maxDistance = 2.6;
+                controls.maxPolarAngle = Math.PI * 0.62;
+                controls.minPolarAngle = Math.PI * 0.12;
+                controls.autoRotate = true;
+                controls.autoRotateSpeed = 0.9;
+                controls.update();
+
+                controls.addEventListener('start', () => {
+                    controls.autoRotate = false;
+                    if (hintEl) hintEl.style.opacity = '0';
+                });
+
+                function onResize() {
+                    const w = frame.clientWidth, h = frame.clientHeight;
+                    if (!w || !h) return;
+                    camera.aspect = w / h;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(w, h);
+                }
+                window.addEventListener('resize', onResize);
+                if (window.ResizeObserver) {
+                    new ResizeObserver(onResize).observe(frame);
+                }
+
+                let raf = null;
+                function animate() {
+                    raf = requestAnimationFrame(animate);
+                    controls.update();
+                    updateHotspots();
+                    renderer.render(scene, camera);
+                }
+                animate();
+
+                if (window.IntersectionObserver) {
+                    const vis = new IntersectionObserver((entries) => {
+                        entries.forEach((e) => {
+                            if (e.isIntersecting) { if (!raf) animate(); }
+                            else if (raf) { cancelAnimationFrame(raf); raf = null; }
+                        });
+                    }, { threshold: 0.05 });
+                    vis.observe(frame);
+                }
+
+                requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        if (loadingEl) loadingEl.classList.add('hidden');
+                        if (statusEl) statusEl.textContent = 'Live Render';
+                    }, 200);
+                });
+            } catch (err) {
+                console.error('VX-1 model init failed:', err);
+                showFallback();
+            }
         })();
     </script>
 </body>
