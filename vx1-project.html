@@ -380,18 +380,82 @@
             .hud-readout { display: none; }
         }
 
-        /* ============ VEHICLE MODEL (3D) ============ */
-        #model { padding-top: 3.2rem; }
-        .model-frame {
+        /* ============ VEHICLE MODEL (3D) — full-bleed hero style ============ */
+        .model-hero {
             position: relative;
-            height: 640px;
-            border: 1px solid var(--line);
+            height: 92vh;
+            min-height: 640px;
+            max-height: 980px;
+            padding: 0;
+            border-bottom: 1px solid var(--line);
+            overflow: hidden;
+            isolation: isolate;
+        }
+        .model-frame {
+            position: absolute;
+            inset: 0;
             background:
-                radial-gradient(ellipse at 50% 18%, rgba(255,92,40,0.07) 0%, rgba(255,92,40,0) 55%),
-                linear-gradient(180deg, var(--bg-2) 0%, var(--bg-1) 100%);
+                radial-gradient(ellipse at 62% 22%, rgba(255,92,40,0.08) 0%, rgba(255,92,40,0) 55%),
+                linear-gradient(180deg, var(--bg-2) 0%, var(--bg-1) 55%, var(--black) 100%);
             overflow: hidden;
         }
         .model-frame canvas { display: block; width: 100%; height: 100%; }
+
+        /* Left-side readable overlay, matching a full-bleed hero product page */
+        .model-hero-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            align-items: flex-end;
+            pointer-events: none;
+            background:
+                linear-gradient(90deg, rgba(5,5,6,0.92) 0%, rgba(5,5,6,0.68) 26%, rgba(5,5,6,0.2) 50%, rgba(5,5,6,0) 66%),
+                linear-gradient(0deg, rgba(5,5,6,0.55) 0%, rgba(5,5,6,0) 30%);
+        }
+        .model-hero-inner {
+            width: 100%;
+            max-width: 640px;
+            padding: 0 2rem 4.5rem max(2rem, calc((100vw - 1500px) / 2 + 2rem));
+        }
+        .model-hero-inner .eyebrow { margin-bottom: 1.1rem; }
+        .model-hero-inner h2 { font-size: clamp(2.1rem, 3.6vw, 3.1rem); margin-bottom: 1rem; }
+        .model-hero-inner .section-subtitle { margin-bottom: 0; max-width: 560px; }
+
+        .model-spec-rows { margin-top: 2.4rem; border-top: 1px solid var(--line-strong); }
+        .msr-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1.5rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--line-strong);
+        }
+        .msr-label {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            color: var(--gray-1);
+            white-space: nowrap;
+        }
+        .msr-value {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--white);
+            font-weight: 600;
+            text-align: right;
+        }
+        @media (max-width: 768px) {
+            .model-hero { height: auto; min-height: 640px; }
+            .model-hero-overlay {
+                align-items: flex-end;
+                background:
+                    linear-gradient(0deg, rgba(5,5,6,0.96) 0%, rgba(5,5,6,0.75) 32%, rgba(5,5,6,0.1) 62%, rgba(5,5,6,0) 78%);
+            }
+            .model-hero-inner { max-width: 100%; padding: 0 1.25rem 2.2rem; }
+            .model-spec-rows { margin-top: 1.4rem; }
+        }
         .model-hud-corner {
             position: absolute;
             width: 20px; height: 20px;
@@ -538,27 +602,6 @@
         }
         @media (max-width: 768px) {
             .model-hotspot-tip { width: 175px; font-size: 0.62rem; }
-        }
-        .model-legend {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            background: var(--line);
-            border: 1px solid var(--line);
-            margin-top: 1px;
-        }
-        .model-legend div {
-            background: var(--bg-2);
-            padding: 0.9rem 1.1rem;
-            font-family: var(--mono);
-            font-size: 0.68rem;
-        }
-        .model-legend .ml-label { color: var(--gray-2); text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 0.5rem; }
-        .model-legend .ml-swatch { width: 9px; height: 9px; flex-shrink: 0; border-radius: 1px; }
-        .model-legend .ml-value { color: var(--white); margin-top: 0.3rem; font-size: 0.72rem; }
-        @media (max-width: 768px) {
-            .model-frame { height: 460px; }
-            .model-legend { grid-template-columns: repeat(2, 1fr); }
         }
         .model-fallback {
             position: absolute; inset: 0;
@@ -1018,48 +1061,39 @@
             </div>
         </section>
 
-        <!-- Vehicle Model (interactive 3D) -->
-        <section id="model">
-            <div class="container">
-                <div class="eyebrow">Sec 00 / Vehicle Model</div>
-                <h2>VX&#8209;1 in Three Dimensions</h2>
-                <p class="section-subtitle">Procedurally modeled to spec &mdash; Von K&aacute;rm&aacute;n nosecone, 76&nbsp;mm airframe, through-the-wall fin set. Drag to rotate, scroll to zoom, tap a marker for the design rationale behind each zone.</p>
-
-                <div class="model-frame reveal" id="modelFrame">
-                    <div class="model-tag">Vaelon Space / VX&#8209;1<strong id="modelStatus">Rendering</strong></div>
-                    <div class="model-hud-corner tl"></div>
-                    <div class="model-hud-corner tr"></div>
-                    <div class="model-hud-corner bl"></div>
-                    <div class="model-hud-corner br"></div>
-                    <div class="model-hint" id="modelHint">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a3 3 0 106 0 3 3 0 00-6 0z"/><path d="M4 12s2.5-6 8-6 8 6 8 6-2.5 6-8 6-8-6-8-6z"/></svg>
-                        Drag to orbit &middot; scroll to zoom &middot; tap markers for design notes
-                    </div>
-                    <div class="model-loading" id="modelLoading">
-                        <div class="spin"></div>
-                        <span>Loading vehicle geometry&hellip;</span>
-                    </div>
-                    <div class="model-fallback" id="modelFallback">
-                        Interactive 3D view requires WebGL and an internet connection to load the render engine.<br><br>
-                        Refer to the Vehicle Cutaway (Sec&nbsp;01.1) below for a full dimensioned diagram.
-                    </div>
+        <!-- Vehicle Model (interactive 3D, full-bleed) -->
+        <section id="model" class="model-hero">
+            <div class="model-frame reveal" id="modelFrame">
+                <div class="model-tag">Vaelon Space / VX&#8209;1<strong id="modelStatus">Rendering</strong></div>
+                <div class="model-hud-corner tl"></div>
+                <div class="model-hud-corner tr"></div>
+                <div class="model-hud-corner bl"></div>
+                <div class="model-hud-corner br"></div>
+                <div class="model-hint" id="modelHint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a3 3 0 106 0 3 3 0 00-6 0z"/><path d="M4 12s2.5-6 8-6 8 6 8 6-2.5 6-8 6-8-6-8-6z"/></svg>
+                    Drag to orbit &middot; scroll to zoom &middot; tap markers for design notes
                 </div>
-                <div class="model-legend">
-                    <div>
-                        <div class="ml-label"><span class="ml-swatch" style="background:#e9eaec;"></span>Airframe</div>
-                        <div class="ml-value">Fiberglass/phenolic composite</div>
-                    </div>
-                    <div>
-                        <div class="ml-label"><span class="ml-swatch" style="background:#2b2f33;"></span>Fins</div>
-                        <div class="ml-value">G10 fiberglass, through-the-wall</div>
-                    </div>
-                    <div>
-                        <div class="ml-label"><span class="ml-swatch" style="background:#9aa0a6;"></span>Fittings</div>
-                        <div class="ml-value">Aluminum 6061&#8209;T6, CNC</div>
-                    </div>
-                    <div>
-                        <div class="ml-label"><span class="ml-swatch" style="background:#ff5c28;"></span>Coupler band</div>
-                        <div class="ml-value">Recovery bay seam</div>
+                <div class="model-loading" id="modelLoading">
+                    <div class="spin"></div>
+                    <span>Loading vehicle geometry&hellip;</span>
+                </div>
+                <div class="model-fallback" id="modelFallback">
+                    Interactive 3D view requires WebGL and an internet connection to load the render engine.<br><br>
+                    Refer to the Vehicle Cutaway (Sec&nbsp;01.1) below for a full dimensioned diagram.
+                </div>
+
+                <div class="model-hero-overlay">
+                    <div class="model-hero-inner">
+                        <div class="eyebrow">Sec 00 / Vehicle Model</div>
+                        <h2>VX&#8209;1 Overview</h2>
+                        <p class="section-subtitle">A precision-engineered sounding rocket built to reach 3,500&nbsp;m AGL &mdash; Von K&aacute;rm&aacute;n nosecone, 76&nbsp;mm composite airframe, and a through-the-wall fin set holding structural margin through max&#8209;Q. Drag to rotate, scroll to zoom, tap a marker for design rationale.</p>
+
+                        <div class="model-spec-rows">
+                            <div class="msr-row"><span class="msr-label">Airframe</span><span class="msr-value">Fiberglass / phenolic composite</span></div>
+                            <div class="msr-row"><span class="msr-label">Fins</span><span class="msr-value">G10 fiberglass, through-the-wall</span></div>
+                            <div class="msr-row"><span class="msr-label">Fittings</span><span class="msr-value">Aluminum 6061&#8209;T6, CNC</span></div>
+                            <div class="msr-row"><span class="msr-label">Coupler band</span><span class="msr-value">Recovery bay seam</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1585,7 +1619,7 @@ document.getElementById('backToMain')?.addEventListener('click', function(e) {
                 'main > section h2', 'main > section .section-subtitle', '.metric-card', '.spec-card',
                 '.stat-box', '.phase-detail', '.risk-item', '.team-section', '.table-responsive',
                 '.footer-section', '#market .container > .chart-container, #market canvas', '.photo-break h3', '.photo-break p',
-                '.specs-visual', '.cutaway-frame', '.model-frame', '.model-legend'
+                '.specs-visual', '.cutaway-frame', '.model-frame'
             ];
             const items = document.querySelectorAll(selectors.join(','));
             items.forEach(el => el.classList.add('reveal'));
@@ -2166,6 +2200,8 @@ document.getElementById('backToMain')?.addEventListener('click', function(e) {
 
                 scene.add(rocket);
                 rocket.position.y = -(totalLength / 2) + 0.02;
+                // Compose off-center so the vehicle clears the left-side text overlay
+                rocket.position.x = 0.24;
 
                 // ===================== ANNOTATED DESIGN HOTSPOTS =====================
                 const hotspotDefs = [
@@ -2244,21 +2280,22 @@ document.getElementById('backToMain')?.addEventListener('click', function(e) {
                 );
                 ground.rotation.x = -Math.PI / 2;
                 ground.position.y = -(totalLength / 2) + 0.019;
+                ground.position.x = 0.24;
                 ground.receiveShadow = true;
                 scene.add(ground);
 
                 // ---------- Camera / controls ----------
-                camera.position.set(0.92, 0.42, 1.08);
+                camera.position.set(1.06, 0.5, 1.24);
                 const controls = new OrbitControls(camera, renderer.domElement);
-                controls.target.set(0, 0.04, 0);
+                controls.target.set(0.24, 0.08, 0);
                 controls.enableDamping = true;
                 controls.dampingFactor = 0.07;
-                controls.minDistance = 0.42;
-                controls.maxDistance = 2.6;
+                controls.minDistance = 0.5;
+                controls.maxDistance = 2.8;
                 controls.maxPolarAngle = Math.PI * 0.62;
                 controls.minPolarAngle = Math.PI * 0.12;
                 controls.autoRotate = true;
-                controls.autoRotateSpeed = 0.9;
+                controls.autoRotateSpeed = 0.6;
                 controls.update();
 
                 controls.addEventListener('start', () => {
