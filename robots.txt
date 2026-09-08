@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://vaelon-space.github.io/VAELON-SPACE/sitemap.xml
+Sitemap: https://vaelon.space/sitemap.xml
