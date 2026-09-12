@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ResQNet Gen 5 | Vaelon Space — Coming January 2027</title>
+
+  <meta name="description" content="ResQNet Gen 5 is the next generation of Vaelon Space's emergency routing engine — AI/ML-integrated decisioning, expanded node capacity, and a smoother real-time experience. Launching January 2027, available to organizations and government only.">
+  <meta name="author" content="Viren Singh">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://vaelon.space/resqnet-gen5.html">
+
+  <!-- Favicon Configuration -->
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Vaelon Space" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <!-- Open Graph tags for social media sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ResQNet Gen 5 | Vaelon Space — Coming January 2027">
+  <meta property="og:description" content="The next generation of ResQNet — AI/ML-integrated decisioning, expanded node capacity, smoother real-time performance. Organization and government access only.">
+  <meta property="og:image" content="https://vaelon.space/assets/vaelon-logo-enhanced.png">
+  <meta property="og:url" content="https://vaelon.space/resqnet-gen5.html">
+  <meta property="og:site_name" content="Vaelon Space">
+
+  <!-- Twitter Card tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ResQNet Gen 5 | Vaelon Space — Coming January 2027">
+  <meta name="twitter:description" content="The next generation of ResQNet. Launching January 2027.">
+  <meta name="twitter:image" content="https://vaelon.space/assets/vaelon-logo-enhanced.png">
+
+  <style>
+    /* Self-hosted fonts — avoids the Google Fonts CDN so the correct weights/
+       styles always load on GitHub Pages, regardless of network conditions. */
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/inter-400.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/inter-500.woff2") format("woff2");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/inter-600.woff2") format("woff2");
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/inter-700.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/inter-800.woff2") format("woff2");
+      font-weight: 800;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Barlow Condensed";
+      src: url("assets/fonts/barlow-condensed-600.woff2") format("woff2");
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Barlow Condensed";
+      src: url("assets/fonts/barlow-condensed-700.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Barlow Condensed";
+      src: url("assets/fonts/barlow-condensed-800.woff2") format("woff2");
+      font-weight: 800;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --void: #000000;
+      --panel: rgba(14, 14, 15, .86);
+      --panel-strong: rgba(18, 18, 19, .95);
+      --ink: #f5f6f7;
+      --muted: #9a9ea3;
+      --line: rgba(255, 255, 255, .11);
+      --orange: #c9ced4;
+      --neptune: #c9ced4;
+      --neptune-soft: #ffffff;
+      --shadow: 0 28px 80px rgba(0, 0, 0, .6);
+      --ease-premium: cubic-bezier(.22, 1, .36, 1);
+      --display: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    body {
+      margin: 0;
+      font-family: "Inter", -apple-system, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--void);
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    #starfield { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .7; }
+    .scroll-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; z-index: 60; background: var(--orange); transition: width .08s linear; }
+    .site { position: relative; z-index: 1; }
+
+    /* ---------- Top bar ---------- */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 82px;
+      padding: 0 clamp(24px, 4vw, 72px);
+      background: rgba(5, 5, 5, .72);
+      border-bottom: 1px solid transparent;
+      backdrop-filter: blur(12px);
+    }
+    .topbar.scrolled { border-bottom-color: var(--line); }
+    .brand { display: flex; align-items: center; gap: 13px; flex-shrink: 0; }
+    .brand img { height: 30px; width: auto; object-fit: contain; }
+    .brand-copy strong { display: block; font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: 2px; line-height: 1; color: var(--ink); }
+    .brand-copy span { display: block; margin-top: 5px; font-size: 9.5px; letter-spacing: .8px; text-transform: uppercase; color: #777; }
+    .nav-cluster { display: flex; align-items: center; gap: 22px; }
+    .nav { display: flex; align-items: center; gap: clamp(16px, 2.2vw, 32px); font-size: 11px; letter-spacing: 1.3px; position: relative; }
+    .nav a { padding: 12px 0; text-transform: uppercase; color: #a8a9ab; font-weight: 600; position: relative; z-index: 1; }
+    .nav a:hover { color: var(--ink); }
+    .nav a.launch-link { padding: 10px 17px !important; color: #0a0a0a; background: var(--orange); }
+    .nav a.launch-link:hover { color: #0a0a0a; }
+    .nav-indicator { position: absolute; bottom: 6px; left: 0; height: 1px; width: 0; background: var(--orange); transition: left .35s var(--ease-premium), width .35s var(--ease-premium); }
+    .mission-clock { border: 1px solid var(--line); padding: 10px 14px; text-align: right; line-height: 1.3; }
+    .mission-clock span { display: block; font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase; color: #777; }
+    .mission-clock strong { display: block; font-size: 12px; font-family: var(--mono); color: #d8d9da; margin-top: 2px; letter-spacing: .5px; }
+
+    /* ---------- Section head ---------- */
+    .section-head { max-width: 1450px; margin: clamp(90px, 9vw, 130px) auto 0; padding: 0 4px; }
+    .section-head { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: end; }
+    .section-head .label, .label { font: 9px var(--mono); letter-spacing: 2px; color: #777; text-transform: uppercase; }
+    .section-head h2 { font-family: var(--display); font-size: clamp(46px, 5.2vw, 84px); line-height: .92; letter-spacing: -1.5px; margin: 16px 0 0; text-transform: uppercase; }
+    .section-head p { margin: 0 0 6px; color: #96979a; font-size: 13.5px; line-height: 1.75; }
+    @media(max-width: 900px){ .section-head { grid-template-columns: 1fr; gap: 22px; } }
+
+    /* ---------- Buttons / pills ---------- */
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font: 600 11px var(--mono);
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--ink);
+      border: 1px solid #3a3a3a;
+      padding: 13px 22px;
+      background: transparent;
+    }
+    .button:hover { border-color: #888; }
+    .button.primary { border-color: var(--orange); background: var(--orange); color: #0a0a0a; }
+    .button.primary:hover { background: #dfe4e9; border-color: #dfe4e9; }
+    .status-pill { display: inline-block; font: 9px var(--mono); letter-spacing: 1.6px; text-transform: uppercase; color: #d8d9da; border: 1px solid #3a3a3a; padding: 7px 13px; }
+
+    /* ---------- Mission strip ---------- */
+    .mission-strip { max-width: 1450px; margin: 40px auto 0; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .mission-cell { padding: 18px 20px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .mission-cell span { display: block; font: 9px var(--mono); letter-spacing: 1.6px; text-transform: uppercase; color: #777; margin-bottom: 8px; }
+    .mission-cell strong { font-size: 13px; font-weight: 600; color: #d6d7d9; }
+
+    /* ---------- ResQNet hero ---------- */
+    .rq-hero { max-width: 1450px; margin: 72px auto 0; background: #0a0a0a; border: 1px solid var(--line); padding: clamp(40px, 6vw, 84px); }
+    .rq-hero-media { position: relative; width: 100%; max-width: 1000px; aspect-ratio: 16/9; margin: 0 auto 44px; overflow: hidden; border: 1px solid var(--line); background: #000; }
+    .rq-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .rq-hero-top { display: flex; justify-content: space-between; align-items: center; gap: 20px; border-bottom: 1px solid var(--line); padding-bottom: 18px; }
+    .rq-hero-top .vx1-index { font: 9px var(--mono); letter-spacing: 1.5px; color: #777; text-transform: uppercase; }
+    .rq-hero h1 { font-family: var(--display); font-size: clamp(56px, 8vw, 120px); line-height: .86; letter-spacing: -5px; margin: 48px 0 8px; }
+    .rq-subtitle { font: 700 18px var(--mono); letter-spacing: 1px; text-transform: uppercase; color: #d8d8d8; }
+    .rq-lead { font-size: 16px; line-height: 1.75; color: #a9aaad; max-width: 680px; margin: 24px 0 36px; }
+    .rq-hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 8px; }
+
+    /* ---------- Screenshot gallery / editorial showcase ---------- */
+    .rq-shots{margin-top:clamp(76px,9vw,128px)}
+    .rq-shot-lead{position:relative;margin-top:44px;border:1px solid var(--line);background:#050505;overflow:hidden}
+    .rq-shot-lead img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;background:#050505}
+    .rq-shot-tag{position:absolute;left:18px;top:18px;z-index:3;padding:8px 11px;border:1px solid rgba(255,255,255,.22);background:rgba(0,0,0,.78);font:8px var(--mono);letter-spacing:1.6px;color:#e2e4e7}
+    .rq-shot-lead figcaption{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;padding:13px 16px;border-top:1px solid var(--line);font:8px var(--mono);letter-spacing:1.4px;color:#777;text-transform:uppercase}
+    .rq-shot-lead figcaption strong{color:#d9dadd;font-weight:500}
+    .rq-shot-lead figcaption span:last-child{text-align:right}
+
+    .rq-shot-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px;margin-top:14px}
+    .rq-shot{position:relative;min-width:0;margin:0;border:1px solid var(--line);background:#050505;overflow:hidden}
+    .rq-shot img{display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain;background:#050505}
+    .rq-shot figcaption{min-height:38px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-top:1px solid var(--line);font:7px var(--mono);letter-spacing:1.5px;color:#777;text-transform:uppercase}
+    .rq-shot figcaption::after{content:'↗';color:#555;font-size:11px}
+    .rq-shot-wide{grid-column:span 8}
+    .rq-shot-side{grid-column:span 4}
+    .rq-shot-half{grid-column:span 6}
+    .rq-shot-third{grid-column:span 4}
+    .rq-shot-research{grid-column:span 12}
+    .rq-shot-research img{max-height:760px}
+    .rq-shot:hover{border-color:#353535}
+    .rq-shot:hover img{transform:scale(1.006)}
+    .rq-shot img{transition:transform .45s ease}
+
+    /* ---------- Feature grid ---------- */
+    .rq-feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .rq-feature-cell { background: #0a0a0a; padding: 34px 30px; min-height: 190px; }
+    .rq-feature-cell span { display: block; font: 9px var(--mono); letter-spacing: 1.5px; color: #777; text-transform: uppercase; margin-bottom: 14px; }
+    .rq-feature-cell h3 { font-family: var(--display); font-size: 19px; letter-spacing: .2px; margin: 0 0 10px; color: var(--ink); font-weight: 700; }
+    .rq-feature-cell p { margin: 0; color: #93949a; font-size: 13px; line-height: 1.65; }
+
+    /* ---------- Demo callout ---------- */
+    .rq-demo-callout { display: grid; grid-template-columns: 1fr 1fr; background: #090909; border: 1px solid var(--line); }
+    .rq-demo-col { padding: clamp(30px, 4vw, 48px); }
+    .rq-demo-col:first-child { border-right: 1px solid var(--line); }
+    .rq-demo-col h4 { font-family: var(--display); font-size: 26px; letter-spacing: -.5px; margin: 18px 0 12px; color: var(--ink); }
+    .rq-demo-col p { margin: 0 0 18px; color: #96979a; font-size: 13.5px; line-height: 1.75; }
+    .rq-demo-col p strong { color: #e8e8e8; font-weight: 600; }
+    .rq-demo-col .button { margin-top: 4px; }
+
+    /* ---------- Licensing / pricing tiers ---------- */
+    .rq-tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .rq-tier { background: #0a0a0a; padding: clamp(30px, 3.2vw, 42px); display: flex; flex-direction: column; position: relative; }
+    .rq-tier.featured { background: #101010; }
+    .rq-tier.featured::before { content: "RECOMMENDED"; position: absolute; top: 0; right: 0; font: 8px var(--mono); letter-spacing: 1.5px; color: #0a0a0a; background: var(--orange); padding: 6px 12px; }
+    .rq-tier-name { font: 9px var(--mono); letter-spacing: 1.5px; color: #777; text-transform: uppercase; margin-bottom: 18px; }
+    .rq-tier-price { font-family: var(--display); font-size: clamp(40px, 4vw, 52px); letter-spacing: -1.5px; color: var(--ink); line-height: 1; }
+    .rq-tier-price sub { font-family: var(--mono); font-size: 11px; letter-spacing: .5px; color: #888; font-weight: 500; bottom: 0; }
+    .rq-tier-who { margin: 10px 0 24px; color: #93949a; font-size: 12.5px; line-height: 1.6; }
+    .rq-tier-list { list-style: none; margin: 0 0 26px; padding: 0; border-top: 1px solid #232323; }
+    .rq-tier-list li { padding: 12px 0; border-bottom: 1px solid #1c1c1c; font-size: 12.5px; line-height: 1.6; color: #c2c3c5; display: flex; gap: 10px; }
+    .rq-tier-list li::before { content: "—"; color: #666; flex-shrink: 0; }
+    .rq-tier-list li.deny { color: #7a7b7d; }
+    .rq-tier-list li.deny::before { content: "×"; color: #9aa0a6; }
+    .rq-tier .button { margin-top: auto; align-self: flex-start; }
+    .rq-tier-note { background: #080808; border: 1px solid var(--line); border-top: 0; padding: 22px clamp(20px, 3vw, 42px); }
+    .rq-tier-note p { margin: 0; font-size: 12px; line-height: 1.75; color: #8b8c8f; max-width: 900px; }
+    .rq-tier-note strong { color: #c5c5c5; font-weight: 600; }
+
+    /* ---------- Team ---------- */
+    .team-list { max-width: 1450px; margin: 0 auto; border-top: 1px solid var(--line); }
+    .team-row { display: grid; grid-template-columns: 240px 1fr; gap: 40px; padding: 28px 0; border-bottom: 1px solid var(--line); }
+    .team-role { font: 9px var(--mono); letter-spacing: 1.6px; color: #85878a; text-transform: uppercase; padding-top: 8px; }
+    .team-row h3 { font-family: var(--display); font-size: 28px; letter-spacing: -.3px; margin: 0 0 8px; }
+    .team-row h3 span { font-size: 20px; margin-right: 2px; }
+    .team-row p { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.7; }
+
+    /* ---------- Footer ---------- */
+    .site-footer { background: #050505; border-top: 1px solid var(--line); margin-top: clamp(100px, 10vw, 150px); }
+    .footer-inner { max-width: 1450px; margin: auto; padding: 0 clamp(24px, 4vw, 72px); }
+    .footer-grid { display: grid; grid-template-columns: 1.6fr repeat(5, 1fr); gap: 30px; padding: 54px 0 44px; }
+    .footer-brand p { font-size: 12.5px; line-height: 1.75; color: #7c7e81; max-width: 300px; margin: 12px 0 0; }
+    .footer-col h4 { font: 9px var(--mono); letter-spacing: 2px; text-transform: uppercase; color: #9a9c9f; margin: 0 0 18px; }
+    .footer-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    .footer-col a { color: #7c7e81; font-size: 12.5px; }
+    .footer-col a:hover { color: var(--ink); }
+    .footer-team { display: flex; gap: 18px; align-items: center; border-top: 1px solid #171717; padding: 18px 0; font-size: 11px; color: #6c6e71; }
+    .footer-team h4 { font: 9px var(--mono); letter-spacing: 2px; color: #9a9c9f; margin: 0; }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; border-top: 1px solid #171717; padding: 18px 0 24px; font-size: 11px; color: #6c6e71; }
+
+    /* ---------- Legal ---------- */
+    .disclaimer-bar { border-top: 1px solid var(--line); background: #030303; }
+    .disclaimer-frame { max-width: 1450px; margin: auto; padding: 40px clamp(24px, 4vw, 72px) 46px; }
+    .disclaimer-top { display: flex; justify-content: space-between; gap: 14px; margin-bottom: 20px; }
+    .disclaimer-status { font: 9px var(--mono); letter-spacing: 1.6px; color: #a8a9ab; text-transform: uppercase; }
+    .disclaimer-body h3 { font-family: var(--display); font-size: 26px; letter-spacing: -.3px; margin: 0 0 12px; }
+    .disclaimer-body p { font-size: 12.5px; line-height: 1.8; color: #8e8f92; max-width: 860px; margin: 0 0 12px; }
+    .disclaimer-contacts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 24px; }
+    .disclaimer-contact { background: #080808; padding: 16px 18px; }
+    .disclaimer-contact span { display: block; font: 8px var(--mono); letter-spacing: 1.6px; color: #6c6e71; text-transform: uppercase; margin-bottom: 8px; }
+    .disclaimer-contact strong { display: block; font-size: 13px; color: #e0e1e2; margin-bottom: 6px; }
+    .disclaimer-contact a { font-size: 12px; color: #dfe2e5; }
+    .disclaimer-contact a:hover { text-decoration: underline; }
+    .disclaimer-sign { margin-top: 22px; font: 9px var(--mono); letter-spacing: 2px; color: #6c6e71; text-transform: uppercase; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1100px) { .rq-shot-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 1000px) {
+      .rq-feature-grid, .rq-tier-grid, .rq-demo-callout { grid-template-columns: 1fr; }
+      .rq-demo-col:first-child { border-right: 0; border-bottom: 1px solid var(--line); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .disclaimer-contacts { grid-template-columns: 1fr; }
+      .nav-cluster .mission-clock { display: none; }
+    }
+    @media (max-width: 900px) {
+      .topbar { flex-direction: column; align-items: flex-start; gap: 14px; padding-top: 16px; padding-bottom: 16px; }
+      .nav { width: 100%; overflow-x: auto; }
+      .nav a:nth-child(n+4) { display: none; }
+      .mission-strip { grid-template-columns: 1fr; }
+      .team-row { grid-template-columns: 1fr; gap: 10px; }
+    }
+    @media (max-width: 700px) {
+      .rq-shot-grid { grid-template-columns: repeat(2, 1fr); }
+      .rq-hero h1 { font-size: 64px; letter-spacing: -3px; }
+      .rq-hero { padding: 30px 20px; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+
+
+    /* ============================================================
+       RESQNET CINEMATIC REDESIGN — preserves existing assets/content
+       ============================================================ */
+    :root {
+      --void:#030405;
+      --panel:#080a0d;
+      --panel-2:#0b0e12;
+      --ink:#f4f5f6;
+      --muted:#858b93;
+      --line:rgba(255,255,255,.105);
+      --line-strong:rgba(255,255,255,.19);
+      --orange:#c9ced4;
+      --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+    }
+
+    body{background:#030405;color:var(--ink);}
+    #starfield{opacity:.08;}
+    .site{background:linear-gradient(180deg,#030405 0%,#040506 45%,#020304 100%);}
+
+    .topbar{
+      min-height:76px;
+      padding:0 clamp(20px,4vw,58px);
+      background:rgba(3,4,5,.88);
+      border-bottom:1px solid rgba(255,255,255,.09);
+      backdrop-filter:blur(16px);
+    }
+    .brand{gap:11px;}
+    .brand img{height:28px;width:auto;}
+    .brand-copy strong{font-size:17px;letter-spacing:2.2px;}
+    .brand-copy span{color:#70757c;}
+    .nav{gap:clamp(13px,1.8vw,27px);font-size:10px;letter-spacing:1.35px;}
+    .nav a{color:#969ca5;}
+    .nav a.launch-link{color:#050505;background:transparent;border:1px solid #64686d;padding:9px 15px!important;}
+    .nav a.launch-link:hover{border-color:#d7d9dc;background:#f2f3f4;}
+    .nav-indicator{background:var(--orange);bottom:4px;}
+    .mission-clock{border-color:rgba(255,255,255,.11);padding:8px 12px;}
+
+    .rq-hero{
+      position:relative;
+      max-width:none;
+      margin:0;
+      min-height:calc(100vh - 76px);
+      padding:0;
+      background:#030405;
+      border:0;
+      overflow:hidden;
+      isolation:isolate;
+    }
+    .rq-hero-media{
+      position:absolute;
+      inset:0;
+      max-width:none;
+      aspect-ratio:auto;
+      margin:0;
+      border:0;
+      background:#020304;
+      z-index:-1;
+    }
+    .rq-hero-video{
+      position:absolute;
+      inset:0;
+      width:100%;height:100%;
+      object-fit:cover;
+      object-position:center;
+      filter:saturate(.72) contrast(1.08) brightness(.78);
+      transform:scale(1.012);
+    }
+    .rq-hero-vignette{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.62) 36%,rgba(0,0,0,.22) 70%,rgba(0,0,0,.52) 100%),linear-gradient(0deg,rgba(0,0,0,.78) 0%,transparent 40%,rgba(0,0,0,.38) 100%);}
+    .rq-hero-media:after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:80px 80px;mask-image:linear-gradient(90deg,rgba(0,0,0,.75),transparent 78%);opacity:.32;}
+    .rq-hero-gridline{position:absolute;background:rgba(255,255,255,.18);opacity:.45;}
+    .rq-gridline-a{left:calc(50% - 1px);top:0;bottom:0;width:1px;}
+    .rq-gridline-b{left:0;right:0;top:62%;height:1px;}
+    .rq-hero-coordinate{position:absolute;right:clamp(22px,5vw,74px);top:17%;font:9px var(--mono);letter-spacing:1.5px;color:#c8ccd1;line-height:1.8;text-align:right;}
+    .rq-hero-coordinate span{color:#777d85;}
+    .rq-hero-live{position:absolute;right:clamp(22px,5vw,74px);top:calc(17% + 58px);border:1px solid rgba(255,255,255,.2);padding:9px 12px;font:8px var(--mono);letter-spacing:1.5px;color:#dfe2e5;background:rgba(3,4,5,.32);backdrop-filter:blur(8px);}
+    .rq-hero-live i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#c9ff86;margin-right:7px;box-shadow:0 0 0 3px rgba(201,255,134,.08);}
+
+    .rq-hero-content{min-height:calc(100vh - 76px);max-width:1500px;margin:auto;padding:clamp(40px,7vh,86px) clamp(24px,5vw,76px) 120px;display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);align-content:center;gap:clamp(32px,6vw,96px);}
+    .rq-hero-top{border-bottom:1px solid rgba(255,255,255,.15);padding-bottom:14px;margin-bottom:clamp(42px,7vh,76px);}
+    .rq-hero-top .status-pill{border-color:rgba(255,255,255,.22);background:rgba(0,0,0,.24);}
+    .rq-hero-copy{max-width:860px;position:relative;z-index:2;}
+    .rq-kicker{display:block;font:9px var(--mono);letter-spacing:2.2px;text-transform:uppercase;color:#aab0b8;margin-bottom:18px;}
+    .rq-hero h1{font-family:var(--display);font-size:clamp(78px,9.5vw,150px);font-weight:700;line-height:.78;letter-spacing:-5px;max-width:760px;white-space:nowrap;margin:0 0 18px;text-transform:none;color:#f5f6f7;text-shadow:0 2px 28px rgba(0,0,0,.45);}
+    .rq-hero h1 span{font-weight:400;color:#c9ccd0;}
+    .rq-subtitle{font:600 clamp(14px,1.2vw,18px) var(--mono);letter-spacing:1.2px;text-transform:none;color:#f0f1f2;margin-bottom:22px;}
+    .rq-lead{font-size:14px;line-height:1.85;color:#b3b8bf;max-width:700px;margin:0 0 30px;}
+    .rq-hero .actions{display:flex;flex-wrap:wrap;gap:10px;margin:0;}
+    .button{border-color:rgba(255,255,255,.23);padding:12px 17px;background:rgba(0,0,0,.28);font-size:10px;letter-spacing:1.5px;backdrop-filter:blur(7px);transition:transform .3s ease,border-color .3s ease,background .3s ease;}
+    .button:hover{border-color:#e7e9eb;background:rgba(255,255,255,.06);transform:translateY(-1px);}
+    .button.primary{border-color:#f1f2f3;background:#f1f2f3;color:#050505;}
+    .button.primary:hover{background:#fff;border-color:#fff;}
+    .button b{font-weight:500;margin-left:4px;}
+
+    .rq-hero-aside{align-self:end;border-left:1px solid rgba(255,255,255,.15);position:relative;z-index:2;padding-left:24px;margin-bottom:8px;}
+    .rq-hero-aside>div{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.1);}
+    .rq-hero-aside>div:last-child{border-bottom:0;}
+    .rq-hero-aside span{display:block;font:8px var(--mono);letter-spacing:1.6px;text-transform:uppercase;color:#737982;margin-bottom:6px;}
+    .rq-hero-aside strong{display:block;font-size:11px;line-height:1.5;color:#dfe2e5;font-weight:500;}
+    .rq-hero-bottom{position:absolute;left:clamp(24px,5vw,76px);right:clamp(24px,5vw,76px);bottom:28px;display:flex;justify-content:space-between;gap:20px;border-top:1px solid rgba(255,255,255,.14);padding-top:12px;font:8px var(--mono);letter-spacing:1.6px;color:#777d85;text-transform:uppercase;}
+
+    .rq-statline{max-width:1500px;margin:0 auto;padding:0 clamp(24px,5vw,76px);display:grid;grid-template-columns:repeat(4,1fr);border-left:1px solid var(--line);}
+    .rq-statline>div{min-height:104px;padding:22px 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
+    .rq-statline strong{display:block;font:600 18px var(--display);letter-spacing:.8px;margin-bottom:6px;}
+    .rq-statline span{display:block;font:8px var(--mono);letter-spacing:1.2px;text-transform:uppercase;color:#6f757d;line-height:1.55;}
+
+    .section-head{max-width:1500px;margin:clamp(100px,11vw,170px) auto 0;padding:0 clamp(24px,5vw,76px);grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);gap:70px;}
+    .section-head .label,.label{color:#747a82;font-size:8px;letter-spacing:2px;}
+    .section-head h2{font-size:clamp(54px,7vw,105px);line-height:.84;letter-spacing:-2px;margin:16px 0 0;}
+    .section-head p{color:#8d939b;font-size:12.5px;line-height:1.85;max-width:520px;}
+
+    .rq-shots{margin-top:0;}
+    .rq-shot-lead{max-width:1500px;margin:46px auto 0;padding:0 clamp(24px,5vw,76px);border:0;background:transparent;position:relative;}
+    .rq-shot-lead:before{content:"01 / SYSTEM MODEL";position:absolute;left:clamp(24px,5vw,76px);top:14px;z-index:2;font:8px var(--mono);letter-spacing:1.6px;color:#aeb4bb;background:rgba(3,4,5,.72);padding:7px 9px;border:1px solid var(--line);}
+    .rq-shot-lead img{width:100%;max-height:720px;object-fit:cover;border:1px solid var(--line);filter:contrast(1.02);}
+    .rq-shot-grid{max-width:1500px;margin:18px auto 0;padding:0 clamp(24px,5vw,76px);display:grid;grid-template-columns:repeat(4,1fr);gap:10px;background:transparent;border:0;}
+    .rq-shot{background:#07090b;border:1px solid var(--line);overflow:hidden;position:relative;}
+    .rq-shot img{width:100%;aspect-ratio:16/10;object-fit:cover;transition:transform .7s cubic-bezier(.22,1,.36,1),filter .7s ease;}
+    .rq-shot:hover img{transform:scale(1.025);filter:brightness(1.06);}
+    .rq-map-lead{background:#050607;border:1px solid var(--line);padding:0;overflow:hidden;}
+    .rq-map-lead img{display:block;width:100%;height:auto;max-height:none;object-fit:cover;filter:contrast(1.03) saturate(.94);}
+    .rq-shot-tag{position:absolute;left:18px;top:18px;z-index:2;padding:8px 10px;border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.72);font:8px var(--mono);letter-spacing:1.5px;color:#d5d8dc;}
+    .rq-map-lead figcaption{display:grid;grid-template-columns:1fr auto auto;gap:24px;align-items:center;padding:15px 18px;border-top:1px solid var(--line);font:8px var(--mono);letter-spacing:1.4px;text-transform:uppercase;color:#777e86;}
+    .rq-map-lead figcaption strong{font:10px var(--mono);font-weight:500;color:#e2e4e7;}
+    
+
+    .rq-system-divider{max-width:1500px;margin:clamp(80px,9vw,130px) auto 0;padding:0 clamp(24px,5vw,76px);display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;font:8px var(--mono);letter-spacing:1.8px;color:#676d75;}
+    .rq-system-divider i{height:1px;background:var(--line);display:block;}
+
+    .rq-feature-grid{max-width:1500px;margin:42px auto 0;padding:0 clamp(24px,5vw,76px);display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+    .rq-feature-cell{background:#06080a;padding:32px 30px;min-height:210px;position:relative;overflow:hidden;}
+    .rq-feature-cell:after{content:"";position:absolute;right:-40px;bottom:-55px;width:140px;height:140px;border:1px solid rgba(255,255,255,.055);transform:rotate(45deg);}
+    .rq-feature-cell span{font-size:8px;letter-spacing:1.8px;color:#717780;margin-bottom:18px;}
+    .rq-feature-cell h3{font-size:24px;line-height:.95;letter-spacing:.1px;margin:0 0 13px;}
+    .rq-feature-cell p{font-size:12px;line-height:1.75;color:#858b93;max-width:360px;}
+
+    .rq-demo-callout{max-width:1500px;margin:42px auto 0;display:grid;grid-template-columns:1fr 1fr;background:#06080a;border:1px solid var(--line);}
+    .rq-demo-col{padding:clamp(32px,4vw,58px);min-height:330px;position:relative;}
+    .rq-demo-col:first-child{border-right:1px solid var(--line);}
+    .rq-demo-col h4{font-size:34px;line-height:.9;margin:22px 0 14px;}
+    .rq-demo-col p{font-size:12.5px;line-height:1.8;color:#8b9198;max-width:610px;}
+    .rq-demo-col p strong{color:#e1e3e5;}
+
+    .rq-tier-grid{max-width:1500px;margin:42px auto 0;padding:0 clamp(24px,5vw,76px);display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+    .rq-tier{background:#06080a;padding:clamp(28px,3vw,42px);min-height:440px;}
+    .rq-tier.featured{background:#0a0d11;}
+    .rq-tier.featured::before{background:#f0f1f2;color:#050505;}
+    .rq-tier-name{font-size:8px;letter-spacing:1.8px;color:#747a82;margin-bottom:22px;}
+    .rq-tier-price{font-size:clamp(48px,5vw,70px);}
+    .rq-tier-who{font-size:12px;color:#858b93;line-height:1.7;max-width:360px;}
+    .rq-tier-list li{font-size:11.5px;color:#bfc3c8;border-color:#1b1e22;}
+    .rq-tier-list li.deny::before{color:#777;}
+    .rq-tier .button{margin-top:auto;}
+    .rq-tier-note{max-width:1500px;margin:0 auto;padding:20px clamp(24px,5vw,76px);background:#050709;border:1px solid var(--line);border-top:0;}
+
+    .team-list{max-width:1500px;margin:42px auto 0;padding:0 clamp(24px,5vw,76px);border-top:1px solid var(--line);}
+    .team-row{grid-template-columns:240px 1fr;padding:25px 0;}
+    .team-row h3{font-size:31px;}
+    .team-row p{font-size:12px;color:#81878f;}
+
+    .site-footer{margin-top:130px;background:#020304;border-top:1px solid var(--line);}
+    .footer-inner{max-width:1500px;}
+    .footer-grid{grid-template-columns:1.6fr repeat(5,1fr);}
+    .disclaimer-bar{background:#010203;}
+
+    @media(max-width:1000px){
+      .rq-hero-content{grid-template-columns:1fr;align-content:end;padding-bottom:130px;gap:28px;}
+      .rq-hero-aside{display:grid;grid-template-columns:repeat(2,1fr);border-left:0;border-top:1px solid rgba(255,255,255,.14);padding:0;}
+      .rq-hero-aside>div{padding:12px 15px;border-right:1px solid rgba(255,255,255,.1);}
+      .rq-hero-aside>div:nth-child(2n){border-right:0;}
+      .rq-statline,.rq-feature-grid,.rq-tier-grid{grid-template-columns:repeat(2,1fr);}
+      .rq-shot-grid{grid-template-columns:repeat(6,minmax(0,1fr));}
+      .rq-shot-wide{grid-column:span 4}.rq-shot-side{grid-column:span 2}.rq-shot-half{grid-column:span 3}.rq-shot-third{grid-column:span 2}.rq-shot-research{grid-column:span 6}
+      .footer-grid{grid-template-columns:1fr 1fr;}
+      .team-row{grid-template-columns:1fr;gap:14px;}
+    }
+    @media(max-width:700px){
+      .topbar{min-height:70px;padding-top:14px;padding-bottom:14px;}
+      .team-row{grid-template-columns:1fr!important;gap:10px!important;padding:22px 0!important;}
+      .team-row>*{min-width:0;overflow-wrap:anywhere;}
+      .team-row h3{font-size:26px!important;}
+      .rq-hero{min-height:calc(100svh - 70px);}
+      .rq-hero-content{min-height:calc(100svh - 70px);padding:35px 20px 118px;}
+      .rq-hero h1{font-size:clamp(72px,20vw,118px);letter-spacing:-4px;white-space:normal;}
+      .rq-shot-grid{grid-template-columns:1fr 1fr;gap:9px;}
+      .rq-shot-wide,.rq-shot-side,.rq-shot-half,.rq-shot-third,.rq-shot-research{grid-column:span 1;}
+      .rq-shot-wide:first-child{grid-column:span 2;}
+      .rq-map-lead figcaption{grid-template-columns:1fr;gap:6px;}
+      .rq-hero-media:after{background-size:50px 50px;}
+      .rq-hero-coordinate,.rq-hero-live{display:none;}
+      .rq-hero-aside{grid-template-columns:1fr 1fr;}
+      .rq-hero-bottom{left:20px;right:20px;bottom:20px;font-size:7px;}
+      .rq-hero-bottom span:nth-child(2){display:none;}
+      .rq-statline,.rq-feature-grid,.rq-tier-grid{grid-template-columns:1fr;}
+      .rq-statline{padding:0 20px;}
+      .rq-statline>div{min-height:82px;}
+      .section-head{padding:0 20px;grid-template-columns:1fr;gap:22px;}
+      .rq-shot-lead,.rq-shot-grid,.rq-feature-grid,.rq-tier-grid{padding-left:20px;padding-right:20px;}
+      .rq-shot-grid{grid-template-columns:1fr 1fr;}
+      .rq-system-divider{padding:0 20px;}
+      .rq-demo-callout{grid-template-columns:1fr;margin-left:20px;margin-right:20px;}
+      .rq-demo-col:first-child{border-right:0;border-bottom:1px solid var(--line);}
+      .team-list{padding:0 20px;}
+      .footer-grid{grid-template-columns:1fr;}
+    }
+
+  
+    /* ---------- v3 browser-safe hero correction ---------- */
+    .nav a.launch-link{color:#f4f5f6;background:transparent;border:1px solid rgba(255,255,255,.28);}
+    .nav a.launch-link:hover{color:#050505;border-color:#f2f3f4;background:#f2f3f4;}
+
+    .rq-hero-content{
+      grid-template-columns:minmax(0,1fr) minmax(230px,320px);
+      grid-template-rows:auto auto;
+      align-content:center;
+    }
+    .rq-hero-top{grid-column:1 / -1;grid-row:1;}
+    .rq-hero-copy{grid-column:1;grid-row:2;min-width:0;max-width:900px;}
+    .rq-hero-aside{grid-column:2;grid-row:2;min-width:0;}
+    .rq-hero h1{
+      font-size:clamp(64px,7.1vw,124px);
+      line-height:.82;
+      letter-spacing:-4px;
+      max-width:100%;
+      white-space:nowrap;
+      overflow:visible;
+    }
+    .rq-lead{max-width:680px;}
+
+    @media(max-width:1000px){
+      .rq-hero-content{grid-template-columns:1fr;grid-template-rows:auto auto auto;}
+      .rq-hero-top{grid-column:1;grid-row:1;}
+      .rq-hero-copy{grid-column:1;grid-row:2;}
+      .rq-hero-aside{grid-column:1;grid-row:3;}
+      .rq-hero h1{font-size:clamp(64px,11vw,105px);white-space:nowrap;}
+    }
+    @media(max-width:700px){
+      .rq-hero h1{font-size:clamp(56px,18vw,92px);letter-spacing:-3px;white-space:normal;overflow-wrap:anywhere;}
+    }
+
+    /* ---------- ResQNet V6: map feature + compact application index ---------- */
+    #interface .rq-shot-lead{
+      max-width:1500px;
+      margin:42px auto 0;
+      padding:0 clamp(24px,5vw,76px);
+      background:transparent;
+    }
+
+    #interface .rq-map-lead{
+      margin:0;
+      border:1px solid var(--line);
+      background:#050607;
+      overflow:hidden;
+    }
+
+    #interface .rq-map-lead img{
+      display:block;
+      width:100%;
+      height:auto;
+      max-height:680px;
+      object-fit:contain;
+      background:#050607;
+      filter:contrast(1.02) saturate(.94);
+    }
+
+    #interface .rq-map-lead figcaption{
+      min-height:42px;
+      padding:0 16px;
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      gap:18px;
+      align-items:center;
+      border-top:1px solid var(--line);
+      font:7px var(--mono);
+      letter-spacing:1.45px;
+      color:#737981;
+      text-transform:uppercase;
+    }
+
+    #interface .rq-map-lead figcaption strong{
+      color:#e1e3e5;
+      font-weight:500;
+    }
+
+    #interface .rq-map-lead figcaption span:last-child{
+      text-align:right;
+    }
+
+    /* Small, uniform application tiles. Every secondary screenshot gets the
+       same footprint so none of them can create the old uneven bento layout. */
+    #interface .rq-shot-grid{
+      max-width:1500px;
+      margin:12px auto 0;
+      padding:0 clamp(24px,5vw,76px);
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:10px;
+      align-items:start;
+    }
+
+    #interface .rq-shot,
+    #interface .rq-shot-wide,
+    #interface .rq-shot-side,
+    #interface .rq-shot-half,
+    #interface .rq-shot-third,
+    #interface .rq-shot-research{
+      grid-column:span 1 !important;
+      width:auto;
+      min-width:0;
+      margin:0;
+      border:1px solid var(--line);
+      background:#050607;
+      overflow:hidden;
+    }
+
+    #interface .rq-shot img{
+      display:block;
+      width:100%;
+      height:150px;
+      aspect-ratio:auto;
+      object-fit:contain;
+      background:#080a0d;
+      transition:transform .45s cubic-bezier(.22,1,.36,1),filter .45s ease;
+    }
+
+    #interface .rq-shot:hover img{
+      transform:scale(1.012);
+      filter:brightness(1.04);
+    }
+
+    #interface .rq-shot figcaption{
+      height:32px;
+      min-height:32px;
+      padding:0 9px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:7px;
+      border-top:1px solid var(--line);
+      font:6px var(--mono);
+      letter-spacing:1.15px;
+      color:#737981;
+      text-transform:uppercase;
+      white-space:nowrap;
+      overflow:hidden;
+    }
+
+    #interface .rq-shot figcaption span:first-child{
+      min-width:0;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    #interface .rq-shot figcaption span:last-child{
+      flex:0 0 auto;
+      color:#4f555c;
+    }
+
+    @media (max-width:1100px){
+      #interface .rq-shot-grid{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+      }
+    }
+
+    @media (max-width:700px){
+      #interface .rq-shot-lead{
+        padding-left:20px;
+        padding-right:20px;
+      }
+
+      #interface .rq-map-lead img{
+        max-height:none;
+      }
+
+      #interface .rq-map-lead figcaption{
+        grid-template-columns:1fr;
+        gap:4px;
+        padding:10px 12px;
+      }
+
+      #interface .rq-map-lead figcaption span:last-child{
+        text-align:left;
+      }
+
+      #interface .rq-shot-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        padding-left:20px;
+        padding-right:20px;
+        gap:8px;
+      }
+
+      #interface .rq-shot img{
+        height:112px;
+      }
+
+      #interface .rq-shot figcaption{
+        height:29px;
+        min-height:29px;
+        font-size:5.3px;
+      }
+    }
+
+
+    /* VAELON HEADER — SpaceX-inspired placement */
+    .topbar { padding-left: 24px !important; padding-right: 24px !important; }
+    .brand img, .brand-logo { height: 30px !important; width: auto !important; max-width: none !important; }
+    @media (max-width: 700px) {
+      .topbar { padding-left: 16px !important; padding-right: 16px !important; }
+      .brand img, .brand-logo { height: 24px !important; }
+    }
+
+  </style>
+<style id="vaelon-logo-size-final">
+  /* Bigger brand logo — final override, wins over earlier rules */
+  .brand img,.brand-logo{height:58px!important;width:auto!important;max-width:min(46vw,300px)!important;object-fit:contain!important;object-position:left center!important}
+  @media (max-width:900px){.brand img,.brand-logo{height:50px!important}}
+  @media (max-width:700px){.brand img,.brand-logo{height:44px!important;max-width:60vw!important}}
+</style>
+<style id="rq-smooth-ui-v2">
+/* ============================================================
+   RESQNET SMOOTHNESS + UI PASS — additive, reduced-motion safe
+   ============================================================ */
+section[id]{scroll-margin-top:110px}
+
+/* Staggered scroll reveals */
+.rq-reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1);transition-delay:var(--d,0s);will-change:opacity,transform}
+.rq-reveal.is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rq-reveal{opacity:1;transform:none;transition:none}}
+
+/* Screenshot cards: lift + slow zoom + caption slide */
+.rq-shot,.rq-shot-lead{transition:transform .5s cubic-bezier(.22,1,.36,1),border-color .4s ease,box-shadow .5s ease}
+.rq-shot img,.rq-shot-lead img{transition:transform 1.1s cubic-bezier(.2,.8,.2,1),filter .5s ease}
+.rq-shot:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.3);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.rq-shot:hover img{transform:scale(1.035);filter:contrast(1.05)}
+
+/* Lightbox */
+.rq-lightbox{position:fixed;inset:0;z-index:150;display:none;place-items:center;background:rgba(2,3,4,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.rq-lightbox.open{display:grid;animation:rq-lb-in .3s cubic-bezier(.22,1,.36,1)}
+@keyframes rq-lb-in{from{opacity:0}}
+.rq-lightbox img{max-width:min(1500px,92vw);max-height:84vh;object-fit:contain;border:1px solid rgba(255,255,255,.2);box-shadow:0 40px 120px rgba(0,0,0,.8)}
+.rq-lb-caption{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);color:#c9ccce;font:500 10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap}
+.rq-lb-close{position:absolute;top:22px;right:26px;width:44px;height:44px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.3);border-radius:50%;background:rgba(10,10,11,.8);color:#f5f6f7;cursor:pointer;font-size:18px;transition:background .25s ease,color .25s ease}
+.rq-lb-close:hover{background:#f5f6f7;color:#050505}
+.rq-lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.28);border-radius:50%;background:rgba(10,10,11,.72);color:#f5f6f7;cursor:pointer;font-size:16px;transition:background .25s ease,color .25s ease}
+.rq-lb-nav:hover{background:#f5f6f7;color:#050505}
+.rq-lb-prev{left:22px}.rq-lb-next{right:22px}
+.rq-lightbox img{cursor:zoom-out}
+
+/* Back to top */
+.rq-back-top{position:fixed;right:24px;bottom:24px;z-index:90;width:50px;height:50px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.28);background:rgba(9,9,9,.72);backdrop-filter:blur(12px);color:#f5f6f7;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),visibility 0s linear .35s,background .25s ease,color .25s ease}
+.rq-back-top.is-on{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.rq-back-top:hover{background:#f5f6f7;color:#050505}
+
+/* Hero entrance */
+.rq-hero-copy>*{animation:rq-hero-in .9s cubic-bezier(.22,1,.36,1) backwards}
+.rq-hero-copy>*:nth-child(2){animation-delay:.08s}
+.rq-hero-copy>*:nth-child(3){animation-delay:.16s}
+.rq-hero-copy>*:nth-child(4){animation-delay:.24s}
+.rq-hero-copy>*:nth-child(5){animation-delay:.32s}
+.rq-hero-aside{animation:rq-hero-in 1s .45s cubic-bezier(.22,1,.36,1) backwards}
+@keyframes rq-hero-in{from{opacity:0;transform:translateY(22px)}}
+@media (prefers-reduced-motion:reduce){.rq-hero-copy>*,.rq-hero-aside{animation:none}}
+
+/* Stat line: subtle hover accent */
+.rq-statline>div{transition:background .3s ease}
+.rq-statline>div:hover{background:rgba(255,255,255,.03)}
+</style>
+<style id="rq-ui-polish">
+/* ============================================================
+   RESQNET UI POLISH — additive layer, brand accent + tactile feel.
+   Later in cascade, so these overrides win. Reduced-motion safe.
+   ============================================================ */
+:root{--rq-accent:#c9ced4;--rq-accent-bright:#eef1f4;}
+
+/* ---------- Text selection / focus ---------- */
+::selection{background:var(--rq-accent);color:#0a0a0a}
+a:focus-visible,button:focus-visible{outline:2px solid var(--rq-accent);outline-offset:3px}
+
+/* ---------- Scrollbar ---------- */
+html{scrollbar-color:#2a2e33 #050607;scrollbar-width:thin}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:#050607}
+::-webkit-scrollbar-thumb{background:#23262b;border:3px solid #050607;border-radius:8px}
+::-webkit-scrollbar-thumb:hover{background:var(--rq-accent)}
+
+/* ---------- Progress bar: brand gradient + glow ---------- */
+.scroll-progress{background:linear-gradient(90deg,#eef1f4,#9aa1a8);box-shadow:0 0 12px rgba(255,255,255,.35)}
+
+/* ---------- Headline: "Net" carries the brand accent ---------- */
+.rq-hero h1 span{background:linear-gradient(180deg,#ffffff 15%,#c3c9cf 85%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 10px 32px rgba(0,0,0,.5)}
+
+/* ---------- Kicker: orange with leading rule ---------- */
+.rq-kicker{color:#c9ced4}
+.rq-kicker::before{content:"";display:inline-block;width:26px;height:1px;background:var(--rq-accent);vertical-align:middle;margin-right:10px}
+
+/* ---------- Section labels: brand accent ---------- */
+.section-head .label,.label{color:var(--rq-accent)}
+
+/* ---------- Status pills: live orange dot ---------- */
+.status-pill{position:relative;padding-left:25px}
+.status-pill::before{content:"";position:absolute;left:11px;top:50%;transform:translateY(-50%);width:5px;height:5px;border-radius:50%;background:#e8eaec;box-shadow:0 0 8px rgba(255,255,255,.55)}
+
+/* ---------- Buttons: orange primary + tactile lift ---------- */
+.button{transition:transform .25s var(--ease-premium),border-color .25s ease,background .25s ease,box-shadow .25s ease,color .25s ease}
+.button:hover{transform:translateY(-2px)}
+.button b{transition:transform .25s ease}
+.button:hover b{transform:translateX(3px)}
+.button.primary{background:var(--rq-accent);border-color:var(--rq-accent);color:#0a0a0a;box-shadow:0 6px 24px rgba(255,255,255,.14)}
+.button.primary:hover{background:var(--rq-accent-bright);border-color:var(--rq-accent-bright);box-shadow:0 12px 34px rgba(255,255,255,.22)}
+
+/* ---------- Stat line: orange edge wipe on hover ---------- */
+.rq-statline>div{position:relative;overflow:hidden}
+.rq-statline>div::before{content:"";position:absolute;left:0;top:0;width:2px;height:100%;background:var(--rq-accent);transform:scaleY(0);transform-origin:top;transition:transform .35s var(--ease-premium)}
+.rq-statline>div:hover{background:rgba(255,255,255,.045)}
+.rq-statline>div:hover::before{transform:scaleY(1)}
+.rq-statline strong{color:#f4f5f6}
+
+/* ---------- Feature cells: orange top-edge sweep ---------- */
+.rq-feature-cell::before{content:"";position:absolute;left:0;top:0;right:0;height:2px;background:linear-gradient(90deg,var(--rq-accent),transparent 70%);opacity:0;transition:opacity .35s ease}
+.rq-feature-cell{transition:background .3s ease}
+.rq-feature-cell:hover{background:#0a0d11}
+.rq-feature-cell:hover::before{opacity:1}
+
+/* ---------- Pricing tiers: lift + featured glow ---------- */
+.rq-tier{transition:background .3s ease,transform .3s var(--ease-premium),box-shadow .3s ease}
+.rq-tier:hover{background:#090c10;transform:translateY(-3px)}
+.rq-tier.featured{box-shadow:0 0 0 1px rgba(255,255,255,.28),0 20px 55px rgba(0,0,0,.55)}
+.rq-tier.featured::before{background:var(--rq-accent);color:#0a0a0a}
+.rq-tier-list li::before{color:var(--rq-accent)}
+.rq-tier-list li.deny::before{color:#9aa0a6}
+
+/* ---------- Map + screenshots: smoother cinematic hover ---------- */
+.rq-map-lead img{transition:transform .8s var(--ease-premium),filter .8s ease}
+.rq-map-lead:hover img{transform:scale(1.015);filter:contrast(1.05) saturate(1)}
+.rq-shot-tag{color:#e8eaec;border-color:rgba(255,255,255,.35)}
+
+/* ---------- Team rows: hover reveal ---------- */
+.team-row{transition:background .25s ease}
+.team-row:hover{background:rgba(255,255,255,.04)}
+.team-row:hover .team-role{color:var(--rq-accent)}
+.team-role{transition:color .25s ease}
+
+/* ---------- Footer + lightbox chrome ---------- */
+.footer-col a:hover{color:var(--rq-accent)}
+.rq-back-top:hover{background:var(--rq-accent);border-color:var(--rq-accent);color:#0a0a0a}
+.rq-back-top.is-on{box-shadow:0 10px 28px rgba(0,0,0,.5)}
+
+/* ---------- Hero scroll cue: gentle pulse ---------- */
+.rq-hero-bottom span:last-child{animation:rq-cue 2.6s ease-in-out infinite}
+@keyframes rq-cue{0%,100%{opacity:.55}50%{opacity:1}}
+
+/* ---------- Mobile: tap comfort + caption legibility ---------- */
+@media (max-width:700px){
+  .footer-col a{display:inline-block;padding:11px 0}
+  #interface .rq-shot figcaption{font-size:7px;letter-spacing:1px}
+  #interface .rq-map-lead figcaption{font-size:7.5px}
+}
+
+/* ---------- Reduced motion: strip the lot ---------- */
+@media (prefers-reduced-motion:reduce){
+  .button,.button b,.rq-statline>div::before,.rq-feature-cell::before,.rq-tier,.rq-map-lead img,.team-role{transition:none}
+  .button:hover{transform:none}
+  .rq-tier:hover{transform:none}
+  .rq-hero-bottom span:last-child{animation:none}
+}
+</style>
+</head>
+<body>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <div class="site">
+    <header class="topbar" id="topbar">
+      <a class="brand" href="index.html" aria-label="Vaelon Space home">
+        <img class="brand-logo" src="assets/vaelon-logo-enhanced.png?v=6" alt="Vaelon Space">
+      </a>
+      <div class="nav-cluster">
+        <nav class="nav" id="primaryNav" aria-label="Primary navigation">
+          <a href="index.html#systems">Systems</a>
+          <a href="index.html#programs">Programs</a>
+          <a href="index.html#hardware">Hardware</a>
+          <a href="index.html#software">Software</a>
+          <a href="index.html#research">Research</a>
+          <a href="index.html#mars">Mars Mission</a>
+          <a href="index.html#library">Library</a>
+          <a href="resqnet-project.html">ResQNet Gen 4</a>
+          <a href="index.html#contact" class="launch-link">Contact</a>
+          <span class="nav-indicator" id="navIndicator"></span>
+        </nav>
+        <div class="mission-clock" aria-label="Countdown to next daily sync window">
+          <span>Next Sync</span>
+          <strong id="metClock">T-00:00:00</strong>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="rq-hero" id="home">
+        <div class="rq-hero-media">
+          <video class="rq-hero-video" src="assets/resqnet-gen5-hero.mp4" poster="assets/resqnet-logo.png" autoplay muted loop playsinline aria-label="ResQNet Gen 5 — More intelligence. More control. A safer tomorrow."></video>
+          <div class="rq-hero-vignette"></div>
+          <div class="rq-hero-gridline rq-gridline-a"></div>
+          <div class="rq-hero-gridline rq-gridline-b"></div>
+          <div class="rq-hero-coordinate">RESQNET / GEN 5<br><span>NEXT-GENERATION EMERGENCY COMPUTING</span></div>
+          <div class="rq-hero-live"><i></i> IN DEVELOPMENT</div>
+        </div>
+        <div class="rq-hero-content">
+          <div class="rq-hero-top">
+            <span class="status-pill">Announcement &mdash; Not Yet Released</span>
+            <span class="vx1-index">Software / 01 / Gen 5</span>
+          </div>
+          <div class="rq-hero-copy">
+            <span class="rq-kicker">Introducing the next generation of ResQNet</span>
+            <h1>Gen <span>5</span></h1>
+            <div class="rq-subtitle">More intelligence. More control. A safer tomorrow.</div>
+            <p class="rq-lead">ResQNet Gen 5 is the next major version of the routing and decision engine, targeting a January 2027 launch. It carries the same risk-weighted routing and max-flow allocation core forward, then adds AI/ML-driven decisioning, a much larger node capacity ceiling, and a smoother, faster real-time experience end to end. Pricing and full spec sheet will be announced closer to launch.</p>
+            <div class="actions">
+              <a class="button primary" href="#access">Availability &amp; access <b>&rarr;</b></a>
+              <a class="button" href="resqnet-project.html">Current Gen 4 build <b>&rarr;</b></a>
+            </div>
+          </div>
+          <aside class="rq-hero-aside" aria-label="ResQNet Gen 5 details">
+            <div><span>Status</span><strong>In development / not yet released</strong></div>
+            <div><span>Target launch</span><strong>January 2027</strong></div>
+            <div><span>Current generation</span><strong>Gen 4, live now</strong></div>
+            <div><span>Gen 5 access</span><strong>Organization / government only</strong></div>
+          </aside>
+        </div>
+        <div class="rq-hero-bottom">
+          <span>VAELON SPACE / SOFTWARE DIVISION</span>
+          <span>01 &mdash; RESQNET GEN 5</span>
+          <span>SCROLL TO EXPLORE</span>
+        </div>
+      </section>
+
+      <section class="rq-statline" aria-label="ResQNet Gen 5 overview">
+        <div><strong>AI/ML</strong><span>Model-assisted decisioning</span></div>
+        <div><strong>SCALE</strong><span>Higher node capacity ceiling</span></div>
+        <div><strong>SPEED</strong><span>Smoother real-time experience</span></div>
+        <div><strong>SIGNAL</strong><span>Less noise, faster action</span></div>
+      </section>
+
+      <section id="interface">
+        <div class="section-head">
+          <div>
+            <span class="label">The Difference</span>
+            <h2>Less noise. More clarity.<br>Faster action.</h2>
+          </div>
+          <p>Gen 5 is not a reskin of Gen 4 &mdash; it's a rebuild of how the system thinks, scales and stays legible under pressure. The interface itself is still in active development, so what follows is the direction, not a finished screen.</p>
+        </div>
+        <div class="rq-feature-grid">
+          <div class="rq-feature-cell">
+            <span>01 / Field</span>
+            <h3>Powerful where it matters</h3>
+            <p>A focused experience for people working beyond the edge of the command room &mdash; not just at a dispatch desk.</p>
+          </div>
+          <div class="rq-feature-cell">
+            <span>02 / Coordination</span>
+            <h3>Everyone sees the same picture</h3>
+            <p>Field teams, operations and decision-makers connect around one shared operational view instead of fragmented reports.</p>
+          </div>
+          <div class="rq-feature-cell">
+            <span>03 / Response</span>
+            <h3>When every second matters</h3>
+            <p>A clearer signal and a faster response loop &mdash; the model reasons over more inputs without slowing the decision down.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="rq-system-divider" aria-hidden="true">
+        <span>ENGINE ARCHITECTURE</span><i></i><span>GEN 5 / 04</span>
+      </div>
+
+      <section id="capabilities">
+        <div class="section-head">
+          <div>
+            <span class="label">What's New</span>
+            <h2>What Gen 5 adds</h2>
+          </div>
+          <p>Gen 5 builds on the same risk-weighted routing and max-flow allocation core that runs in Gen 4 today, then extends it in a few specific directions.</p>
+        </div>
+        <div class="rq-feature-grid">
+          <div class="rq-feature-cell">
+            <span>Intelligence</span>
+            <h3>AI/ML-integrated decisioning</h3>
+            <p>Machine-learning models sit alongside the existing routing and allocation core to strengthen how decisions are scored and explained.</p>
+          </div>
+          <div class="rq-feature-cell">
+            <span>Scale</span>
+            <h3>Higher node capacity</h3>
+            <p>The graph core is being rebuilt to hold and route across a substantially larger network &mdash; more nodes, more concurrent incidents.</p>
+          </div>
+          <div class="rq-feature-cell">
+            <span>Performance</span>
+            <h3>A smoother real-time experience</h3>
+            <p>Faster response through the interface and the decision loop itself, so operators aren't waiting on the system under pressure.</p>
+          </div>
+          <div class="rq-feature-cell">
+            <span>Coordination</span>
+            <h3>One shared operational view</h3>
+            <p>Field teams, operations and decision-makers work from the same live picture instead of reconciling separate reports.</p>
+          </div>
+          <div class="rq-feature-cell">
+            <span>Continuity</span>
+            <h3>Same core, carried forward</h3>
+            <p>The risk-weighted shortest-path and max-flow allocation engine validated in Gen 4 remains the foundation &mdash; Gen 5 extends it, it doesn't replace it.</p>
+          </div>
+          <div class="rq-feature-cell">
+            <span>Roadmap</span>
+            <h3>And more, ahead of launch</h3>
+            <p>Additional functionality is still being finalized. The full spec sheet and pricing will be announced closer to the January 2027 launch.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="demo">
+        <div class="section-head">
+          <div>
+            <span class="label">Nothing Changes Today</span>
+            <h2>Gen 4 keeps running</h2>
+          </div>
+          <p>Gen 5 is an early announcement, not a replacement notice.</p>
+        </div>
+        <div class="rq-demo-callout">
+          <div class="rq-demo-col">
+            <span class="status-pill">Live Now</span>
+            <h4>ResQNet Gen 4</h4>
+            <p>The current 2026&ndash;2027 build stays exactly as it is &mdash; Non-Licensed, Licensed and Organization access continue to be sold and supported with no interruption. Gen 5 is being developed alongside it, not instead of it.</p>
+            <a class="button primary" href="resqnet-project.html">Go to the Gen 4 page &rarr;</a>
+          </div>
+          <div class="rq-demo-col">
+            <span class="status-pill">Target: January 2027</span>
+            <h4>ResQNet Gen 5</h4>
+            <p>Gen 5 is still in development. This page exists so organizations and prospective partners know it's coming, roughly what changes, and how access will work &mdash; not to sell it yet. Details below are subject to change before launch.</p>
+            <a class="button" href="#access">See planned access &rarr;</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="access">
+        <div class="section-head">
+          <div>
+            <span class="label">Availability</span>
+            <h2>Who Gen 5 is for</h2>
+          </div>
+          <p>Access for Gen 5 works differently from Gen 4, by design. Pricing is not final and will be announced closer to launch.</p>
+        </div>
+
+        <div class="rq-tier-grid" style="grid-template-columns: 1fr 1fr;">
+          <div class="rq-tier">
+            <div class="rq-tier-name">Non-Licensed / Licensed Developer Tiers</div>
+            <div class="rq-tier-price" style="font-size:clamp(26px,2.6vw,34px);">Not offered for Gen 5</div>
+            <p class="rq-tier-who">The individual-developer source tiers ($200 one-time / $500 per year) that exist for Gen 4 will not carry over to Gen 5.</p>
+            <ul class="rq-tier-list">
+              <li class="deny">No individual-developer source access</li>
+              <li class="deny">No code-reviewer tier</li>
+              <li>Discontinued following a prior source-leak and misuse incident on the individual-developer tiers</li>
+            </ul>
+          </div>
+
+          <div class="rq-tier featured">
+            <div class="rq-tier-name">Organization / Government</div>
+            <div class="rq-tier-price">Pricing TBA</div>
+            <p class="rq-tier-who">Gen 5 &mdash; and future updated models beyond it &mdash; will be distributed only through B2B and organization/government contracts.</p>
+            <ul class="rq-tier-list">
+              <li>Full spec sheet and pricing announced closer to January 2027</li>
+              <li>Contract-based deployment, no public source distribution</li>
+              <li>Early enterprise interest can be registered now</li>
+            </ul>
+            <a class="button primary" href="mailto:ceo@vaelon.space?subject=ResQNet%20Gen%205%20Enterprise%20Interest">Register enterprise interest</a>
+          </div>
+        </div>
+
+        <div class="rq-tier-note">
+          <p><strong>Why this changed.</strong> Gen 4's Non-Licensed and Licensed individual-developer source tiers previously saw a leak and misuse incident on the developer side. To close that exposure going forward, Gen 5 and later updated models will not be sold as individual-developer source access &mdash; they will be available exclusively to organizations and companies under contract. Gen 4's existing developer tiers are unaffected and continue to operate as described on the <a href="resqnet-project.html#licensing">Gen 4 licensing page</a>.</p>
+        </div>
+      </section>
+
+      <section id="team">
+        <div class="section-head">
+          <div>
+            <span class="label">Team</span>
+            <h2>Team</h2>
+          </div>
+          <p>ResQNet, including Gen 5, is developed and represented under Vaelon Space, solely by the individuals below.</p>
+        </div>
+        <div class="team-list">
+          <div class="team-row">
+            <span class="team-role">Founder &amp; CEO</span>
+            <div><h3><span>🇮🇳</span> Viren Singh</h3>
+            <p>Leads engineering direction for ResQNet, alongside Vaelon Space's propulsion, orbital systems, and autonomous safety research.</p></div>
+          </div>
+          <div class="team-row">
+            <span class="team-role">Head Manager</span>
+            <div><h3><span>🇯🇵</span> Yui (ゆい)</h3>
+            <p>Oversees program operations and coordination across Vaelon Space's engineering tracks, including ResQNet.</p></div>
+          </div>
+          <div class="team-row">
+            <span class="team-role">Communications Manager</span>
+            <div><h3><span>🇨🇳</span> Hinata (陽向/陽日)</h3>
+            <p>Manages Vaelon Space's official email channels, contacts, and external communications, including ResQNet licensing inquiries.</p></div>
+          </div>
+          <div class="team-row">
+            <span class="team-role">Social Media Manager</span>
+            <div><h3><span>🇺🇸</span> Sofia</h3>
+            <p>Manages Vaelon Space's social media presence, content coordination, and community communications.</p></div>
+          </div>
+          <div class="team-row">
+            <span class="team-role">Security &amp; Integrity</span>
+            <div><h3><span>🇯🇵</span> Zǐhán (梓涵)</h3>
+            <p>Reviews code and project materials &mdash; including ResQNet's source distribution &mdash; for security issues, accidental exposure, and potential information leaks.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact-rq">
+        <div class="section-head">
+          <div>
+            <span class="label">Contact</span>
+            <h2>Talk to us about Gen 5</h2>
+          </div>
+          <p>Questions about the January 2027 timeline, organization/government access, or Gen 4 in the meantime.</p>
+        </div>
+        <div class="rq-demo-callout">
+          <div class="rq-demo-col">
+            <span class="status-pill">Direct Contact</span>
+            <h4>Founder &amp; CEO &mdash; Viren Singh</h4>
+            <p>For Gen 5 enterprise interest, timeline questions, or anything else about ResQNet, reach out directly.</p>
+            <a class="button primary" href="mailto:ceo@vaelon.space?subject=ResQNet%20Gen%205%20Inquiry">ceo@vaelon.space</a>
+          </div>
+          <div class="rq-demo-col">
+            <span class="status-pill">Need It Today</span>
+            <h4>Gen 4 is available now</h4>
+            <p>If you need ResQNet today rather than in 2027, Gen 4's Non-Licensed, Licensed and Organization tiers are live and unaffected by this announcement.</p>
+            <a class="button" href="resqnet-project.html#licensing">View Gen 4 licensing &rarr;</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <strong style="font-family:var(--display);letter-spacing:2px;font-size:19px;color:var(--ink);">VAELON SPACE<span class="trademark">&trade;</span></strong>
+            <p>Aerospace engineering company developing advanced propulsion systems, orbital architecture, and mission-ready spacecraft.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="index.html#systems">Systems</a></li>
+              <li><a href="index.html#about">About</a></li>
+              <li><a href="index.html#team">Team</a></li>
+              <li><a href="index.html#mars">Mars Mission</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Hardware</h4>
+            <ul>
+              <li><a href="vx1-project.html">VX-1 Propulsion</a></li>
+              <li><a href="index.html#programs">Orbital Link</a></li>
+              <li><a href="index.html#programs">Atmos Shield</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Software</h4>
+            <ul>
+              <li><a href="vaelon-guard.html">Vaelon Guard</a></li>
+              <li><a href="resqnet-project.html">ResQNet Gen 4</a></li>
+              <li><a href="resqnet-gen5.html">ResQNet Gen 5 (Jan 2027)</a></li>
+              <li><a href="nexusml-project.html">NexusML (upcoming)</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Research</h4>
+            <ul>
+              <li><a href="index.html#research">Research</a></li>
+              <li><a href="index.html#performance">Performance</a></li>
+              <li><a href="index.html#library">Technical Library</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+              <li><a href="index.html#contact">Get in touch</a></li>
+              <li><a href="mailto:vaelon.space@gmail.com">Careers</a></li>
+              <li><a href="https://www.instagram.com/vaelonspace/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li><a href="https://github.com/vaelon-space" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+              <li><a href="https://x.com/vaelonspace" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-team">
+          <h4>Team</h4>
+          <span>Head Manager &mdash; Yui (ゆい)</span>
+        </div>
+
+        <div class="footer-bottom">
+          <span>&copy; 2022&ndash;2026 Vaelon Space. All rights reserved. Founder &amp; CEO: Viren Singh.</span>
+          <span>EST: 7th June 2022</span>
+        </div>
+      </div>
+    </footer>
+
+    <div class="disclaimer-bar">
+      <div class="disclaimer-frame">
+        <div class="disclaimer-top">
+          <span class="label">Legal Notice</span>
+          <span class="disclaimer-status">Verified Source</span>
+        </div>
+
+        <div class="disclaimer-body">
+          <h3>Disclaimer &amp; Official Contact</h3>
+          <p>Several unaffiliated "Vaelon" branded sites and profiles exist elsewhere on the internet. VAELON SPACE<span class="trademark">&trade;</span> holds no partnership, collaboration, or association with any of them, in any form or shape.</p>
+          <p>This company is solely represented by the individuals listed below. Any other party claiming to speak for or act on behalf of VAELON SPACE<span class="trademark">&trade;</span> is not authorized to do so.</p>
+        </div>
+
+        <div class="disclaimer-contacts">
+          <div class="disclaimer-contact">
+            <span>Founder &amp; CEO</span>
+            <strong>Viren Singh</strong>
+            <a class="mail-link" href="mailto:ceo@vaelon.space">ceo@vaelon.space</a>
+          </div>
+          <div class="disclaimer-contact">
+            <span>Head Manager</span>
+            <strong>Yui (ゆい)</strong>
+            <a class="mail-link" href="mailto:careers@vaelon.space">careers@vaelon.space</a>
+          </div>
+          <div class="disclaimer-contact">
+            <span>General Inquiries</span>
+            <strong>Vaelon Space</strong>
+            <a class="mail-link" href="mailto:contact@vaelon.space">contact@vaelon.space</a>
+          </div>
+        </div>
+
+        <div class="disclaimer-sign">VAELON SPACE<span class="trademark">&trade;</span> &middot; All rights reserved &middot; EST. 2022</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/vendor/lenis.min.js"></script>
+  <script>if (typeof Lenis === 'undefined') document.write('<script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"><\/script>');</script>
+  <script>
+    /* ---------- Staggered scroll reveals ---------- */
+    (() => {
+      const els = document.querySelectorAll('.section-head, .rq-statline > div, .rq-shot-lead, .rq-shot-grid .rq-shot, .rq-feature-cell, .rq-tier-card, .rq-hero-bottom');
+      if (!els.length || !('IntersectionObserver' in window)) return;
+      const groups = new Map();
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const parent = el.parentElement;
+          const idx = groups.get(parent) || 0;
+          el.style.setProperty('--d', Math.min(idx * 0.08, 0.4) + 's');
+          groups.set(parent, idx + 1);
+          el.classList.add('rq-reveal', 'is-in');
+          io.unobserve(el);
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+      els.forEach((el) => io.observe(el));
+    })();
+
+    /* ---------- Lightbox for screenshots ---------- */
+    (() => {
+      const shots = Array.from(document.querySelectorAll('.rq-shot-lead img, .rq-shot-grid img'));
+      if (!shots.length) return;
+      const lb = document.createElement('div');
+      lb.className = 'rq-lightbox';
+      lb.setAttribute('role', 'dialog');
+      lb.setAttribute('aria-label', 'Screenshot viewer');
+      lb.innerHTML = '<button class="rq-lb-close" aria-label="Close">✕</button>' +
+        '<button class="rq-lb-nav rq-lb-prev" aria-label="Previous">←</button>' +
+        '<button class="rq-lb-nav rq-lb-next" aria-label="Next">→</button>' +
+        '<img alt="">' + '<div class="rq-lb-caption"></div>';
+      document.body.appendChild(lb);
+      const img = lb.querySelector('img');
+      const cap = lb.querySelector('.rq-lb-caption');
+      let idx = 0;
+      const show = (i) => {
+        idx = (i + shots.length) % shots.length;
+        const src = shots[idx].src;
+        img.src = src;
+        img.alt = shots[idx].alt || '';
+        const fig = shots[idx].closest('figure');
+        cap.textContent = fig ? (fig.querySelector('figcaption')?.textContent.replace(/\s+/g, ' ').trim() || '') : '';
+      };
+      const open = (i) => { show(i); lb.classList.add('open'); document.body.style.overflow = 'hidden'; if (window.lenis) window.lenis.stop(); };
+      const close = () => { lb.classList.remove('open'); document.body.style.overflow = ''; if (window.lenis) window.lenis.start(); };
+      shots.forEach((im, i) => { im.style.cursor = 'zoom-in'; im.addEventListener('click', () => open(i)); });
+      lb.querySelector('.rq-lb-close').addEventListener('click', close);
+      lb.querySelector('.rq-lb-prev').addEventListener('click', (e) => { e.stopPropagation(); show(idx - 1); });
+      lb.querySelector('.rq-lb-next').addEventListener('click', (e) => { e.stopPropagation(); show(idx + 1); });
+      img.addEventListener('click', close);
+      lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+      document.addEventListener('keydown', (e) => {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') show(idx - 1);
+        if (e.key === 'ArrowRight') show(idx + 1);
+      });
+    })();
+
+    /* ---------- Back to top ---------- */
+    (() => {
+      const btn = document.createElement('button');
+      btn.className = 'rq-back-top';
+      btn.setAttribute('aria-label', 'Back to top');
+      btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+      document.body.appendChild(btn);
+      const toggle = () => btn.classList.toggle('is-on', window.scrollY > window.innerHeight * 0.85);
+      window.addEventListener('scroll', toggle, { passive: true });
+      toggle();
+      btn.addEventListener('click', () => {
+        if (window.lenis) window.lenis.scrollTo(0, { duration: 1.4 });
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  </script>
+  <script>
+    /* ---------- Countdown clock ---------- */
+    (() => {
+      const el = document.getElementById('metClock');
+      if (!el) return;
+      const pad = (n, len = 2) => String(n).padStart(len, '0');
+      const tick = () => {
+        const now = new Date();
+        const next = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1, 0, 0, 0);
+        const diff = Math.max(0, next - now.getTime());
+        const s = Math.floor(diff / 1000);
+        el.textContent = `T-${pad(Math.floor(s / 3600))}:${pad(Math.floor((s % 3600) / 60))}:${pad(s % 60)}`;
+      };
+      tick();
+      setInterval(tick, 1000);
+    })();
+
+    /* ---------- Smooth scroll (Lenis, falls back gracefully) ---------- */
+    (() => {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion || typeof Lenis === 'undefined') return;
+      window.lenis = new Lenis({ duration: 1.7, easing: (t) => 1 - Math.pow(1 - t, 4), wheelMultiplier: 0.75, lerp: 0.065, anchors: true, autoRaf: true });
+      window.lenis.on('scroll', () => window.dispatchEvent(new Event('scroll')));
+    })();
+
+    /* ---------- Scroll progress + glass nav ---------- */
+    (() => {
+      const bar = document.getElementById('scrollProgress');
+      const topbar = document.getElementById('topbar');
+      const onScroll = () => {
+        const h = document.documentElement;
+        const max = h.scrollHeight - h.clientHeight;
+        if (bar) bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+        if (topbar) topbar.classList.toggle('scrolled', h.scrollTop > 12);
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+
+    /* ---------- Nav underline indicator ---------- */
+    (() => {
+      const nav = document.getElementById('primaryNav');
+      const indicator = document.getElementById('navIndicator');
+      if (!nav || !indicator) return;
+      const links = Array.from(nav.querySelectorAll('a'));
+      const moveTo = (el) => { indicator.style.left = el.offsetLeft + 'px'; indicator.style.width = el.offsetWidth + 'px'; };
+      links.forEach((a) => a.addEventListener('mouseenter', () => moveTo(a)));
+      nav.addEventListener('mouseleave', () => { indicator.style.width = '0'; });
+    })();
+
+    /* ---------- Deep-space starfield canvas ---------- */
+    (() => {
+      const canvas = document.getElementById('starfield');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let stars = [], w, h;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const resize = () => {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+        const count = Math.round((w * h) / 9000);
+        stars = Array.from({ length: count }, () => ({ x: Math.random() * w, y: Math.random() * h, r: Math.random() * 1.3 + 0.3, o: Math.random() * 0.6 + 0.2, speed: Math.random() * 0.03 + 0.005, phase: Math.random() * Math.PI * 2 }));
+      };
+      const draw = (t) => {
+        ctx.clearRect(0, 0, w, h);
+        stars.forEach((s) => {
+          const twinkle = reduceMotion ? s.o : s.o + Math.sin(t * 0.001 * s.speed * 30 + s.phase) * 0.25;
+          ctx.globalAlpha = Math.max(0, Math.min(1, twinkle));
+          ctx.fillStyle = '#bfe0ff';
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        ctx.globalAlpha = 1;
+        if (!reduceMotion) requestAnimationFrame(draw);
+      };
+      window.addEventListener('resize', resize, { passive: true });
+      resize();
+      requestAnimationFrame(draw);
+      if (reduceMotion) draw(0);
+    })();
+  </script>
+</body>
+</html>
