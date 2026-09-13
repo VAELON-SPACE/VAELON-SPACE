@@ -2,7 +2,7 @@
 
 An aerospace-themed company profile website for **VAELON SPACE**, built as a Multiple-page HTML/CSS/JS project with local image assets, circular logo branding, propulsion visuals, mission-style sections, and a lightweight Node.js local server.
 
-## Preview
+# Preview
 
 Run the local server and open:
 
@@ -10,7 +10,7 @@ Run the local server and open:
 http://localhost:8020
 ```
 
-## Project Files
+# Project Files
 
 ```text
 vaelon-aerospace/
@@ -40,7 +40,7 @@ vaelon-aerospace/
 
 ## How To Run
 
-### Option 1: Windows Launcher
+## Option 1: Windows Launcher
 
 Double-click:
 
