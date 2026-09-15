@@ -883,8 +883,41 @@ html{scrollbar-color:#2a2e33 #050607;scrollbar-width:thin}
   .rq-hero-bottom span:last-child{animation:none}
 }
 </style>
+
+  <style>
+  /* ---------- boot preloader ---------- */
+  #bootOverlay{
+    position:fixed;inset:0;z-index:200;background:#050505;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    transition:opacity .55s cubic-bezier(.22,1,.36,1),visibility 0s linear .55s;
+  }
+  #bootOverlay.done{opacity:0;visibility:hidden;}
+  .boot-logo-wrap{width:min(180px,45vw);height:auto;animation:boot-grow-in 1.1s cubic-bezier(.16,1,.3,1) forwards;}
+  @media (max-width:640px){ .boot-logo-wrap{width:min(110px,30vw);} }
+  @keyframes boot-grow-in{0%{transform:scale(.82);}100%{transform:scale(1);}}
+  #bootLogo{width:100%;height:auto;overflow:visible;display:block;}
+  #boot-loading-text{margin-top:20px;text-align:center;color:#f2f2f2;font:500 11px/1 ui-monospace,"SF Mono",monospace;letter-spacing:.32em;text-transform:uppercase;opacity:.6;animation:boot-pulse 1.6s ease-in-out infinite;}
+  @keyframes boot-pulse{0%,100%{opacity:.32;}50%{opacity:.8;}}
+  #boot-base-shape{fill:#f2f2f2;fill-opacity:0;animation:boot-fade-in 1.1s ease forwards;animation-delay:.1s;}
+  @keyframes boot-fade-in{to{fill-opacity:1;}}
+  #boot-glow-runner{fill:none;stroke:#ffffff;stroke-width:5;stroke-linecap:round;filter:drop-shadow(0 0 4px #fff) drop-shadow(0 0 14px #fff);}
+  body:not(.is-booted){overflow:hidden;}
+  body:not(.is-booted) main,body:not(.is-booted) footer{opacity:0;}
+  body.is-booted main,body.is-booted footer{opacity:1;transition:opacity .5s ease;}
+  </style>
 </head>
 <body>
+
+<div id="bootOverlay" aria-hidden="true">
+  <div class="boot-logo-wrap">
+    <svg id="bootLogo" viewBox="404 240 509 289" xmlns="http://www.w3.org/2000/svg">
+      <path id="boot-base-shape" d="M879.05 260.5C847.65 271.8 816.56 284.21 786.65 299.15C733.37 325.78 683.44 360.38 636.86 397.37C618.81 411.69 602.07 426.97 586 443.48C580.88 448.75 570.3 458.17 569.5 465.3C607.44 436.68 645.31 407.35 684.26 379.75C695.44 371.83 706.92 364.41 718.4 356.95C723.69 353.52 730.11 347.89 736.14 346.5C718.48 366.56 700.41 386.26 683.1 406.62C668.51 423.77 654.7 441.55 640.51 459.03C631.23 470.47 622.49 482.39 613.65 494.16C610.03 498.97 606.56 506.1 601.5 509.23C590.32 495.01 579.59 480.26 569.05 465.62C563.7 458.18 557.28 451.12 551.53 443.93C537.76 426.75 524 409.56 509.81 392.71C495.05 375.18 479.86 358.02 464.32 341.19C456.23 332.42 447.53 324.24 439.41 315.5C446.44 313.62 455.2 314.91 462.5 314.9C477.83 314.89 493.17 314.89 508.5 314.91C513.05 314.91 529.98 313.79 533.07 315.44C535.41 316.68 537.62 321.21 539.15 323.34C543.06 328.75 547.02 334.13 550.97 339.51C560.86 352.94 570.65 366.47 580.69 379.79C586.4 387.37 593.23 395.09 597.66 403.5C590.98 415.31 584.41 427.04 578.95 439.49C576.93 444.07 573.25 449.97 573.5 454.92C620.35 374.64 704.87 320.06 789.96 287.47C809.24 280.09 828.58 273.53 848.43 267.82C858.25 265 868.83 261.12 879.05 260.5Z"/>
+      <path id="boot-glow-runner" d="M879.05 260.5C847.65 271.8 816.56 284.21 786.65 299.15C733.37 325.78 683.44 360.38 636.86 397.37C618.81 411.69 602.07 426.97 586 443.48C580.88 448.75 570.3 458.17 569.5 465.3C607.44 436.68 645.31 407.35 684.26 379.75C695.44 371.83 706.92 364.41 718.4 356.95C723.69 353.52 730.11 347.89 736.14 346.5C718.48 366.56 700.41 386.26 683.1 406.62C668.51 423.77 654.7 441.55 640.51 459.03C631.23 470.47 622.49 482.39 613.65 494.16C610.03 498.97 606.56 506.1 601.5 509.23C590.32 495.01 579.59 480.26 569.05 465.62C563.7 458.18 557.28 451.12 551.53 443.93C537.76 426.75 524 409.56 509.81 392.71C495.05 375.18 479.86 358.02 464.32 341.19C456.23 332.42 447.53 324.24 439.41 315.5C446.44 313.62 455.2 314.91 462.5 314.9C477.83 314.89 493.17 314.89 508.5 314.91C513.05 314.91 529.98 313.79 533.07 315.44C535.41 316.68 537.62 321.21 539.15 323.34C543.06 328.75 547.02 334.13 550.97 339.51C560.86 352.94 570.65 366.47 580.69 379.79C586.4 387.37 593.23 395.09 597.66 403.5C590.98 415.31 584.41 427.04 578.95 439.49C576.93 444.07 573.25 449.97 573.5 454.92C620.35 374.64 704.87 320.06 789.96 287.47C809.24 280.09 828.58 273.53 848.43 267.82C858.25 265 868.83 261.12 879.05 260.5Z"/>
+    </svg>
+  </div>
+  <div id="boot-loading-text">Loading</div>
+</div>
+
   <canvas id="starfield" aria-hidden="true"></canvas>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
   <div class="site">
@@ -1127,6 +1160,21 @@ html{scrollbar-color:#2a2e33 #050607;scrollbar-width:thin}
             <span class="team-role">Security &amp; Integrity</span>
             <div><h3><span>🇯🇵</span> Zǐhán (梓涵)</h3>
             <p>Reviews code and project materials &mdash; including ResQNet's source distribution &mdash; for security issues, accidental exposure, and potential information leaks.</p></div>
+          </div>
+          <div class="team-row">
+            <span class="team-role">Licensing Authorization</span>
+            <div><h3><span>🇨🇳</span> Xu Ying (徐莹)</h3>
+            <p>Handles the software licensing pipeline &mdash; reviewing submitted documentation for each purchase and authorizing licences before they're issued.</p></div>
+          </div>
+          <div class="team-row">
+            <span class="team-role">Integrity Monitoring, Tokyo</span>
+            <div><h3><span>🇯🇵</span> Emi (えみ)</h3>
+            <p>Tracks whether the software is developing in its intended direction or drifting off course, and responds to individuals spreading misleading information about the organization.</p></div>
+          </div>
+          <div class="team-row">
+            <span class="team-role">License Compliance &amp; Enforcement</span>
+            <div><h3><span>🇺🇸</span> Hannah</h3>
+            <p>Carries the authority to revoke software licences, auditing daily to confirm no licence holder is breaching copyright or violating the terms of service.</p></div>
           </div>
         </div>
       </section>
@@ -1418,5 +1466,31 @@ html{scrollbar-color:#2a2e33 #050607;scrollbar-width:thin}
       if (reduceMotion) draw(0);
     })();
   </script>
+
+<script>
+(() => {
+  // boot preloader — masks initial video/asset load
+  const SHOW_TIME = 2600;
+  const finish = () => {
+    document.body.classList.add('is-booted');
+    const o = document.getElementById('bootOverlay');
+    if (o) o.classList.add('done');
+  };
+  try {
+    const runner = document.getElementById('boot-glow-runner');
+    if (runner) {
+      const len = runner.getTotalLength();
+      const segment = len * 0.12;
+      runner.style.strokeDasharray = segment + ' ' + (len - segment);
+      runner.animate(
+        [{ strokeDashoffset: 0 }, { strokeDashoffset: -len }],
+        { duration: 2200, iterations: Infinity, easing: 'linear' }
+      );
+    }
+  } catch (e) { /* cosmetic only */ }
+  setTimeout(finish, SHOW_TIME);
+})();
+</script>
+
 </body>
 </html>
