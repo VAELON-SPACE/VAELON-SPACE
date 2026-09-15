@@ -869,6 +869,38 @@
           </div>
           <p>Reviews code and project materials for security issues, accidental exposure, and potential information leaks.</p>
         </div>
+        <div class="team-row reveal">
+          <span class="num">06</span>
+          <div class="team-id">
+            <h3><span class="flag">🇮🇳</span>Jashan Kumar</h3>
+            <span class="team-role">Security &amp; Integrity</span>
+          </div>
+          <p>Works alongside the Security &amp; Integrity track, adding a second line of review over code and project materials for security issues and information leaks.</p>
+        </div>
+        <div class="team-row reveal">
+          <span class="num">07</span>
+          <div class="team-id">
+            <h3><span class="flag">🇨🇳</span>Xu Ying (徐莹)</h3>
+            <span class="team-role">Licensing Authorization</span>
+          </div>
+          <p>Handles the software licensing pipeline — reviewing submitted documentation for each purchase and authorizing licences before they're issued.</p>
+        </div>
+        <div class="team-row reveal">
+          <span class="num">08</span>
+          <div class="team-id">
+            <h3><span class="flag">🇯🇵</span>Emi (えみ)</h3>
+            <span class="team-role">Integrity Monitoring, Tokyo</span>
+          </div>
+          <p>Tracks whether the software is developing in its intended direction or drifting off course, and responds to individuals spreading misleading information about the organization.</p>
+        </div>
+        <div class="team-row reveal">
+          <span class="num">09</span>
+          <div class="team-id">
+            <h3><span class="flag">🇺🇸</span>Hannah</h3>
+            <span class="team-role">License Compliance &amp; Enforcement</span>
+          </div>
+          <p>Carries the authority to revoke software licences, auditing daily to confirm no licence holder is breaching copyright or violating the terms of service.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1108,6 +1140,40 @@
     requestAnimationFrame(loop);
   };
   requestAnimationFrame(loop);
+
+  // Because #scrollWrap is position:fixed and moved purely via CSS transform,
+  // it sits outside normal document flow — the browser's native "jump to #id"
+  // behaviour can't locate anchors inside it, so every in-page link (hero
+  // buttons, nav links, section rail, footer links) silently does nothing.
+  // Re-implement anchor scrolling manually: work out where the target section
+  // really sits (its position is unaffected by the transform, only its
+  // on-screen rect is), then drive the real scrollbar there.
+  const NAV_OFFSET = 88; // roughly the fixed header's height
+  const scrollToHash = (hash) => {
+    if (!hash || hash === '#') return false;
+    const targetEl = document.querySelector(hash);
+    if (!targetEl) return false;
+    const rect = targetEl.getBoundingClientRect();
+    const trueTop = rect.top + current; // undo the current visual offset
+    const y = Math.max(0, trueTop - NAV_OFFSET);
+    target = y;
+    window.scrollTo({ top: y, behavior: reduceMotion ? 'auto' : 'smooth' });
+    return true;
+  };
+
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const hash = a.getAttribute('href');
+      if (scrollToHash(hash)) {
+        e.preventDefault();
+        history.pushState(null, '', hash);
+      }
+    });
+  });
+
+  if (window.location.hash) {
+    window.addEventListener('load', () => scrollToHash(window.location.hash));
+  }
 })();
 
 (() => {
