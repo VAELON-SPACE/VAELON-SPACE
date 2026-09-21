@@ -937,6 +937,13 @@ html{scrollbar-color:#2a2e33 #050607;scrollbar-width:thin}
     .nt-sign a:hover{color:#fff}
     .nt-sign p a{display:inline}
     .nt-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+    .nt-wrap-lg{margin-top:clamp(90px,9vw,130px)}
+    .nt-band{position:relative;aspect-ratio:21/8;min-height:280px;overflow:hidden;border:1px solid var(--line);background:#000;isolation:isolate}
+    .nt-band video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;filter:saturate(.7) contrast(1.06) brightness(.72)}
+    .nt-band:before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(90deg,rgba(0,0,0,.86) 0%,rgba(0,0,0,.5) 45%,rgba(0,0,0,.15) 100%),linear-gradient(0deg,rgba(0,0,0,.7) 0%,transparent 55%)}
+    .nt-band-copy{position:absolute;left:clamp(24px,4vw,56px);bottom:clamp(24px,4vw,48px);z-index:1;max-width:620px}
+    .nt-band-copy h3{margin:0;font-family:var(--display);font-size:clamp(28px,3.6vw,52px);line-height:.95;letter-spacing:-1px;color:#f5f6f7;font-weight:700}
+    @media(max-width:700px){.nt-band{aspect-ratio:auto;min-height:300px}}
     @media(max-width:700px){
       .nt-hero{min-height:0}
       .nt-hero .rq-hero-content{min-height:0;padding:35px 20px 118px}
@@ -992,6 +999,8 @@ html{scrollbar-color:#2a2e33 #050607;scrollbar-width:thin}
     <main>
       <section class="rq-hero nt-hero" id="home">
         <div class="rq-hero-media">
+          <video class="rq-hero-video" src="assets/resqnet-hero.mp4" poster="assets/resqnet-logo.png" autoplay muted loop playsinline aria-label="ResQNet — Intelligent Routing. Saving Lives."></video>
+          <div class="rq-hero-vignette"></div>
           <div class="rq-hero-gridline rq-gridline-a"></div>
           <div class="rq-hero-gridline rq-gridline-b"></div>
           <div class="rq-hero-coordinate">RESQNET GEN 4 / 2026&ndash;2027<br><span>PRODUCT LIFECYCLE NOTICE</span></div>
@@ -1123,6 +1132,39 @@ html{scrollbar-color:#2a2e33 #050607;scrollbar-width:thin}
         </div>
       </section>
 
+      <section id="interface" class="rq-shots">
+        <div class="section-head">
+          <div>
+            <span class="label">Gen 4 / Application Interface</span>
+            <h2>What stays in service</h2>
+          </div>
+          <p>The Gen 4 build as it runs today &mdash; routing, allocation and simulation stay supported for security and compatibility.</p>
+        </div>
+        <figure class="rq-shot-lead rq-map-lead">
+          <div class="rq-shot-tag">GEN 4 / PRIMARY ROUTING VIEW</div>
+          <img src="assets/resqnet-screens/new%20i%20want/Screenshot%202026-09-11%20160717.png" alt="ResQNet Gen 4 primary routing map and emergency network interface">
+          <figcaption><span>RESQNET GEN 4 / ROUTING INTERFACE</span><strong>Primary network map</strong><span>Live application view</span></figcaption>
+        </figure>
+        <div class="rq-shot-grid" aria-label="ResQNet Gen 4 application views">
+          <figure class="rq-shot">
+            <img loading="lazy" src="assets/resqnet-screens/new%20i%20want/Screenshot%202026-09-11%20160812.png" alt="ResQNet scenario planning application view">
+            <figcaption><span>SCENARIO PLAN</span><span>APPLICATION</span></figcaption>
+          </figure>
+          <figure class="rq-shot">
+            <img loading="lazy" src="assets/resqnet-screens/new%20i%20want/Screenshot%202026-09-11%20160832.png" alt="ResQNet decision analysis application view">
+            <figcaption><span>DECISION ANALYSIS</span><span>APPLICATION</span></figcaption>
+          </figure>
+          <figure class="rq-shot">
+            <img loading="lazy" src="assets/resqnet-screens/new%20i%20want/Screenshot%202026-09-11%20160854.png" alt="ResQNet fleet telemetry application view">
+            <figcaption><span>FLEET</span><span>APPLICATION</span></figcaption>
+          </figure>
+          <figure class="rq-shot">
+            <img loading="lazy" src="assets/resqnet-screens/new%20i%20want/Screenshot%202026-09-11%20160912.png" alt="ResQNet time machine historical backtest application view">
+            <figcaption><span>TIME MACHINE</span><span>APPLICATION</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
       <section id="purchasing">
         <div class="section-head">
           <div>
@@ -1154,6 +1196,16 @@ html{scrollbar-color:#2a2e33 #050607;scrollbar-width:thin}
           </div>
         </div>
       </section>
+
+      <div class="nt-wrap nt-wrap-lg" aria-label="Next generation of ResQNet">
+        <div class="nt-band">
+          <video src="assets/risk-aware-computing-v18.mp4" poster="assets/risk-aware-computing-v18-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+          <div class="nt-band-copy">
+            <span class="rq-kicker">Next generation &middot; Targeting January 2027</span>
+            <h3>Gen 5 builds on the risk-weighted core validated in Gen 4.</h3>
+          </div>
+        </div>
+      </div>
 
       <section id="gen5">
         <div class="section-head">
