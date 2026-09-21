@@ -905,6 +905,24 @@ html{scrollbar-color:#2a2e33 #050607;scrollbar-width:thin}
   body:not(.is-booted) main,body:not(.is-booted) footer{opacity:0;}
   body.is-booted main,body.is-booted footer{opacity:1;transition:opacity .5s ease;}
   </style>
+
+  <style>
+    /* ---------- Gen 4 lifecycle notice bar ---------- */
+    .rq-notice-wrap{max-width:1500px;margin:28px auto 0;padding:0 clamp(24px,5vw,76px)}
+    .rq-notice-bar{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:clamp(16px,3vw,40px);padding:18px 24px;border:1px solid var(--line);background:#06080a;transition:border-color .3s ease,background .3s ease}
+    .rq-notice-bar:hover{border-color:rgba(255,255,255,.3);background:#0a0c0e}
+    .rq-notice-tag{font:8px var(--mono);letter-spacing:1.8px;text-transform:uppercase;color:#0a0a0a;background:#e6e8ea;padding:7px 11px;white-space:nowrap}
+    .rq-notice-text{font-size:12.5px;line-height:1.7;color:#8d939b}
+    .rq-notice-text strong{color:#e6e8ea;font-weight:600}
+    .rq-notice-go{font:600 10px var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:#e6e8ea;white-space:nowrap}
+    .rq-notice-go b{font-weight:500;margin-left:4px;transition:margin-left .3s ease}
+    .rq-notice-bar:hover .rq-notice-go b{margin-left:9px}
+    .rq-tier-note-2{margin-top:12px !important}
+    .rq-tier-note-2 a{color:#e6e8ea;border-bottom:1px solid #555}
+    .rq-tier-note-2 a:hover{border-color:#fff}
+    @media(max-width:900px){.rq-notice-bar{grid-template-columns:1fr;gap:12px}}
+    @media(max-width:700px){.rq-notice-wrap{padding:0 20px}}
+  </style>
 </head>
 <body>
 
@@ -971,6 +989,7 @@ html{scrollbar-color:#2a2e33 #050607;scrollbar-width:thin}
               <a class="button" href="#interface">Explore the system <b>&darr;</b></a>
               <a class="button" href="#contact-rq">Ask for demo <b>&rarr;</b></a>
               <a class="button" href="resqnet-gen5.html">ResQNet Gen 5 &mdash; announced <b>&rarr;</b></a>
+              <a class="button" href="resqnet-gen4-notice.html">Gen 4 lifecycle notice <b>&rarr;</b></a>
             </div>
           </div>
           <aside class="rq-hero-aside" aria-label="ResQNet system details">
@@ -993,6 +1012,14 @@ html{scrollbar-color:#2a2e33 #050607;scrollbar-width:thin}
         <div><strong>FLOW</strong><span>Constrained resource allocation</span></div>
         <div><strong>LIVE</strong><span>Hazard-aware routing inputs</span></div>
       </section>
+
+      <div class="rq-notice-wrap">
+        <a class="rq-notice-bar" href="resqnet-gen4-notice.html">
+          <span class="rq-notice-tag">Product Lifecycle Notice</span>
+          <span class="rq-notice-text"><strong>ResQNet Gen 4 &mdash; end of major feature updates.</strong> Security fixes continue; Gen 5 targets January 2027.</span>
+          <span class="rq-notice-go">Read the notice <b>&rarr;</b></span>
+        </a>
+      </div>
 
       <section id="interface" class="rq-shots">
         <div class="section-head">
@@ -1167,6 +1194,7 @@ html{scrollbar-color:#2a2e33 #050607;scrollbar-width:thin}
 
         <div class="rq-tier-note">
           <p><strong>Access policy.</strong> Non-Licensed source access is for individual review and development only. Accounts found merging, redistributing, or otherwise misusing the source outside these terms &mdash; including unauthorized copying into other codebases &mdash; are subject to being blacklisted from future access. Licensed and Organization tiers run for one year from purchase; contact us ahead of renewal to keep updates uninterrupted.</p>
+          <p class="rq-tier-note-2"><strong>Gen 4 lifecycle.</strong> Gen 4 is now a security-serviced product line. <a href="resqnet-gen4-notice.html">Read the Gen 4 lifecycle notice &rarr;</a></p>
         </div>
       </section>
 
@@ -1223,6 +1251,7 @@ html{scrollbar-color:#2a2e33 #050607;scrollbar-width:thin}
             <ul>
               <li><a href="vaelon-guard.html">Vaelon Guard</a></li>
               <li><a href="resqnet-project.html">ResQNet</a></li>
+              <li><a href="resqnet-gen4-notice.html">ResQNet Gen 4 Notice</a></li>
               <li><a href="nexusml-project.html">NexusML (upcoming)</a></li>
             </ul>
           </div>
