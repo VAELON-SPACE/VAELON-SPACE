@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vaelon Space | Software</title>
+<meta content="noindex, follow" name="robots"/>
+<meta http-equiv="refresh" content="2; url=https://technologies.vaelon.space/"/>
+
+<style>
+  @font-face{font-family:"Inter";src:url("assets/fonts/inter-400.woff2") format("woff2");font-weight:400;font-display:swap;}
+  @font-face{font-family:"Inter";src:url("assets/fonts/inter-500.woff2") format("woff2");font-weight:500;font-display:swap;}
+  @font-face{font-family:"Inter";src:url("assets/fonts/inter-600.woff2") format("woff2");font-weight:600;font-display:swap;}
+
+  *{box-sizing:border-box;}
+  html,body{height:100%;margin:0;}
+  body{
+    background:#050505;
+    background-image:radial-gradient(circle at 30% 20%,rgba(255,255,255,.08),transparent 55%),
+                      radial-gradient(circle at 75% 80%,rgba(255,255,255,.05),transparent 50%);
+    color:#f2f3f4;font-family:"Inter",-apple-system,"SF Pro Display","Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased;
+    display:flex;align-items:center;justify-content:center;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  .card{
+    width:min(340px,86vw);text-align:center;padding:44px 34px 36px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:24px;
+    backdrop-filter:blur(30px) saturate(160%);-webkit-backdrop-filter:blur(30px) saturate(160%);
+    box-shadow:0 30px 70px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.08);
+    opacity:0;transform:scale(.96);
+    animation:in .5s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  @keyframes in{to{opacity:1;transform:none;}}
+  @media (prefers-reduced-motion:reduce){ .card{animation:none;opacity:1;transform:none;} }
+
+  .mark{width:34px;height:34px;margin:0 auto 22px;opacity:.92;}
+
+  .spinner{
+    width:26px;height:26px;margin:0 auto 20px;
+    border-radius:50%;
+    border:2px solid rgba(255,255,255,.16);
+    border-top-color:#fff;
+    animation:spin .8s linear infinite;
+  }
+  @media (prefers-reduced-motion:reduce){ .spinner{animation:none;border-top-color:rgba(255,255,255,.16);} }
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  h1{margin:0 0 8px;font:600 15px/1.3 "Inter",sans-serif;letter-spacing:-.01em;}
+  p{margin:0;color:rgba(242,243,244,.5);font:400 13px/1.5 "Inter",sans-serif;}
+
+  .go{
+    display:inline-block;margin-top:24px;padding:11px 22px;
+    font:500 12px/1 "Inter",sans-serif;letter-spacing:.01em;
+    color:rgba(242,243,244,.55);
+    border:1px solid rgba(255,255,255,.14);border-radius:999px;
+    transition:color .25s,border-color .25s,background .25s;
+  }
+  .go:hover{color:#fff;border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.06);}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4">
+    <circle cx="12" cy="12" r="9.3"/>
+    <path d="M8.3 13.4l2.4 2.4 5-6.3" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <div class="spinner" aria-hidden="true"></div>
+  <h1>Opening Software</h1>
+  <p>Taking you to Vaelon Technologies</p>
+  <a class="go" href="https://technologies.vaelon.space/">Continue</a>
+</div>
+
+<script>
+  setTimeout(() => { window.location.replace("https://technologies.vaelon.space/"); }, 1400);
+</script>
+
+</body>
+</html>
