@@ -342,6 +342,9 @@
     .rq-transmit-status { font: 9px var(--mono); letter-spacing: 1.4px; text-transform: uppercase; color: #7a7c7f; }
     .rq-transmit-status.is-ok { color: #cfe8d6; }
     .rq-transmit-note { font-size: 12px; color: #7a7c7f; line-height: 1.65; margin-top: 20px; }
+    .rq-form-success { padding: 6px 0 2px; }
+    .rq-form-success h3 { font-family: var(--display); font-size: 30px; letter-spacing: -.3px; text-transform: uppercase; margin: 0 0 12px; color: var(--ink); }
+    .rq-form-success p { color: #9a9ea3; font-size: 14px; line-height: 1.6; margin: 0; }
 
     /* ---------- Responsive ---------- */
     @media (max-width: 1100px) { .rq-shot-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -1294,12 +1297,12 @@ html{scrollbar-color:#2a2e33 #050607;scrollbar-width:thin}
                 <textarea id="rq-t-message" name="message" placeholder="Transmit your message..." required></textarea>
               </div>
               <div class="rq-transmit-bottom">
-                <button type="submit" class="rq-transmit-submit">Transmit <b>&rarr;</b></button>
-                <span class="rq-transmit-status" id="rq-transmit-status">Opens your email client, addressed to Vaelon Space</span>
+                <button type="submit" class="rq-transmit-submit" id="rq-transmit-submit">Transmit <b>&rarr;</b></button>
+                <span class="rq-transmit-status" id="rq-transmit-status">Delivered straight to Vaelon Space</span>
               </div>
             </div>
           </form>
-          <p class="rq-transmit-note">Hitting Transmit opens a pre-filled email to <strong>vaelon.space@gmail.com</strong> in your default mail app &mdash; nothing is sent silently, and you can review it before it goes out.</p>
+          <p class="rq-transmit-note" id="rq-transmit-note">Hitting Transmit sends this directly to <strong>vaelon.space@gmail.com</strong> &mdash; no email app required. We respond within two business days.</p>
         </div>
 
         <div class="rq-demo-callout">
@@ -1534,30 +1537,70 @@ html{scrollbar-color:#2a2e33 #050607;scrollbar-width:thin}
         if (pillEl) pillEl.textContent = subjectEl.value || 'General Inquiry';
       });
 
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
         if (!form.reportValidity()) return;
+        if (form.dataset.sending === '1') return;
+        form.dataset.sending = '1';
 
-        const name = nameEl.value.trim();
-        const email = document.getElementById('rq-t-email').value.trim();
-        const subject = subjectEl.value || 'General Inquiry';
-        const message = messageEl.value.trim();
+        const submitBtn = document.getElementById('rq-transmit-submit');
+        const noteEl = document.getElementById('rq-transmit-note');
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Transmitting…'; }
 
-        const mailSubject = `ResQNet — ${subject}`;
-        const mailBody =
-          `Name: ${name}\n` +
-          `Email: ${email}\n` +
-          `Classification: ${subject}\n\n` +
-          `${message}`;
+        const values = {
+          name: nameEl.value.trim(),
+          email: document.getElementById('rq-t-email').value.trim(),
+          subject: subjectEl.value || 'General Inquiry',
+          message: messageEl.value.trim(),
+        };
 
-        const mailtoLink =
-          `mailto:${TO_EMAIL}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+        const successView = (first) => {
+          form.innerHTML = `
+            <div class="rq-form-success">
+              <h3>Transmission received.</h3>
+              <p>Thank you, ${first}. Your message is on its way. We respond within two business days.</p>
+            </div>`;
+          if (noteEl) noteEl.hidden = true;
+        };
 
-        if (statusEl) {
-          statusEl.textContent = 'Opening your email client…';
-          statusEl.classList.add('is-ok');
+        const draftReadyView = (first) => {
+          form.innerHTML = `
+            <div class="rq-form-success">
+              <h3>Draft ready.</h3>
+              <p>Your email client just opened with the message pre-filled &mdash; press send there and it will reach us directly.</p>
+            </div>`;
+          if (noteEl) noteEl.hidden = true;
+        };
+
+        const mailtoFallback = () => {
+          const mailSubject = `[ResQNet] ${values.subject} — ${values.name}`;
+          const mailBody =
+            `Name: ${values.name}\nEmail: ${values.email}\nClassification: ${values.subject}\n\n${values.message}`;
+          setTimeout(() => {
+            window.location.href = `mailto:${TO_EMAIL}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+            draftReadyView(values.name.split(/\s+/)[0] || 'friend');
+          }, 900);
+        };
+
+        try {
+          const res = await fetch(`https://formsubmit.co/ajax/${TO_EMAIL}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+              name: values.name,
+              email: values.email,
+              classification: values.subject,
+              message: values.message,
+              _subject: `[ResQNet] ${values.subject} — ${values.name}`,
+              _template: 'table',
+              _captcha: 'false',
+            }),
+          });
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          successView(values.name.split(/\s+/)[0] || 'friend');
+        } catch (err) {
+          mailtoFallback();
         }
-        window.location.href = mailtoLink;
       });
     })();
   </script>
