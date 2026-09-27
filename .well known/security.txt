@@ -1,4 +1,0 @@
-Contact: mailto:contact@vaelon.space
-Expires: 2027-09-27T23:59:00Z
-Preferred-Languages: en
-Canonical: https://vaelon.space/.well-known/security.txt
