@@ -16,5 +16,5 @@ operational decisions. See the Legal links in the app footer.
 
 Edit `siteConfig.js` to set the contact email, purchase/early-access URL and website link.
 
-## note before use
-- This must NOT for in operation, must be use for education and vaelonspace hold no claim and responsiblity if Gen2 being use for operations, for operational use go to gen4 and gen5 models
+## Note before use
+- This must NOT use in operation, must be use for education and vaelonspace hold no claim and responsiblity if Gen2 being use for operations, for operational use go to gen4 and gen5 models
