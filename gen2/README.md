@@ -16,11 +16,5 @@ operational decisions. See the Legal links in the app footer.
 
 Edit `siteConfig.js` to set the contact email, purchase/early-access URL and website link.
 
-## Before publishing
-
-- Have the Legal dialog text (`legal.js`) reviewed by counsel.
-- Open-Meteo's free API is for non-commercial use only. A sales website is likely commercial use:
-  get an Open-Meteo API plan (or self-host) and keep the "Weather data by Open-Meteo.com" credit.
-- The public OSM tile and OSRM demo servers are best-effort with usage policies; use your own or a
-  commercial provider for real traffic.
-- Set `RESQNET_CORS_ORIGIN` only if the frontend is served from a different origin.
+## note before use
+- This must NOT for in operation, must be use for education and vaelonspace hold no claim and responsiblity if Gen2 being use for operations, for operational use go to gen4 and gen5 models
