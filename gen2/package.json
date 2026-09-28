@@ -1,0 +1,25 @@
+{
+  "name": "resqnet-gen2",
+  "version": "2.0.0",
+  "description": "ResQNet Gen 2: risk-aware emergency routing demo with live data feeds and provider health.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check graph.js && node --check optimizer.js && node --check dataSources.js && node --check evaluation.js && node --check stressTest.js && node --check providerHealth.js && node --check healthStrip.js && node --check legal.js && node --check siteConfig.js && node --check tools.js",
+    "stress": "node stressTest.js"
+  },
+  "keywords": [
+    "crisis-response",
+    "dijkstra",
+    "max-flow",
+    "usgs",
+    "weather",
+    "optimization"
+  ],
+  "author": "Vaelon Space",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=18"
+  },
+  "private": true
+}
