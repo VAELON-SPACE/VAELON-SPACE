@@ -435,13 +435,14 @@
   /* ================= FINAL CTA ================= */
   .final{position:relative;text-align:center;padding:min(16vw,180px) 0 min(11vw,120px);border-top:1px solid var(--line-soft);overflow:hidden;}
   .final-bg{position:absolute;inset:0;z-index:0;background:#030303 url("assets/earth-atmosphere.jpg") center 42% / cover no-repeat;}
-  .final-bg::before{content:"";position:absolute;inset:0;background:rgba(3,3,3,.7);}
-  .final-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;mix-blend-mode:screen;}
-  .final-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 62% 56% at 50% 46%,rgba(3,3,3,.72),rgba(3,3,3,.96) 86%);}
+  .final-bg::before{content:"";position:absolute;inset:0;background:rgba(3,3,3,.12);}
+  .final-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;filter:brightness(1.12) saturate(1.1);}
+  .final-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 48% 40% at 50% 48%,rgba(3,3,3,.5),rgba(3,3,3,0) 100%),linear-gradient(180deg,rgba(5,5,5,.75) 0%,rgba(5,5,5,0) 22%,rgba(5,5,5,0) 78%,rgba(5,5,5,.85) 100%);}
   .final .wrap{position:relative;z-index:1;}
   .final .eyebrow{justify-content:center;}
+  .final h2,.final p,.final .eyebrow{text-shadow:0 2px 24px rgba(0,0,0,.6);}
   .final h2{font-weight:800;font-size:clamp(52px,9vw,128px);line-height:.88;margin-top:20px;}
-  .final p{margin:24px auto 0;max-width:420px;color:#b0b4b7;font:400 15px/1.6 var(--sans);}
+  .final p{margin:24px auto 0;max-width:420px;color:#d3d5d6;font:400 15px/1.6 var(--sans);}
   .final .btn.primary{margin-top:38px;}
 
   /* ================= CONTACT ================= */
