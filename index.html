@@ -202,11 +202,13 @@
   html.menu-open .menu{opacity:1;visibility:visible;transition:opacity .35s var(--ease);}
   .menu-links{display:flex;flex-direction:column;}
   .menu-links a{
-    display:flex;align-items:baseline;gap:16px;padding:15px 0;border-bottom:1px solid var(--line-soft);
-    font:700 clamp(34px,10.5vw,52px)/1 var(--disp);letter-spacing:-.005em;text-transform:uppercase;
+    display:flex;align-items:center;gap:14px;padding:17px 0;border-bottom:1px solid var(--line-soft);
+    font:700 clamp(24px,7vw,30px)/1.1 var(--disp);letter-spacing:.01em;text-transform:uppercase;
     opacity:0;transform:translateY(10px);transition:opacity .5s var(--ease),transform .5s var(--ease);
   }
-  .menu-links a i{font:600 11px/1 var(--sans);color:var(--faint);font-style:normal;letter-spacing:.08em;width:22px;flex:none;}
+  .menu-links a i{font:600 10px/1 var(--sans);color:var(--faint);font-style:normal;letter-spacing:.08em;width:20px;flex:none;}
+  .ext{width:.8em;height:.8em;margin-left:.35em;vertical-align:-.04em;flex:none;display:inline-block;}
+  .menu-links a .ext{width:15px;height:15px;margin-left:auto;color:var(--muted);}
   html.menu-open .menu-links a{opacity:1;transform:none;}
   html.menu-open .menu-links a:nth-child(1){transition-delay:.04s}
   html.menu-open .menu-links a:nth-child(2){transition-delay:.08s}
@@ -682,7 +684,7 @@
       <a href="#systems">Systems</a>
       <a href="#programs">Programs</a>
       <a href="#software">Software</a>
-      <a class="cta" href="software.html">Platform ↗</a>
+      <a class="cta" href="software.html">Platform<svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
       <a href="#research">Research</a>
       <a href="company.html">About</a>
       <a class="cta" href="#contact">Contact</a>
@@ -707,7 +709,7 @@
     <a href="#programs"><i>02</i>Programs</a>
     <a href="#software"><i>03</i>Software</a>
     <a href="#research"><i>04</i>Research</a>
-    <a href="software.html"><i>05</i>Platform ↗</a>
+    <a href="software.html"><i>05</i>Platform<svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
     <a href="company.html"><i>06</i>About</a>
     <a href="#contact"><i>07</i>Contact</a>
   </nav>
@@ -1104,7 +1106,7 @@
     </div>
     <div class="footer-entity-line">
       <span>Vaelon Space is an independent aerospace engineering organization developing propulsion, orbital architecture, and computational decision systems for resilient operations.</span>
-      <div><a href="company.html">Company dossier ↗</a><a href="team.html">Team ↗</a></div>
+      <div><a href="company.html">Company dossier<svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a><a href="team.html">Team<svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a></div>
     </div>
   </div>
 </footer>
