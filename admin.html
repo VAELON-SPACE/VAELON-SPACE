@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="robots" content="noindex, nofollow"/><meta name="color-scheme" content="dark"/>
+<title>Upload documents | Vaelon Space</title>
+<style>
+@font-face{font-family:"Inter";src:url("assets/fonts/inter-400.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Inter";src:url("assets/fonts/inter-600.woff2") format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Barlow Condensed";src:url("assets/fonts/barlow-condensed-700.woff2") format("woff2");font-weight:700;font-display:swap}
+:root{--ink:#f2f3f4;--muted:#8d9195;--faint:#767b80;--line:rgba(255,255,255,.14);--line-soft:rgba(255,255,255,.08);--sans:"Inter",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--disp:"Barlow Condensed","Arial Narrow",Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:#050505;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;min-height:100vh}
+#bg{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:rgba(5,5,5,.8)}
+main{max-width:760px;margin:0 auto;padding:clamp(28px,6vw,72px) 20px 80px}
+h1,h2{font-family:var(--disp);text-transform:uppercase;margin:0}
+h1{font-size:clamp(40px,7vw,68px);line-height:.95;font-weight:700}
+h2{font-size:26px;margin-bottom:18px}
+.lead{color:var(--muted);font-size:14.5px;line-height:1.7;margin:14px 0 28px;max-width:58ch}
+.panel{background:rgba(11,11,12,.88);border:1px solid var(--line);border-radius:8px;padding:clamp(20px,3vw,32px);margin-bottom:22px}
+label{display:block;font:600 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px}
+label:first-of-type{margin-top:0}
+input,textarea,select{width:100%;min-height:46px;padding:12px 14px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:6px;color:var(--ink);font:400 14px var(--sans)}
+textarea{min-height:84px;resize:vertical}
+input[type=file]{padding:10px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:600px){.two{grid-template-columns:1fr}}
+.hint{font-size:12px;color:var(--faint);line-height:1.6;margin-top:8px}
+.check{display:flex;gap:10px;align-items:center;margin-top:14px;font-size:13px;color:var(--muted)}
+.check input{width:auto;min-height:0}
+button{min-height:48px;padding:0 28px;font:600 12px/1 var(--sans);letter-spacing:.07em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer}
+button.primary{background:var(--ink);color:#050505;border-color:var(--ink);margin-top:22px}
+button:disabled{opacity:.5;cursor:wait}
+button.del{min-height:34px;padding:0 14px;font-size:10px}
+#status{margin-top:16px;font-size:13.5px;line-height:1.6;min-height:22px}
+#status.err{color:#ff9a9a}#status.ok{color:#65f5a7}
+.item{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:14px 0;border-top:1px solid var(--line-soft)}
+.item b{display:block;font-size:14px;font-weight:600}.item span{font-size:12px;color:var(--muted)}
+a.back{display:inline-block;margin-bottom:26px;font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+</style>
+</head>
+<body>
+<video id="bg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/video/admin-bg.mp4" type="video/mp4"/><source src="admin-bg.mp4" type="video/mp4"/></video>
+<main>
+  <a class="back" href="docs.html">Back to documents</a>
+  <h1>Upload a document</h1>
+  <p class="lead">Only someone holding your GitHub access token can publish from this page. Each upload is saved to your repository as a commit, and the site updates after GitHub Pages redeploys (usually within a minute or two).</p>
+
+  <section class="panel">
+    <h2>Connection</h2>
+    <div class="two">
+      <div><label for="repo">Repository</label><input id="repo" placeholder="owner/repository" autocomplete="off"/></div>
+      <div><label for="branch">Branch</label><input id="branch" value="main" autocomplete="off"/></div>
+    </div>
+    <label for="token">GitHub access token</label>
+    <input id="token" type="password" placeholder="github_pat_…" autocomplete="off"/>
+    <div class="check"><input id="remember" type="checkbox"/><label for="remember" style="margin:0;text-transform:none;letter-spacing:0;font-weight:400;font-size:13px">Keep me connected on this device</label></div>
+    <p class="hint">Create a fine-grained token limited to this one repository with Contents set to Read and write. It stays in this browser only and is never written into the site’s code.</p>
+  </section>
+
+  <section class="panel">
+    <h2>New document</h2>
+    <label for="file">File</label><input id="file" type="file"/>
+    <p class="hint">PDF, DOCX, PPTX, XLSX, images and similar files up to 25 MB.</p>
+    <label for="title">Name shown on the site</label><input id="title" placeholder="Project VX-1 Technical Overview"/>
+    <label for="desc">Short description</label><textarea id="desc" placeholder="One or two sentences about what is inside."></textarea>
+    <div class="two">
+      <div><label for="cat">Category</label><input id="cat" list="cats" placeholder="Hardware"/><datalist id="cats"></datalist></div>
+      <div><label for="date">Date</label><input id="date" type="date"/></div>
+    </div>
+    <button class="primary" id="go" type="button">Upload to GitHub</button>
+    <div id="status" role="status" aria-live="polite"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Published documents</h2>
+    <div id="list"><p class="hint">Enter your connection details and press Load to see what is published.</p></div>
+    <button id="load" type="button" style="margin-top:14px">Load list</button>
+  </section>
+</main>
+<script>
+(()=>{
+const $=i=>document.getElementById(i);
+const MAX=25*1024*1024;
+const store=(k,v,keep)=>{try{sessionStorage.setItem(k,v);keep?localStorage.setItem(k,v):localStorage.removeItem(k);}catch(e){}};
+const read=k=>{try{return sessionStorage.getItem(k)||localStorage.getItem(k)||'';}catch(e){return '';}};
+$('repo').value=read('vs_repo');$('branch').value=read('vs_branch')||'main';$('token').value=read('vs_token');$('remember').checked=!!localStorage.getItem('vs_token');
+$('date').value=new Date().toISOString().slice(0,10);
+const say=(m,c)=>{const s=$('status');s.textContent=m;s.className=c||'';};
+const enc=s=>btoa(unescape(encodeURIComponent(s)));
+const dec=s=>decodeURIComponent(escape(atob(s.replace(/\n/g,''))));
+const b64=f=>new Promise((ok,no)=>{const r=new FileReader();r.onload=()=>ok(r.result.split(',')[1]);r.onerror=no;r.readAsDataURL(f);});
+const cfg=()=>{
+  const repo=$('repo').value.trim(),br=$('branch').value.trim()||'main',tk=$('token').value.trim();
+  if(!/^[\w.-]+\/[\w.-]+$/.test(repo))throw new Error('Enter the repository as owner/repository.');
+  if(!tk)throw new Error('Paste your GitHub access token first.');
+  const keep=$('remember').checked;store('vs_repo',repo,true);store('vs_branch',br,true);store('vs_token',tk,keep);
+  return {repo,br,tk};
+};
+async function api(c,path,method,body,q){
+  const r=await fetch('https://api.github.com/repos/'+c.repo+'/contents/'+path+(q===false?'':'?ref='+encodeURIComponent(c.br)),
+    {method:method||'GET',headers:{Authorization:'Bearer '+c.tk,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});
+  return r;
+}
+async function fail(r){let m='';try{m=(await r.json()).message;}catch(e){}
+  if(r.status===401)return new Error('GitHub rejected the token. Check that it is correct and has not expired.');
+  if(r.status===403||r.status===404)return new Error('Access denied or repository not found ('+r.status+'). Check the repository name and that the token has Contents read and write access to it.');
+  return new Error('GitHub error '+r.status+(m?': '+m:''));}
+async function manifest(c){
+  const r=await api(c,'docs.json');
+  if(r.status===404)return {sha:null,data:{docs:[]}};
+  if(!r.ok)throw await fail(r);
+  const j=await r.json();return {sha:j.sha,data:JSON.parse(dec(j.content))};
+}
+async function saveManifest(c,m,msg){
+  const body={message:msg,content:enc(JSON.stringify(m.data,null,2)+'\n'),branch:c.br};if(m.sha)body.sha=m.sha;
+  const r=await api(c,'docs.json','PUT',body,false);if(!r.ok)throw await fail(r);
+}
+const slug=n=>{const i=n.lastIndexOf('.');const base=(i>0?n.slice(0,i):n),ext=i>0?n.slice(i).toLowerCase():'';
+  return (base.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')||'document')+ext;};
+function paint(m){
+  const cats=[...new Set(m.data.docs.map(d=>d.category).filter(Boolean))];
+  $('cats').replaceChildren(...cats.map(x=>{const o=document.createElement('option');o.value=x;return o;}));
+  const box=$('list');box.replaceChildren();
+  if(!m.data.docs.length){const p=document.createElement('p');p.className='hint';p.textContent='No documents yet.';box.append(p);return;}
+  m.data.docs.forEach(d=>{
+    const it=document.createElement('div');it.className='item';
+    const t=document.createElement('div');const b=document.createElement('b');b.textContent=d.title;const s=document.createElement('span');s.textContent=(d.category||'Uncategorised')+(d.file?'':' · no file attached');
+    t.append(b,s);
+    const x=document.createElement('button');x.className='del';x.type='button';x.textContent='Remove';
+    x.onclick=()=>remove(d,x);it.append(t,x);box.append(it);
+  });
+}
+async function load(){
+  try{const c=cfg();$('load').disabled=true;const m=await manifest(c);paint(m);}
+  catch(e){say(e.message,'err');}finally{$('load').disabled=false;}
+}
+async function remove(d,btn){
+  if(!confirm('Remove “'+d.title+'” from the site?'))return;
+  try{
+    const c=cfg();btn.disabled=true;
+    if(d.file){const r=await api(c,d.file);if(r.ok){const j=await r.json();
+      const rr=await api(c,d.file,'DELETE',{message:'Remove document: '+d.title,sha:j.sha,branch:c.br},false);if(!rr.ok)throw await fail(rr);}}
+    const m=await manifest(c);m.data.docs=m.data.docs.filter(x=>!(x.title===d.title&&x.file===d.file));
+    await saveManifest(c,m,'Update document list');paint(m);say('Removed “'+d.title+'”.','ok');
+  }catch(e){say(e.message,'err');btn.disabled=false;}
+}
+async function upload(){
+  const btn=$('go');
+  try{
+    const c=cfg(),f=$('file').files[0],title=$('title').value.trim();
+    if(!f)throw new Error('Choose a file to upload.');
+    if(!title)throw new Error('Enter the name to show on the site.');
+    if(f.size>MAX)throw new Error('That file is over 25 MB. Compress it first, or add it to the repository directly.');
+    btn.disabled=true;say('Uploading file…');
+    let name=slug(f.name);
+    if((await api(c,'docs/'+name)).ok)name=Date.now().toString(36)+'-'+name;
+    const r=await api(c,'docs/'+name,'PUT',{message:'Add document: '+title,content:await b64(f),branch:c.br},false);
+    if(!r.ok)throw await fail(r);
+    say('Updating the document list…');
+    const m=await manifest(c);
+    m.data.docs.push({title,description:$('desc').value.trim(),category:$('cat').value.trim()||'General',date:$('date').value,file:'docs/'+name,size:f.size});
+    await saveManifest(c,m,'Add to document list: '+title);
+    paint(m);say('Uploaded “'+title+'”. It will appear on the documents page once GitHub Pages finishes redeploying.','ok');
+    $('file').value='';$('title').value='';$('desc').value='';
+  }catch(e){say(e.message,'err');}finally{btn.disabled=false;}
+}
+$('go').onclick=upload;$('load').onclick=load;
+})();
+</script>
+</body>
+</html>

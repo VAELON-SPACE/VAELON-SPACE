@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#000000"/><meta name="color-scheme" content="dark"/>
+<title>Documents | Vaelon Space</title>
+<meta name="description" content="Technical documents, briefs and publications from Vaelon Space."/>
+<link rel="canonical" href="https://vaelon.space/docs.html"/>
+<link rel="icon" href="favicon.ico"/>
+<style>
+@font-face{font-family:"Inter";src:url("assets/fonts/inter-400.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Inter";src:url("assets/fonts/inter-500.woff2") format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Inter";src:url("assets/fonts/inter-600.woff2") format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Barlow Condensed";src:url("assets/fonts/barlow-condensed-700.woff2") format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Barlow Condensed";src:url("assets/fonts/barlow-condensed-800.woff2") format("woff2");font-weight:800;font-display:swap}
+:root{--black:#050505;--panel:#0b0b0c;--panel-2:#111113;--ink:#f2f3f4;--muted:#8d9195;--faint:#767b80;--line:rgba(255,255,255,.14);--line-soft:rgba(255,255,255,.08);--ease:cubic-bezier(.22,1,.36,1);--wide:1400px;--gut:clamp(20px,4vw,56px);--nav-h:72px;--sans:"Inter",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;--disp:"Barlow Condensed","Arial Narrow",Arial,sans-serif}
+*{box-sizing:border-box}
+html{background:var(--black);scroll-padding-top:var(--nav-h);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--black);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{margin:0;font-family:var(--disp);font-weight:700;text-transform:uppercase}
+p{margin:0}
+:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--wide);margin:0 auto;padding:0 var(--gut)}
+header.nav{position:fixed;top:0;left:0;right:0;z-index:60;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:env(safe-area-inset-top,0px) var(--gut) 0;background:rgba(5,5,5,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft)}
+.brand img{height:44px;width:auto;display:block}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{font:500 12px/1 var(--sans);letter-spacing:.03em;color:var(--muted);padding:8px 0;transition:color .25s}
+.nav-links a:hover,.nav-links a[aria-current]{color:var(--ink)}
+.nav-links a[aria-current]{border-bottom:1px solid var(--ink)}
+.nav-links a.cta{color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:11px 20px}
+@media(max-width:860px){.nav-links a:not(.keep){display:none}.nav-links{gap:12px}}
+.hero{position:relative;min-height:62vh;display:flex;align-items:flex-end;overflow:hidden;border-bottom:1px solid var(--line-soft)}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,.15) 40%,rgba(5,5,5,.95) 100%)}
+.hero .wrap{position:relative;z-index:2;width:100%;padding-top:calc(var(--nav-h) + 60px);padding-bottom:clamp(36px,5vw,64px)}
+.hero h1{font-weight:800;font-size:clamp(52px,9vw,120px);line-height:.92;max-width:12ch;text-shadow:0 6px 40px rgba(0,0,0,.45)}
+.hero p{margin-top:20px;max-width:540px;font:400 clamp(15px,1.25vw,17px)/1.6 var(--sans);color:#d3d5d6}
+.tools{position:sticky;top:var(--nav-h);z-index:40;background:rgba(5,5,5,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft)}
+.tools .wrap{display:flex;gap:16px 28px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding-top:16px;padding-bottom:16px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font:600 11px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;padding:11px 16px;cursor:pointer;transition:all .25s var(--ease)}
+.chip:hover{color:var(--ink);border-color:rgba(255,255,255,.5)}
+.chip[aria-pressed="true"]{background:var(--ink);color:#050505;border-color:var(--ink)}
+.search{width:min(340px,100%);min-height:44px;padding:0 18px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:999px;color:var(--ink);font:400 14px var(--sans)}
+.search::placeholder{color:var(--faint)}
+.list{padding:8px 0 clamp(60px,8vw,110px);min-height:320px}
+.count{padding:22px 0 14px;font:600 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.row{display:grid;grid-template-columns:64px minmax(0,1fr) 130px 120px 150px;gap:24px;align-items:center;padding:26px 0;border-top:1px solid var(--line-soft);transition:background .3s var(--ease)}
+.row:last-child{border-bottom:1px solid var(--line-soft)}
+@media(hover:hover){.row:hover{background:var(--panel)}}
+.badge{width:52px;height:64px;display:grid;place-items:center;border:1px solid var(--line);border-radius:4px;font:700 12px/1 var(--sans);letter-spacing:.08em;color:var(--ink);background:var(--panel-2)}
+.row h3{font-size:clamp(22px,2.2vw,30px);line-height:1.05}
+.row .desc{margin-top:8px;color:var(--muted);font:400 14px/1.6 var(--sans);max-width:64ch}
+.cat,.date{font:500 12px/1.4 var(--sans);color:var(--muted)}
+.act{display:flex;gap:8px;justify-content:flex-end}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 18px;font:600 11px/1 var(--sans);letter-spacing:.07em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;color:var(--ink);transition:all .3s var(--ease)}
+.btn.primary{background:var(--ink);color:#050505;border-color:var(--ink)}
+.btn:hover{border-color:rgba(255,255,255,.55)}
+.btn.primary:hover{background:#fff}
+.soon{font:600 11px/1 var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--faint);border:1px dashed var(--line);border-radius:999px;padding:13px 18px}
+.empty{padding:70px 0;color:var(--muted);font:400 15px/1.7 var(--sans);max-width:56ch}
+.empty strong{display:block;color:var(--ink);font:700 28px/1 var(--disp);text-transform:uppercase;margin-bottom:12px}
+@media(max-width:860px){.row{grid-template-columns:52px minmax(0,1fr);gap:8px 16px}.row .cat,.row .date{grid-column:2}.row .act{grid-column:2;justify-content:flex-start;margin-top:8px}.badge{width:46px;height:56px}}
+footer{border-top:1px solid var(--line-soft);padding:36px 0 calc(36px + env(safe-area-inset-bottom,0px));color:var(--faint);font:500 11px/1.7 var(--sans);letter-spacing:.06em;text-transform:uppercase}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+footer a{color:var(--muted)}footer a:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="Vaelon Space home"><img src="assets/vaelon-logo-enhanced.png?v=6" alt="Vaelon Space"/></a>
+  <nav class="nav-links" aria-label="Primary">
+    <a class="keep" href="index.html">Home</a>
+    <a href="index.html#software">Software</a>
+    <a href="index.html#research">Research</a>
+    <a href="docs.html" aria-current="page">Documents</a>
+    <a href="company.html">About</a>
+    <a class="cta keep" href="index.html#contact">Contact</a>
+  </nav>
+</header>
+<main id="main">
+  <section class="hero">
+    <video autoplay muted loop playsinline preload="metadata" aria-hidden="true" id="bg"><source src="assets/video/docs-hero.mp4" type="video/mp4"/><source src="docs-hero.mp4" type="video/mp4"/></video>
+    <div class="wrap">
+      <h1>Document library</h1>
+      <p>Technical briefs, program overviews and publications from Vaelon Space. Search by title or filter by topic, then open or download any file.</p>
+    </div>
+  </section>
+  <div class="tools"><div class="wrap">
+    <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+    <input class="search" id="q" type="search" placeholder="Search documents" aria-label="Search documents"/>
+  </div></div>
+  <section class="list"><div class="wrap">
+    <p class="count" id="count" aria-live="polite"></p>
+    <div id="rows"></div>
+  </div></section>
+</main>
+<footer><div class="wrap"><span>&copy; 2022–2026 Vaelon Space. All rights reserved.</span><span><a href="index.html#contact">Request a document</a></span></div></footer>
+<script>
+(()=>{
+  const bg=document.getElementById('bg');
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches){bg.removeAttribute('autoplay');bg.pause();}
+  const rows=document.getElementById('rows'),chips=document.getElementById('chips'),q=document.getElementById('q'),count=document.getElementById('count');
+  let docs=[],cat='All';
+  const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;};
+  const fmt=d=>{const t=new Date(d);return isNaN(t)?'':t.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});};
+  function draw(){
+    const s=q.value.trim().toLowerCase();
+    const list=docs.filter(d=>(cat==='All'||d.category===cat)&&(!s||(d.title+' '+(d.description||'')+' '+(d.category||'')).toLowerCase().includes(s)))
+      .sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+    rows.replaceChildren();
+    count.textContent=list.length+(list.length===1?' document':' documents');
+    if(!list.length){const e=el('div','empty');e.append(el('strong',null,docs.length?'No matches':'Nothing published yet'),document.createTextNode(docs.length?'Try a different search or category.':'New documents will appear here as soon as they are uploaded.'));rows.append(e);return;}
+    list.forEach(d=>{
+      const r=el('article','row');
+      r.append(el('div','badge',d.file?(d.file.split('.').pop().slice(0,4).toUpperCase()):'DOC'));
+      const m=el('div');m.append(el('h3',null,d.title));if(d.description)m.append(el('p','desc',d.description));
+      r.append(m,el('div','cat',d.category||''),el('div','date',fmt(d.date)));
+      const a=el('div','act');
+      if(d.file){
+        const o=el('a','btn primary','Open');o.href=d.file;o.target='_blank';o.rel='noopener';
+        const dl=el('a','btn','Download');dl.href=d.file;dl.setAttribute('download','');
+        a.append(o,dl);
+      }else a.append(el('span','soon','Coming soon'));
+      r.append(a);rows.append(r);
+    });
+  }
+  function init(data,failed){
+    docs=data;
+    const cats=['All',...new Set(docs.map(d=>d.category).filter(Boolean))];
+    cats.forEach(c=>{const b=el('button','chip',c);b.type='button';b.setAttribute('aria-pressed',String(c===cat));
+      b.onclick=()=>{cat=c;chips.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));draw();};chips.append(b);});
+    if(failed){rows.append(el('div','empty','The document list could not be loaded. Open this page from the published site rather than as a local file.'));return;}
+    draw();
+  }
+  q.addEventListener('input',draw);
+  fetch('docs.json?'+Date.now()).then(r=>{if(!r.ok)throw 0;return r.json();}).then(j=>init(j.docs||[])).catch(()=>init([],true));
+})();
+</script>
+</body>
+</html>
