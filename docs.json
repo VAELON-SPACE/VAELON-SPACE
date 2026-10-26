@@ -1,0 +1,7 @@
+{
+  "docs": [
+    {"title":"Project VX-1 Technical Overview","description":"Propulsion architecture, test objectives and development status.","category":"Hardware","date":"2026-10-01","file":""},
+    {"title":"ResQNet Technical Brief","description":"System design, routing approach and deployment notes.","category":"Software","date":"2026-09-15","file":""},
+    {"title":"Vaelon Space Company Profile","description":"Mission, structure and programs of the collective.","category":"Company","date":"2026-08-20","file":""}
+  ]
+}
