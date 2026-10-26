@@ -1,7 +1,33 @@
 {
   "docs": [
-    {"title":"Project VX-1 Technical Overview","description":"Propulsion architecture, test objectives and development status.","category":"Hardware","date":"2026-10-01","file":""},
-    {"title":"ResQNet Technical Brief","description":"System design, routing approach and deployment notes.","category":"Software","date":"2026-09-15","file":""},
-    {"title":"Vaelon Space Company Profile","description":"Mission, structure and programs of the collective.","category":"Company","date":"2026-08-20","file":""}
+    {
+      "title": "Project VX-1 Technical Overview",
+      "description": "Propulsion architecture, test objectives and development status.",
+      "category": "Hardware",
+      "date": "2026-10-01",
+      "file": ""
+    },
+    {
+      "title": "ResQNet Technical Brief",
+      "description": "System design, routing approach and deployment notes.",
+      "category": "Software",
+      "date": "2026-09-15",
+      "file": ""
+    },
+    {
+      "title": "Vaelon Space Company Profile",
+      "description": "Mission, structure and programs of the collective.",
+      "category": "Company",
+      "date": "2026-08-20",
+      "file": ""
+    },
+    {
+      "title": "ResQNet_Gen5_Technical_Operator_Support_Manual",
+      "description": "Official technical documentation for ResQNet Gen 5 by Vaelon Space. This operator and support manual covers system architecture and workflows, hospital and EMS routing recommendations, resource allocation, diagnostics, data provenance, AI/ML components, deployment configuration, troubleshooting, persistence, and auditability.\n\nDesigned for operators, dispatch and Emergency Operations Center (EOC) personnel, technical evaluators, and deployment administrators, it provides practical guidance for operating the system, interpreting recommendations, and maintaining transparent, human-supervised decision workflows.",
+      "category": "Software",
+      "date": "2026-10-26",
+      "file": "docs/resqnet-gen5-technical-operator-support-manual.docx",
+      "size": 63368
+    }
   ]
 }
