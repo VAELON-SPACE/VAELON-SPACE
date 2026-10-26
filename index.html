@@ -898,6 +898,11 @@ header.nav .brand img,header.nav.scrolled .brand img{height:60px!important;width
 .nav-links a:not(.cta):not(.dd-item)::after{display:none;}
 .nav-links a.cta{border:0;background:rgba(255,255,255,.1);padding:9px 16px;}
 .nav-links a.cta:hover{background:rgba(255,255,255,.18);}
+.nav-links a,.dd-btn{white-space:nowrap;}
+.nav-links a.cta{display:inline-flex;align-items:center;gap:6px;}
+@media (max-width:1500px){.nav-links{gap:20px;}.nav-cluster{gap:16px;}}
+@media (max-width:1280px){.nav-links{gap:15px;}.nav-links a.cta{padding:9px 12px;}}
+@media (max-width:1060px) and (min-width:861px){.nav-links{gap:11px;}.nav-links a,.dd-btn{font-size:12px!important;}.nav-links a.cta{padding:8px 10px;}}
 .dd-panel{border-radius:22px;background:rgba(28,28,30,.92);border-color:rgba(255,255,255,.1);padding:26px;}
 .nav-links .dd-item{border-radius:14px;}
 .dd-item b{font-size:15px;font-weight:600;}
