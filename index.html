@@ -19,7 +19,7 @@
 <meta property="og:url" content="https://vaelon.space/">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"Vaelon Space","url":"https://vaelon.space/","logo":"https://vaelon.space/assets/vaelon-logo-enhanced.png","foundingDate":"2022-06-07","description":"Non-profit collective building aerospace concepts and decision software.","sameAs":["https://github.com/vaelon-space","https://www.instagram.com/vaelonspace/","https://x.com/vaelonspace"]}
+{"@context":"https://schema.org","@type":"Organization","name":"Vaelon Space","url":"https://vaelon.space/","logo":"https://vaelon.space/assets/vaelon-logo-enhanced.png","foundingDate":"2022-06-07","founder":{"@type":"Person","name":"Viren Singh","jobTitle":"Founder and CEO"},"employee":{"@type":"Person","name":"Yui Tanaka","jobTitle":"COO"},"description":"Non-profit collective building aerospace concepts and decision software.","sameAs":["https://github.com/vaelon-space","https://www.instagram.com/vaelonspace/","https://x.com/vaelonspace"]}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -308,14 +308,161 @@ footer{margin-top:0}
 /* v10: smaller, crisper header logo */
 .brand img{height:26px;width:auto}
 @media (min-width:820px){.brand img{height:32px}}
+
+/* v11: polish */
+::selection{background:#fff;color:#000}
+html{scrollbar-color:#2a2a2a #050505;scrollbar-width:thin}
+body{text-rendering:optimizeLegibility}
+.prog{position:fixed;top:0;left:0;height:2px;width:100%;z-index:60;background:linear-gradient(90deg,rgba(255,255,255,.2),#fff);transform:scaleX(0);transform-origin:0 50%;pointer-events:none}
+.nav{transition:background .35s,border-color .35s,box-shadow .35s}
+.nav.solid{box-shadow:0 10px 40px rgba(0,0,0,.45)}
+.links a,.pd summary{position:relative}
+.links>a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:#fff;transform:scaleX(0);transform-origin:0 50%;transition:transform .3s cubic-bezier(.22,1,.36,1)}
+.links>a:hover::after{transform:scaleX(1)}
+.pill{transition:background .25s,color .25s,transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s}
+.pill:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,255,255,.14)}
+.pill:active{transform:none}
+.pill.ghost{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.pill.ghost:hover{background:rgba(255,255,255,.16);box-shadow:none}
+.hero::after{background:radial-gradient(120% 80% at 50% 40%,rgba(0,0,0,0) 0,rgba(0,0,0,.35) 100%),linear-gradient(0deg,rgba(0,0,0,.94) 0,rgba(0,0,0,.4) 42%,rgba(0,0,0,.3) 100%)}
+.hero h1{max-width:22ch;text-wrap:wrap;text-shadow:0 2px 40px rgba(0,0,0,.45)}
+.hero .sub{text-wrap:pretty}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:20px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
+.hero .eyebrow{color:var(--soft);animation:rise 1s both}
+.statement .big{text-wrap:balance}
+.srows div{transition:padding-left .3s cubic-bezier(.22,1,.36,1),border-color .3s}
+.srows div:hover{padding-left:12px;border-top-color:rgba(255,255,255,.4)}
+.tile{border:1px solid rgba(255,255,255,.08);transition:transform .5s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .5s}
+.tile:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.28);box-shadow:0 30px 70px rgba(0,0,0,.55)}
+.tile::before{content:"\2197";position:absolute;top:20px;right:20px;z-index:1;width:40px;height:40px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.35);border-radius:50%;background:rgba(0,0,0,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-size:17px;opacity:0;transform:translate(-6px,6px);transition:opacity .3s,transform .4s cubic-bezier(.22,1,.36,1)}
+.tile:hover::before,.tile:focus-visible::before{opacity:1;transform:none}
+.cap p{text-wrap:pretty}
+.row{position:relative;transition:padding .3s cubic-bezier(.22,1,.36,1),background .3s}
+.row:hover{padding-left:14px;background:linear-gradient(90deg,rgba(255,255,255,.05),transparent 60%)}
+.row h3{text-decoration:none!important}
+.row .st{display:inline-flex;align-items:center;gap:8px;justify-content:flex-end}
+.row .st::after{content:"\2192";transition:transform .3s;opacity:.6}
+.row:hover .st::after{transform:translateX(4px);opacity:1}
+.panel h2,.cpanel h2{text-wrap:balance}
+.tracks div{transition:border-color .3s}
+.tracks div:hover{border-top-color:#fff}
+.spec div{transition:padding-left .3s,border-color .3s}
+.spec div:hover{padding-left:10px;border-top-color:#fff}
+.direct a{transition:background .25s,border-color .25s,transform .3s cubic-bezier(.22,1,.36,1)}
+.direct a:hover{transform:translateX(4px);border-color:rgba(255,255,255,.55)}
+.cform{box-shadow:0 30px 80px rgba(0,0,0,.4);border-color:rgba(255,255,255,.22)}
+.seg span{cursor:pointer}
+.cform input:not([type=radio]),.cform textarea{transition:border-color .25s}
+.fld:focus-within span{color:#fff}
+/* founder signature */
+.sign{display:flex;flex-wrap:wrap;align-items:flex-end;gap:24px clamp(32px,6vw,80px);margin-top:56px;padding:36px 0 0;border-top:1px solid var(--line)}
+.sign .who{display:grid;gap:10px}
+.sign .lbl{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.sign .nm{font-family:var(--disp);font-weight:400;font-size:clamp(24px,3.6vw,44px);line-height:1.1;letter-spacing:-.01em;color:var(--ink)}
+.sign .role{display:none;display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.sign .role::before{content:"";width:36px;height:1px;background:#fff}
+.sign .tm{font-size:13px;color:var(--mute);max-width:22em;margin-left:auto;text-align:right}
+@media (max-width:640px){.sign .tm{text-align:left}}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.tile,.pill,.row,.srows div,.spec div,.direct a{transition:none}.tile:hover,.pill:hover{transform:none}}
+@media (hover:none){.tile::before{display:none}}
+
+/* v12: lighter mobile, less text on screen */
+@media (max-width:699px){
+ section,.panel,.cpanel{margin-top:0}
+ section{padding-top:64px}.panel{margin-top:64px}.panel.join{margin-top:0}.cpanel{margin-top:64px}
+ .statement{padding-top:72px}.sgrid{gap:28px}
+ .srows p,.tile.sm .cap p,.row p,.tracks p,.direct span,.cpanel .lead,.fb p{display:none}
+ .srows div{padding:16px 0}.srows h3{font-size:17px}
+ .tile{min-height:340px}.tile.sm{min-height:230px}
+ .tile.big .cap p{font-size:15px;margin-top:8px}
+ .tile::before{display:none}
+ .top{margin-bottom:20px}.top a{font-size:13px}
+ .index{margin-top:32px}
+ .row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0}
+ .row:hover{padding-left:0;background:none}
+ .row h3{font-size:15px}
+ .row .st{font-size:12px;color:var(--mute);white-space:nowrap}
+ .panel{min-height:72svh}
+ .panel .wrap{padding-bottom:40px}
+ .tracks{margin-top:28px;counter-reset:t}
+ .tracks div{padding:16px 0}
+ .tracks h3{display:flex;align-items:center;gap:14px;font-size:17px}
+ .tracks h3::before{counter-increment:t;content:"0" counter(t);font-size:12px;color:var(--mute);letter-spacing:.08em}
+ .panel .pill{margin-top:24px}
+ .lead{font-size:16px;margin-top:14px}
+ .spec div{padding:14px 0}
+ .direct{margin-top:24px}.direct a{padding:16px 18px}
+ .cform{gap:18px}
+ .legal1{font-size:12px;margin-top:32px}
+ .cols{gap:28px 20px}
+ .sign{margin-top:40px;padding-top:28px}.sign .tm{display:none}
+}
+
+/* v13: language picker */
+details.lang{position:relative;display:block;padding:0;background:none;border-radius:0}
+.lang summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:#161616;color:var(--soft);font-size:13px;border:1px solid transparent;transition:background .2s,border-color .2s,color .2s}
+.lang summary::-webkit-details-marker{display:none}
+.lang summary::after{content:"";width:6px;height:6px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:rotate(-135deg) translateY(1px);transition:transform .2s}
+.lang[open] summary::after{transform:rotate(45deg) translateY(-2px)}
+.lang summary:hover,.lang[open] summary{background:#202020;color:#fff;border-color:rgba(255,255,255,.25)}
+.lm{position:absolute;left:0;bottom:calc(100% + 10px);z-index:30;margin:0;padding:8px;list-style:none;width:min(300px,88vw);max-height:min(340px,60vh);overflow:auto;display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#0b0b0b;border:1px solid var(--line);border-radius:12px;box-shadow:0 24px 60px rgba(0,0,0,.65)}
+.lm button{width:100%;text-align:left;padding:10px 12px;border:0;border-radius:8px;background:transparent;color:var(--soft);font:400 14px var(--sans);cursor:pointer;transition:background .2s,color .2s}
+.lm button:hover{background:#181818;color:#fff}
+.lm button[aria-current=true]{background:#fff;color:#000;font-weight:500}
+@media (min-width:700px){.lm{left:auto;right:0}}
+.gtbox{position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden}
+iframe.skiptranslate,.goog-te-banner-frame,#goog-gt-tt,.goog-te-balloon-frame{display:none!important}
+body{top:0!important;position:static!important}
+.goog-text-highlight{background:none!important;box-shadow:none!important}
+
+/* v14: menu button on the right for mobile/tablet */
+@media (max-width:899px){.brand{margin-right:auto}}
+
+/* v15: products dropdown */
+.pdm.wide{width:600px;padding:10px;max-height:calc(100vh - var(--nav) - 28px);overflow:auto}
+.pg{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,auto);grid-auto-flow:column;gap:2px 8px}
+.pdm.wide a{padding:10px;gap:14px;min-width:0}
+.pdm.wide .tx{min-width:0;flex:1}
+.pdm.wide b{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.pdm.wide small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pdm.wide b .free{margin:0;font-size:9.5px;padding:2px 7px}
+.th{position:relative;flex:none;width:52px;height:42px;border-radius:8px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#222,#0d0d0d);border:1px solid rgba(255,255,255,.12);font:400 11px var(--disp);color:var(--mute);letter-spacing:0}
+.pdm .th img{position:absolute;inset:0;width:100%;height:100%;border-radius:0}
+.pdm.wide a:hover .th{border-color:rgba(255,255,255,.4)}
+.pdm.wide .all{margin-top:8px;padding:13px;border-top:1px solid var(--line);border-radius:0 0 8px 8px}
+.pdm.wide .all::after{content:"\2192";margin-left:10px}
+@media (min-width:900px) and (max-width:1010px){.pdm.wide{width:520px}}
+
+/* v16: nested products menu */
+.pdm.nest{width:330px;padding:10px;overflow:visible}
+.pdm.nest a{padding:10px;gap:14px;min-width:0}
+.pdm.nest .tx{min-width:0;flex:1}
+.pdm.nest b{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.pdm.nest b .free{margin:0;font-size:9.5px;padding:2px 7px}
+.pdm.nest small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pdm.nest .all{margin-top:8px;padding:13px;border-top:1px solid var(--line);border-radius:0 0 8px 8px}
+.pdm.nest .all::after{content:"\2192";margin-left:10px}
+.chev{margin-left:auto;font-size:22px;line-height:1;color:var(--mute);transition:transform .25s,color .2s}
+.sub:hover>.topl,.sub:focus-within>.topl{background:#171717}
+.sub:hover .chev,.sub:focus-within .chev{transform:translateX(4px);color:#fff}
+.fly{position:absolute;left:calc(100% + 8px);top:0;width:320px;padding:10px;background:#0b0b0b;border:1px solid var(--line);border-radius:12px;box-shadow:0 24px 60px rgba(0,0,0,.65);opacity:0;visibility:hidden;transform:translateX(-6px);transition:opacity .2s,transform .25s cubic-bezier(.22,1,.36,1),visibility 0s .15s}
+.fly::before{content:"";position:absolute;top:0;bottom:0;left:-14px;width:14px}
+.sub:hover .fly,.sub:focus-within .fly{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.fh{display:block;padding:6px 10px 10px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.fly .fo{justify-content:center;margin-top:6px;padding:12px;border-top:1px solid var(--line);border-radius:0 0 8px 8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+@media (min-width:900px) and (max-width:1010px){.fly{left:auto;right:calc(100% + 8px)}}
 </style>
 </head>
 <body>
+<div class="prog" id="prog" aria-hidden="true"></div>
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav" id="nav">
   <div class="in">
     <a class="brand" href="#top" aria-label="Vaelon Space"><img src="assets/vaelon-logo-nav.png" alt="Vaelon Space" width="102" height="32" onerror="this.replaceWith(document.createTextNode('Vaelon Space'))"></a>
-    <nav class="links" aria-label="Main"><details class="pd" id="pd"><summary>Products</summary><div class="pdm"><a href="resqnet-gen5.html"><img src="assets/img/resqnet-bg.jpg" alt=""><span><b>ResQNet Gen 5</b><small>Latest generation</small></span></a><a href="https://vaelon.space/resqnet-project.html"><img src="assets/img/sky.jpg" alt=""><span><b>ResQNet Gen 4</b><small>Emergency routing</small></span></a><a href="resqnet-gen2.html"><img src="assets/img/redwave.jpg" alt=""><span><b>ResQNet Gen 2</b><small>Evaluation build, free to try</small></span></a><a href="orvael.html"><img src="assets/video/orvael.jpg" alt=""><span><b>Orvael</b><small>AI assistant, free</small></span></a><a href="vaelon-guard.html"><img src="assets/video/guard.jpg" alt=""><span><b>VaelonGuard</b><small>Safety layer</small></span></a><a href="nexusml-project.html"><img src="assets/video/research.jpg" alt=""><span><b>NexusML</b><small>Coming soon</small></span></a><a href="vx1-project.html"><img src="assets/video/mars.jpg" alt=""><span><b>VX-1</b><small>Engine in research</small></span></a><a class="all" href="#products">All products</a></div></details><a href="#research">Research</a><a href="#about">Mission</a><details class="pd" id="pd2"><summary>Company</summary><div class="pdm slim"><a href="https://vaelon.space/company.html"><span><b>About</b><small>Company dossier</small></span></a><a href="https://vaelon.space/team.html"><span><b>Team</b><small>The people behind Vaelon Space</small></span></a><a href="https://vaelon.space/docs.html"><span><b>Documentation</b><small>Technical library</small></span></a></div></details></nav>
+    <nav class="links" aria-label="Main"><details class="pd" id="pd"><summary>Products</summary><div class="pdm nest"><div class="sub"><a class="topl" href="resqnet-project.html" aria-haspopup="true"><span class="th">RQ<img src="assets/img/resqnet-bg.jpg" alt="" onerror="this.remove()"></span><span class="tx"><b>ResQNet</b><small>Emergency routing system</small></span><span class="chev" aria-hidden="true">&#8250;</span></a><div class="fly"><span class="fh">ResQNet generations</span><a href="resqnet-gen5.html"><span class="th">R5<img src="assets/img/resqnet-bg.jpg" alt="" onerror="this.remove()"></span><span class="tx"><b>ResQNet Gen 5<em class="free">New</em></b><small>Latest generation</small></span></a><a href="https://vaelon.space/resqnet-project.html"><span class="th">R4<img src="assets/img/sky.jpg" alt="" onerror="this.remove()"></span><span class="tx"><b>ResQNet Gen 4</b><small>Emergency routing</small></span></a><a href="resqnet-gen2.html"><span class="th">R2<img src="assets/img/redwave.jpg" alt="" onerror="this.remove()"></span><span class="tx"><b>ResQNet Gen 2<em class="free">Free</em></b><small>Evaluation build</small></span></a><a class="fo" href="resqnet-project.html">Project overview &rarr;</a></div></div><a href="orvael.html"><span class="th">Or<img src="assets/video/orvael.jpg" alt="" onerror="this.remove()"></span><span class="tx"><b>Orvael<em class="free">Free</em></b><small>AI assistant</small></span></a><a href="vaelon-guard.html"><span class="th">VG<img src="assets/video/guard.jpg" alt="" onerror="this.remove()"></span><span class="tx"><b>VaelonGuard</b><small>Safety layer</small></span></a><a href="nexusml-project.html"><span class="th">NX<img src="assets/video/research.jpg" alt="" onerror="this.remove()"></span><span class="tx"><b>NexusML<em class="free">Soon</em></b><small>Autonomous analysis</small></span></a><a href="vx1-project.html"><span class="th">VX<img src="assets/video/mars.jpg" alt="" onerror="this.remove()"></span><span class="tx"><b>VX-1<em class="free">Research</em></b><small>Engine in research</small></span></a><a class="all" href="#products">View all products</a></div></details><a href="#research">Research</a><a href="#about">Mission</a><details class="pd" id="pd2"><summary>Company</summary><div class="pdm slim"><a href="https://vaelon.space/company.html"><span><b>About</b><small>Company dossier</small></span></a><a href="https://vaelon.space/team.html"><span><b>Team</b><small>The people behind Vaelon Space</small></span></a><a href="https://vaelon.space/docs.html"><span><b>Documentation</b><small>Technical library</small></span></a></div></details></nav>
     <details class="dd" id="dd"><summary><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Contact us</summary><div class="ddm"><a href="mailto:contact@vaelon.space"><b>General</b><span>contact@vaelon.space</span></a><a href="mailto:career@vaelon.space"><b>Careers</b><span>career@vaelon.space</span></a><a href="#contact"><b>Write a message</b><span>Use the form on this page</span></a></div></details>
     <a class="pill nav-cta" href="https://orvael.vaelon.space/"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" fill="currentColor"/></svg>Try Orvael</a>
     <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Menu</button>
@@ -327,6 +474,7 @@ footer{margin-top:0}
 <div id="top" class="hero">
   <video autoplay muted loop playsinline preload="auto" poster="assets/video/hero.jpg" aria-hidden="true"><source src="assets/video/hero.mp4" type="video/mp4"></video>
   <div class="wrap">
+    <span class="eyebrow">Vaelon Space &middot; Est. 2022</span>
     <h1>Engineering what comes next.</h1>
     <p class="sub">A non-profit collective building spacecraft systems and software that keeps deciding well when conditions change fast.</p>
     <div class="cta"><a class="pill" href="#products">Explore products</a><a class="pill ghost" href="#research">Read the research</a></div>
@@ -423,7 +571,12 @@ footer{margin-top:0}
       <div><h4>Contact</h4><a href="#contact">Get in touch</a><a href="mailto:career@vaelon.space">Careers</a><a href="https://www.instagram.com/vaelonspace/">Instagram</a><a href="https://github.com/vaelon-space">GitHub</a><a href="https://x.com/vaelonspace">X</a></div>
     </div>
     <p class="legal1">Other sites use the name “Vaelon”. Vaelon Space™ has no link to any of them. We write only from contact@vaelon.space and career@vaelon.space.</p>
-    <div class="fbar2"><p>© 2022–2026 Vaelon Space. All rights reserved.</p><span class="lang"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg>English</span></div>
+    <div class="fbar2"><p>© 2022–2026 Vaelon Space. All rights reserved.</p><details class="lang notranslate" id="lang" translate="no"><summary aria-label="Choose language"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg><span id="langcur">English</span></summary><ul class="lm"><li><button type="button" data-l="en" lang="en" aria-current="true">English</button></li><li><button type="button" data-l="hi" lang="hi">हिन्दी</button></li><li><button type="button" data-l="pa" lang="pa">ਪੰਜਾਬੀ</button></li><li><button type="button" data-l="ur" lang="ur">اردو</button></li><li><button type="button" data-l="bn" lang="bn">বাংলা</button></li><li><button type="button" data-l="ta" lang="ta">தமிழ்</button></li><li><button type="button" data-l="te" lang="te">తెలుగు</button></li><li><button type="button" data-l="es" lang="es">Español</button></li><li><button type="button" data-l="fr" lang="fr">Français</button></li><li><button type="button" data-l="de" lang="de">Deutsch</button></li><li><button type="button" data-l="pt" lang="pt">Português</button></li><li><button type="button" data-l="it" lang="it">Italiano</button></li><li><button type="button" data-l="nl" lang="nl">Nederlands</button></li><li><button type="button" data-l="ru" lang="ru">Русский</button></li><li><button type="button" data-l="tr" lang="tr">Türkçe</button></li><li><button type="button" data-l="ar" lang="ar">العربية</button></li><li><button type="button" data-l="ja" lang="ja">日本語</button></li><li><button type="button" data-l="ko" lang="ko">한국어</button></li><li><button type="button" data-l="zh-CN" lang="zh-CN">中文（简体）</button></li><li><button type="button" data-l="id" lang="id">Bahasa Indonesia</button></li></ul></details><div id="gt" class="gtbox" aria-hidden="true"></div></div>
+    <div class="sign">
+      <div class="who"><span class="lbl">Founder &amp; CEO</span><span class="nm">Viren Singh</span></div>
+      <div class="who"><span class="lbl">COO</span><span class="nm">Yui Tanaka</span></div>
+      <p class="tm">Building aerospace systems and decision software, in the open.</p>
+    </div>
   </div>
 </footer>
 
@@ -451,6 +604,32 @@ footer{margin-top:0}
     fetch('https://formsubmit.co/ajax/vaelon.space@gmail.com',{method:'POST',headers:{'Accept':'application/json'},body:d})
     .then(function(r){return r.json()}).then(function(j){if(String(j.success)!=='true')throw 0;f.reset();btn.textContent='Sent';note.textContent='Message sent. We reply from an official Vaelon address.';setTimeout(function(){btn.disabled=false;btn.textContent='Send message'},4000)})
     .catch(function(){btn.disabled=false;btn.textContent='Send message';note.textContent='Could not send. Please email contact@vaelon.space instead.'})});
+  var lg=document.getElementById('lang'),lcur=document.getElementById('langcur'),gtLoaded=false,gtWant=null;
+  var CODES='en,hi,pa,ur,bn,ta,te,es,fr,de,pt,it,nl,ru,tr,ar,ja,ko,zh-CN,id';
+  window.gtInit=function(){try{new google.translate.TranslateElement({pageLanguage:'en',autoDisplay:false,includedLanguages:CODES},'gt')}catch(e){}if(gtWant)gtApply(gtWant,0)};
+  function gtApply(code,n){var c=document.querySelector('select.goog-te-combo');
+    if(!c){if(n<40)setTimeout(function(){gtApply(code,n+1)},150);return}
+    c.value=code;c.dispatchEvent(new Event('change'))}
+  function pick(code,label){
+    lg.querySelectorAll('.lm button').forEach(function(x){x.removeAttribute('aria-current')});
+    var b=lg.querySelector('[data-l="'+code+'"]');if(b)b.setAttribute('aria-current','true');
+    lcur.textContent=label;lg.open=false;gtWant=code;
+    try{localStorage.setItem('vl-lang',code)}catch(e){}
+    if(!gtLoaded){if(code==='en')return;gtLoaded=true;var sc=document.createElement('script');sc.src='https://translate.google.com/translate_a/element.js?cb=gtInit';sc.async=true;document.head.appendChild(sc)}
+    else gtApply(code,0)}
+  lg.addEventListener('click',function(e){var b=e.target.closest('.lm button');if(b)pick(b.getAttribute('data-l'),b.textContent)});
+  document.addEventListener('click',function(e){if(!lg.contains(e.target))lg.open=false});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')lg.open=false});
+  try{var sv=localStorage.getItem('vl-lang');if(sv&&sv!=='en'){var sb=lg.querySelector('[data-l="'+sv+'"]');if(sb)pick(sv,sb.textContent)}}catch(e){}
+  var pg=document.getElementById('prog');
+  function pr(){var d=document.documentElement,mx=d.scrollHeight-innerHeight;pg.style.transform='scaleX('+(mx>0?Math.min(1,scrollY/mx):0)+')'}
+  pr();addEventListener('scroll',pr,{passive:true});addEventListener('resize',pr);
+  var rmo=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(!rmo&&'IntersectionObserver' in window){
+    var rs=document.querySelectorAll('.statement .big,.srows div,.top,.tile,.row,.panel h2,.panel .lead,.tracks div,.spec div,.cpanel h2,.cpanel .lead,.direct a,.cform,.sign');
+    var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+    rs.forEach(function(el,i){el.classList.add('rv');el.style.setProperty('--d',((i%3)*.08)+'s');ro.observe(el)});
+  }
   var rm=matchMedia('(prefers-reduced-motion:reduce)').matches,vs=document.querySelectorAll('video');
   if(rm){vs.forEach(function(v){v.removeAttribute('autoplay');v.pause()});return}
   if(!('IntersectionObserver' in window))return;
